@@ -1,6 +1,6 @@
 using System;
-using System.Threading.Tasks;
 using Core.Tools.Observables;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Tools
 {
@@ -9,7 +9,7 @@ namespace Core.Tools
         public Event CompletedEvent { get; } = new Event();
         public Lifetime Lifetime { get; private set; }
     
-        public async Task Run(Lifetime parentLifetime = null)
+        public async UniTask Run(Lifetime parentLifetime = null)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
@@ -18,9 +18,9 @@ namespace Core.Tools
             }
         }
         
-        protected abstract Task Run();
+        protected abstract UniTask Run();
     
-        public static Job As(Func<Task> action) => new AnonymousJob(action);
+        public static Job As(Func<UniTask> action) => new AnonymousJob(action);
     }
 
     public abstract class Job<TResult> : ILifetimeOwner
@@ -28,7 +28,7 @@ namespace Core.Tools
         public Event<TResult> CompletedEvent { get; } = new Event<TResult>();
         public Lifetime Lifetime { get; private set; }
         
-        public async Task<TResult> Run(Lifetime parentLifetime = null)
+        public async UniTask<TResult> Run(Lifetime parentLifetime = null)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
@@ -38,9 +38,9 @@ namespace Core.Tools
             }
         }
         
-        protected abstract Task<TResult> Run();
+        protected abstract UniTask<TResult> Run();
 
-        public static Job<TResult> As(Func<Task<TResult>> action) => new AnonymousJob<TResult>(action);
+        public static Job<TResult> As(Func<UniTask<TResult>> action) => new AnonymousJob<TResult>(action);
     }
     
     

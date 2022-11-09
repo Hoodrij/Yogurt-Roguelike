@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Tools
 {
     internal class AnonymousJob : Job
     {
-        private readonly Func<Task> action;
+        private readonly Func<UniTask> action;
 
-        internal AnonymousJob(Func<Task> action)
+        internal AnonymousJob(Func<UniTask> action)
         {
             this.action = action;
         }
     
-        protected override async Task Run()
+        protected override async UniTask Run()
         {
             await action();
         }
@@ -20,14 +20,14 @@ namespace Core.Tools
     
     internal class AnonymousJob<TResult> : Job<TResult>
     {
-        private readonly Func<Task<TResult>> action;
+        private readonly Func<UniTask<TResult>> action;
 
-        internal AnonymousJob(Func<Task<TResult>> action)
+        internal AnonymousJob(Func<UniTask<TResult>> action)
         {
             this.action = action;
         }
     
-        protected override async Task<TResult> Run()
+        protected override async UniTask<TResult> Run()
         {
             return await action();
         }
