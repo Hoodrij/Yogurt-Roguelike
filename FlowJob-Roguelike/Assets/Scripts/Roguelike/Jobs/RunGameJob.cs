@@ -8,13 +8,11 @@ namespace Roguelike.Jobs
     {
         protected override async UniTask Run()
         {
-            World world = new World();
-
             Entity.Create()
-                .Set(new Game(world))
+                .Add<Game>()
                 .Add<Life>();
 
-            new DisposeGameJob().Run();
+            new SpawnLevelJob().Run();
         }
     }
 }
