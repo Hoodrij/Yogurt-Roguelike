@@ -5,7 +5,7 @@ namespace Roguelike
 {
     public class Boot : MonoBehaviour
     {
-        private async void Awake()
+        private void Awake()
         {
             new RunGameJob().Run();
         }

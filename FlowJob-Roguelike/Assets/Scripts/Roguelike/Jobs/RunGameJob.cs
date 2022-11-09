@@ -1,23 +1,20 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike.Jobs
 {
     public class RunGameJob : Job
     {
-        protected override async Task Run()
+        protected override async UniTask Run()
         {
             World world = new World();
 
-            Entity game = Entity.Create()
-                .Add<Game>()
+            Entity.Create()
+                .Set(new Game(world))
                 .Add<Life>();
 
-            await game.Get<Life>().QuitEvent;
-
-            "World Dispose test".log();
-            world.Dispose();
+            new DisposeGameJob().Run();
         }
     }
 }
