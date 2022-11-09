@@ -1,0 +1,16 @@
+{
+  "name": "FlowJob",
+  "rootNamespace": "",
+  "references": [
+    "GUID:aa30dc4cece8cf545abea4bc35617bb1"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
