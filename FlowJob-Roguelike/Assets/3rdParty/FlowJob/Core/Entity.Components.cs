@@ -30,7 +30,7 @@
             return this;
         }
 
-        public ref T Get<T>() where T : IComponent, new()
+        public ref T Get<T>() where T : IComponent
         {
             this.DebugCheckExist();
             this.DebugNoComponent<T>();

@@ -10,7 +10,7 @@ namespace FlowJob
             internal World World => instance;
         }
 
-        internal OperationsQueue OperationsQueue = new OperationsQueue();
+        internal OperationsQueue OperationsQueue = new();
         internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
