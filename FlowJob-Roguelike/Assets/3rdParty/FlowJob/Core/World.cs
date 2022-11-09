@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace FlowJob
 {
@@ -16,15 +17,19 @@ namespace FlowJob
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
         
         private int nextEntityID = 1;
-        
-        public World()
+
+        private World()
         {
             instance = this;
             Storage.Initialize();
+
+            Application.quitting += Dispose;
         }
 
         internal static Entity CreateEntity()
         {
+            if (instance == null) new World();
+            
             Entity entity;
             if (instance.ReleasedEntities.Count > 0)
             {
@@ -52,6 +57,8 @@ namespace FlowJob
 
         public void Dispose()
         {
+            instance = null;
+            Application.quitting -= Dispose;
             for (int i = 0; i < EntitiesMetas.Length; i++)
             {
                 EntitiesMetas.Get(i)->Dispose();
@@ -70,6 +77,8 @@ namespace FlowJob
             EntitiesMetas.Dispose();
             UnmanagedMemory.Cleanup();
             AspectCache.Clear();
+
+            Debug.Log(123);
         }
     }
 }
