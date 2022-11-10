@@ -14,7 +14,7 @@ namespace Roguelike.Jobs
             
             Board board = new()
             {
-                Cells = new Entity[data.BoardSize.x, data.BoardSize.y]
+                Cells = new Cell[data.BoardSize.x, data.BoardSize.y]
             };
 
             Entity.Create()
@@ -24,10 +24,22 @@ namespace Roguelike.Jobs
             {
                 for (int y = 0; y < data.BoardSize.y; y++)
                 {
-                    Vector2Int coord = new Vector2Int(x, y);
-                    board.Cells[x, y] = await new SpawnCellJob(coord).Run();
+                    board.Cells[x, y] = new Cell
+                    {
+                        Coord = new Vector2Int(x, y)
+                    };
                 }
             }
+            
+            Vector2Int playerCoord = Vector2Int.one;
+            Entity playerEntity = await new SpawnPlayerJob(playerCoord).Run();
+            board.SetCell(playerCoord, playerEntity);
+
+            Vector2Int exitCoord = data.BoardSize - Vector2Int.one - Vector2Int.one;
+            Entity exitEntity = await new SpawnExitJob(exitCoord).Run();
+            board.SetCell(exitCoord, exitEntity);
+
+            
         }
     }
 }

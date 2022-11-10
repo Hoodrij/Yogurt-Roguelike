@@ -2,7 +2,7 @@
 
 namespace Roguelike.Entities
 {
-    public struct BoardAspect : Aspect<BoardAspect>
+    public struct LevelAspect : Aspect<LevelAspect>
     {
         public Entity Entity { get; set; }
 
