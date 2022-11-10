@@ -14,6 +14,12 @@
             Set(new T());
             return this;
         }
+        
+        public Entity Add<T>(T component) where T : IComponent
+        {
+            Set(component);
+            return this;
+        }
 
         public Entity Set<T>(T component) where T : IComponent
         {

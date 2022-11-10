@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
+using Collider = Roguelike.Entities.Collider;
 
 namespace Roguelike.Jobs
 {
@@ -11,22 +12,21 @@ namespace Roguelike.Jobs
         protected override async UniTask<Entity> Run()
         {
             Data data = Aspect<GameAspect>.Single().Data;
-            LevelAspect levelAspect = Aspect<LevelAspect>.Single();
 
             Vector2Int coord = Vector2Int.one;
             Entity entity = Entity.Create()
                 .Add<Player>()
-                .Set(new Actor
+                .Add<Actor>()
+                .Add<Collider>()
+                .Add(new Position
                 {
                     Coord = coord
                 })
-                .Set(new Health
+                .Add(new Health
                 {
                     Value = data.StartingPlayerHealth
                 });
             
-            levelAspect.Board.SetCell(coord, entity);
-
             return entity;
         }
     }

@@ -22,6 +22,6 @@ namespace Roguelike.Entities
 
     public class Actor : IComponent
     {
-        public Vector2Int Coord;
+        
     }
 }
