@@ -1,6 +1,7 @@
 ﻿using Core.Tools;
 using Cysharp.Threading.Tasks;
 using FlowJob;
+using Roguelike.Entities;
 
 namespace Roguelike.Jobs
 {
@@ -10,7 +11,8 @@ namespace Roguelike.Jobs
         {
             Entity.Create()
                 .Add<Game>()
-                .Add<Life>();
+                .Add<Life>()
+                .Add<Data>();
 
             new SpawnLevelJob().Run();
         }

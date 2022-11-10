@@ -2,7 +2,7 @@
 using UnityEngine;
 using Event = Core.Tools.Observables.Event;
 
-namespace Roguelike
+namespace Roguelike.Entities
 {
     public class Life : IComponent
     {

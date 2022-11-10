@@ -81,10 +81,7 @@ namespace FlowJob
         {
             foreach (Entity entity in GetGroup())
             {
-                TAspect aspect = new TAspect
-                {
-                    Entity = entity
-                };
+                TAspect aspect = new TAspect { Entity = entity };
                 yield return aspect;
             }
         }

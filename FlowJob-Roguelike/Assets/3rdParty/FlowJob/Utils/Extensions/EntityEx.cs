@@ -4,7 +4,7 @@ using Debug = UnityEngine.Debug;
 
 namespace FlowJob
 {
-    internal static class EntityEx
+    public static class EntityEx
     {
         internal class EntityDebugView
         {
@@ -31,7 +31,17 @@ namespace FlowJob
 
             return result;
         }
+
+        public static T ToAspect<T>(this Entity entity) where T : struct, Aspect<T>
+        {
+            return new T { Entity = entity };
+        }
         
+        public static Entity FromAspect(this Entity entity, Aspect aspect)
+        {
+            return aspect.Entity;
+        }
+
         [Conditional("UNITY_EDITOR")]
         internal static void DebugCheckExist(this Entity entity)
         {

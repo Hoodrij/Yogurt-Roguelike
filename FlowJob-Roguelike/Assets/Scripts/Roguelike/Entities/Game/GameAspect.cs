@@ -1,6 +1,6 @@
 ﻿using FlowJob;
 
-namespace Roguelike
+namespace Roguelike.Entities
 {
     public struct GameAspect : Aspect<GameAspect>
     {
@@ -8,5 +8,6 @@ namespace Roguelike
 
         public Game Game => this.Get<Game>();
         public Life Life => this.Get<Life>();
+        public Data Data => this.Get<Data>();
     }
 }

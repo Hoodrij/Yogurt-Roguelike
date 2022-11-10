@@ -13,10 +13,7 @@
         
         public static TAspect Single()
         {
-            return new TAspect
-            {
-                Entity = Query().Single()
-            };
+            return new TAspect { Entity = Query().Single() };
         }
     }
 
@@ -24,10 +21,7 @@
     {
         public static TAspect GetAspect<TAspect>(this Aspect aspect) where TAspect : struct, Aspect<TAspect>
         {
-            return new TAspect
-            {
-                Entity = aspect.Entity
-            };
+            return new TAspect { Entity = aspect.Entity };
         }
 
         public static bool Exist(this Aspect aspect) => aspect.Entity.Exist;
