@@ -82,6 +82,11 @@ namespace FlowJob
             Age %= int.MaxValue;
             
             this.Enqueue(GroupsUpdater.Action.Kill, this);
+            
+            foreach (Entity child in Managed.childs)
+            {
+                child.Kill();
+            }
         }
     }
 }

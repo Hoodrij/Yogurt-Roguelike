@@ -20,8 +20,6 @@ namespace Roguelike.Jobs
 
             Entity single = Query.With<Level>().Single();
             single.Kill();
-
-            await this.WaitLateUpdate();
         }
     }
 }

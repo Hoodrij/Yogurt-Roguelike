@@ -1,5 +1,4 @@
 ﻿using FlowJob;
-using Roguelike.Tools;
 
 namespace Roguelike.Entities
 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FlowJob
@@ -15,6 +16,7 @@ namespace FlowJob
         internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
+        internal EntityManagedMeta[] EntitiesManaged = new EntityManagedMeta[Consts.SIZE_ENTITIES];
         
         private int nextEntityID = 1;
 
@@ -22,6 +24,10 @@ namespace FlowJob
         {
             instance = this;
             Storage.Initialize();
+            for (int i = 0; i < EntitiesManaged.Length; i++)
+            {
+                EntitiesManaged[i].Initialize();
+            }
 
             Application.quitting += Dispose;
         }
@@ -75,6 +81,7 @@ namespace FlowJob
 
             Group.Cache.Clear();
             EntitiesMetas.Dispose();
+            EntitiesManaged = Array.Empty<EntityManagedMeta>();
             UnmanagedMemory.Cleanup();
             AspectCache.Clear();
         }
