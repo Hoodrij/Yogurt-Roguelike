@@ -11,7 +11,7 @@ namespace FlowJob
             internal World World => instance;
         }
 
-        internal OperationsQueue OperationsQueue = new();
+        internal GroupsUpdater GroupsUpdater = new();
         internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
@@ -55,7 +55,7 @@ namespace FlowJob
             return entity;
         }
 
-        public void Dispose()
+        private void Dispose()
         {
             instance = null;
             Application.quitting -= Dispose;
@@ -66,6 +66,7 @@ namespace FlowJob
 
             Entities.Clear();
             ReleasedEntities.Clear();
+            GroupsUpdater.Clear();
 
             foreach (Group group in Group.Cache.Values)
             {

@@ -4,9 +4,14 @@ namespace FlowJob
 {
     internal static class WorldAccessorEx
     {
-        public static void Update(this World.Accessor a, Entity entity, ComponentID componentID = default)
+        public static void Enqueue(this World.Accessor a, GroupsUpdater.Action action, Entity entity, ComponentID componentID = default)
         {
-            a.World.OperationsQueue.Update(entity, componentID);
+            a.World.GroupsUpdater.Enqueue(action, entity, componentID);
+        }
+
+        public static void ExecuteOperations(this World.Accessor a)
+        {
+            a.World.GroupsUpdater.Update();
         }
 
         public static ref HashSet<Entity> GetEntities(this World.Accessor a)

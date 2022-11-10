@@ -45,6 +45,7 @@ namespace FlowJob
         
         public Entity Single()
         {
+            this.ExecuteOperations();
             return entities.FirstOrDefault();
         }
 
@@ -111,6 +112,7 @@ namespace FlowJob
 
         public IEnumerator<Entity> GetEnumerator()
         {
+            this.ExecuteOperations();
             return entities.GetEnumerator();
         }
 

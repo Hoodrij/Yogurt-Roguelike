@@ -32,7 +32,7 @@ namespace FlowJob
             
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
-            this.Update(this, componentID);
+            this.Enqueue(GroupsUpdater.Action.ComponentsChanged, this, componentID);
             Storage<T>.Instance.Add(component, ID);
 
             return this;
@@ -59,19 +59,13 @@ namespace FlowJob
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
-            this.Update(this, componentID);
+            this.Enqueue(GroupsUpdater.Action.ComponentsChanged, this, componentID);
         }
 
         public void Kill()
         {
             this.DebugCheckExist();
 
-            for (int i = 0; i < Meta->GroupsAmount; i++)
-            {
-                Group.Cache.TryGetValue(Meta->Groups[i], out Group group);
-                group?.TryRemove(this);
-            }
-            
             foreach (IComponent component in this.GetComponents())
             {
                 if (component is IDisposable disposable)
@@ -81,12 +75,13 @@ namespace FlowJob
             }
                             
             this.RemoveEntity(this);
-            Meta->GroupsAmount = 0;
             Meta->ComponentsMask.Clear();
             Meta->IsAlive = false;
 
             Age += 1;
             Age %= int.MaxValue;
+            
+            this.Enqueue(GroupsUpdater.Action.Kill, this);
         }
     }
 }
