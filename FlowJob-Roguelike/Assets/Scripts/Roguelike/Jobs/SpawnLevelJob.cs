@@ -18,6 +18,7 @@ namespace Roguelike.Jobs
             };
 
             Entity.Create()
+                .Add<Level>()
                 .Set(board);
 
             for (int x = 0; x < data.BoardSize.x; x++)
@@ -31,15 +32,8 @@ namespace Roguelike.Jobs
                 }
             }
             
-            Vector2Int playerCoord = Vector2Int.one;
-            Entity playerEntity = await new SpawnPlayerJob(playerCoord).Run();
-            board.SetCell(playerCoord, playerEntity);
-
-            Vector2Int exitCoord = data.BoardSize - Vector2Int.one - Vector2Int.one;
-            Entity exitEntity = await new SpawnExitJob(exitCoord).Run();
-            board.SetCell(exitCoord, exitEntity);
-
-            
+            await new SpawnPlayerJob().Run();
+            await new SpawnExitJob().Run();
         }
     }
 }

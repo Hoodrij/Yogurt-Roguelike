@@ -8,28 +8,24 @@ namespace Roguelike.Jobs
 {
     public class SpawnPlayerJob : Job<Entity>
     {
-        private Vector2Int coord;
-
-        public SpawnPlayerJob(Vector2Int coord)
-        {
-            this.coord = coord;
-        }
-        
         protected override async UniTask<Entity> Run()
         {
             Data data = Aspect<GameAspect>.Single().Data;
+            LevelAspect levelAspect = Aspect<LevelAspect>.Single();
 
+            Vector2Int coord = Vector2Int.one;
             Entity entity = Entity.Create()
-                .Add<Player>();
+                .Add<Player>()
+                .Set(new Actor
+                {
+                    Coord = coord
+                })
+                .Set(new Health
+                {
+                    Value = data.StartingPlayerHealth
+                });
             
-            entity.Set(new Actor
-            {
-                Coord = coord
-            });
-            entity.Set(new Health
-            {
-                Value = data.StartingPlayerHealth
-            });
+            levelAspect.Board.SetCell(coord, entity);
 
             return entity;
         }
