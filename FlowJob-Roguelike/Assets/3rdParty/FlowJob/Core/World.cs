@@ -66,7 +66,6 @@ namespace FlowJob
 
             Entities.Clear();
             ReleasedEntities.Clear();
-            OperationsQueue.Clear();
 
             foreach (Group group in Group.Cache.Values)
             {

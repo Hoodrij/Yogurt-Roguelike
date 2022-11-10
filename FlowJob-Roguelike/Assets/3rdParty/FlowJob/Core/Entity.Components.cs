@@ -1,4 +1,6 @@
-﻿namespace FlowJob
+﻿using System;
+
+namespace FlowJob
 {
     public unsafe partial struct Entity : World.Accessor
     {
@@ -30,7 +32,7 @@
             
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
-            this.Enqueue(OperationsQueue.Action.ComponentsChanged, this, componentID);
+            this.Update(this, componentID);
             Storage<T>.Instance.Add(component, ID);
 
             return this;
@@ -57,15 +59,34 @@
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
-            this.Enqueue(OperationsQueue.Action.ComponentsChanged, this, componentID);
+            this.Update(this, componentID);
         }
 
         public void Kill()
         {
             this.DebugCheckExist();
 
+            for (int i = 0; i < Meta->GroupsAmount; i++)
+            {
+                Group.Cache.TryGetValue(Meta->Groups[i], out Group group);
+                group?.TryRemove(this);
+            }
+            
+            foreach (IComponent component in this.GetComponents())
+            {
+                if (component is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+            }
+                            
+            this.RemoveEntity(this);
+            Meta->GroupsAmount = 0;
+            Meta->ComponentsMask.Clear();
             Meta->IsAlive = false;
-            this.Enqueue(OperationsQueue.Action.Kill, this);
+
+            Age += 1;
+            Age %= int.MaxValue;
         }
     }
 }

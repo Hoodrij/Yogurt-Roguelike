@@ -11,10 +11,10 @@ namespace Roguelike.Jobs
     {
         protected override async UniTask<Entity> Run()
         {
-            Data data = Aspect<GameAspect>.Single().Data;
+            Data data = Query.Single<Data>();
 
             Vector2Int coord = Vector2Int.one;
-            Entity entity = Entity.Create()
+            Entity entity = Level.Create()
                 .Add<Player>()
                 .Add<Actor>()
                 .Add<Collider>()
@@ -26,7 +26,7 @@ namespace Roguelike.Jobs
                 {
                     Value = data.StartingPlayerHealth
                 });
-            
+
             return entity;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using FlowJob;
-using UnityEngine;
 
 namespace Roguelike.Entities
 {
@@ -8,6 +7,8 @@ namespace Roguelike.Entities
         public Entity Entity { get; set; }
 
         public Player Player => this.Get<Player>();
+        public Health Health => this.Get<Health>();
+        public Actor Actor => this.Get<Actor>();
     }
 
     public class Player : IComponent

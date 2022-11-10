@@ -11,10 +11,10 @@ namespace Roguelike.Jobs
     {
         protected override async UniTask<Entity> Run()
         {
-            Data data = Aspect<GameAspect>.Single().Data;
+            Data data = Query.Single<Data>();
 
             Vector2Int coord = data.BoardSize - Vector2Int.one - Vector2Int.one;
-            Entity entity = Entity.Create()
+            Entity entity = Level.Create()
                 .Add<Exit>()
                 .Add<Collider>()
                 .Add<TriggerBody>()
