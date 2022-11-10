@@ -97,7 +97,7 @@ namespace BigMath.Utils
                 while (offset != to)
                 {
                     crc ^= (uint) (data[offset] + (data[offset + 1] << 8) + (data[offset + 2] << 16) + (data[offset + 3] << 24));
-                    var high = (uint) (data[offset + 4] + (data[offset + 5] << 8) + (data[offset + 6] << 16) + (data[offset + 7] << 24));
+                    uint high = (uint) (data[offset + 4] + (data[offset + 5] << 8) + (data[offset + 6] << 16) + (data[offset + 7] << 24));
                     offset += 8;
 
                     crc = table[(byte) crc + 0x700] ^ table[(byte) (crc >>= 8) + 0x600] ^ table[(byte) (crc >>= 8) + 0x500] ^ table[ /*(byte)*/(crc >> 8) + 0x400] ^
@@ -115,7 +115,7 @@ namespace BigMath.Utils
 
         public static uint Compute(byte[] data, int offset, int size)
         {
-            var crc = new Crc32();
+            Crc32 crc = new Crc32();
             crc.Update(data, offset, size);
             return crc.Value;
         }

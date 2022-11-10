@@ -67,7 +67,7 @@ namespace BigMath.Utils
             {
                 throw new ArgumentNullException("convert");
             }
-            var outputArray = new TOutput[array.Length];
+            TOutput[] outputArray = new TOutput[array.Length];
             for (int index = 0; index < array.Length; ++index)
             {
                 outputArray[index] = convert(array[index]);
@@ -119,14 +119,14 @@ namespace BigMath.Utils
 
             int length = GetNonZeroLength(bytes, ale);
 
-            var trimmed = new byte[length];
+            byte[] trimmed = new byte[length];
             Buffer.BlockCopy(bytes, ale ? 0 : bytes.Length - length, trimmed, 0, length);
             return trimmed;
         }
 
         public static byte[] Combine(byte[] first, byte[] second)
         {
-            var ret = new byte[first.Length + second.Length];
+            byte[] ret = new byte[first.Length + second.Length];
             Buffer.BlockCopy(first, 0, ret, 0, first.Length);
             Buffer.BlockCopy(second, 0, ret, first.Length, second.Length);
             return ret;
@@ -134,7 +134,7 @@ namespace BigMath.Utils
 
         public static byte[] Combine(byte[] first, byte[] second, byte[] third)
         {
-            var ret = new byte[first.Length + second.Length + third.Length];
+            byte[] ret = new byte[first.Length + second.Length + third.Length];
             Buffer.BlockCopy(first, 0, ret, 0, first.Length);
             Buffer.BlockCopy(second, 0, ret, first.Length, second.Length);
             Buffer.BlockCopy(third, 0, ret, first.Length + second.Length, third.Length);
@@ -143,7 +143,7 @@ namespace BigMath.Utils
 
         public static byte[] Combine(params byte[][] arrays)
         {
-            var ret = new byte[arrays.Sum(x => x.Length)];
+            byte[] ret = new byte[arrays.Sum(x => x.Length)];
             int offset = 0;
             foreach (byte[] data in arrays)
             {
@@ -170,7 +170,7 @@ namespace BigMath.Utils
             {
                 throw new InvalidOperationException("Offset + length must be less of equal of the bytes length.");
             }
-            var tbytes = (byte[]) bytes.Clone();
+            byte[] tbytes = (byte[]) bytes.Clone();
             for (int i = offset; i < offset + length; i++)
             {
                 tbytes[i] = value;
@@ -244,7 +244,7 @@ namespace BigMath.Utils
                 step = 1;
             }
 
-            var chars = new char[strLength];
+            char[] chars = new char[strLength];
             for (int i = 0; i < chars.Length; i++)
             {
                 chars[i] = '0';

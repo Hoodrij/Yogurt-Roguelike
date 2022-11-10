@@ -207,7 +207,7 @@ namespace BigMath
         /// <param name="value">The value.</param>
         public Int128(Guid value)
         {
-            var int128 = value.ToByteArray().ToInt128(0);
+            Int128 int128 = value.ToByteArray().ToInt128(0);
             _hi = int128.High;
             _lo = int128.Low;
         }
@@ -241,7 +241,7 @@ namespace BigMath
                 throw new ArgumentNullException("ints");
             }
 
-            var value = new ulong[2];
+            ulong[] value = new ulong[2];
             for (int i = 0; i < ints.Length && i < 4; i++)
             {
                 Buffer.BlockCopy(ints[i].ToBytes(), 0, value, i*4, 4);
@@ -379,8 +379,8 @@ namespace BigMath
                 return "0";
             }
 
-            var sb = new StringBuilder();
-            var ten = new Int128(10);
+            StringBuilder sb = new StringBuilder();
+            Int128 ten = new Int128(10);
             Int128 current = Sign < 0 ? -this : this;
             Int128 r;
             while (true)
@@ -838,7 +838,7 @@ namespace BigMath
                 return Compare(left, new Int128((ulong) right));
             }
 
-            var bytes = right as byte[];
+            byte[] bytes = right as byte[];
             if ((bytes != null) && (bytes.Length == 16))
             {
                 // TODO: ensure endian.
@@ -1045,7 +1045,7 @@ namespace BigMath
         /// <returns>The value of the current Int128 object converted to an array of unsigned integers.</returns>
         public uint[] ToUIn32Array()
         {
-            var ints = new uint[4];
+            uint[] ints = new uint[4];
             ulong[] ulongs = ToUIn64Array();
             Buffer.BlockCopy(ulongs, 0, ints, 0, 16);
             return ints;
@@ -1066,7 +1066,7 @@ namespace BigMath
 
             uint[] xInts = left.ToUIn32Array();
             uint[] yInts = right.ToUIn32Array();
-            var mulInts = new uint[8];
+            uint[] mulInts = new uint[8];
 
             for (int i = 0; i < xInts.Length; i++)
             {

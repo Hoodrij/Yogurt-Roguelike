@@ -205,7 +205,7 @@ namespace BigMath
         /// <param name="value">The value.</param>
         public Int256(Guid value)
         {
-            var int256 = value.ToByteArray().ToInt256(0);
+            Int256 int256 = value.ToByteArray().ToInt256(0);
             _a = int256.A;
             _b = int256.B;
             _c = int256.C;
@@ -244,7 +244,7 @@ namespace BigMath
                 throw new ArgumentNullException("ints");
             }
 
-            var value = new ulong[4];
+            ulong[] value = new ulong[4];
             for (int i = 0; i < ints.Length && i < 8; i++)
             {
                 Buffer.BlockCopy(ints[i].ToBytes(), 0, value, i*4, 4);
@@ -400,8 +400,8 @@ namespace BigMath
                 return "0";
             }
 
-            var sb = new StringBuilder();
-            var ten = new Int256(10);
+            StringBuilder sb = new StringBuilder();
+            Int256 ten = new Int256(10);
             Int256 current = Sign < 0 ? -this : this;
             while (true)
             {
@@ -860,7 +860,7 @@ namespace BigMath
                 return Compare(left, new Int256((ulong) right));
             }
 
-            var bytes = right as byte[];
+            byte[] bytes = right as byte[];
             if ((bytes != null) && (bytes.Length == 32))
             {
                 // TODO: ensure endian.
@@ -1077,7 +1077,7 @@ namespace BigMath
         /// <returns>The value of the current Int256 object converted to an array of unsigned integers.</returns>
         public uint[] ToUIn32Array()
         {
-            var ints = new uint[8];
+            uint[] ints = new uint[8];
             ulong[] ulongs = ToUIn64Array();
             Buffer.BlockCopy(ulongs, 0, ints, 0, 32);
             return ints;
@@ -1098,7 +1098,7 @@ namespace BigMath
 
             uint[] xInts = left.ToUIn32Array();
             uint[] yInts = right.ToUIn32Array();
-            var mulInts = new uint[16];
+            uint[] mulInts = new uint[16];
 
             for (int i = 0; i < xInts.Length; i++)
             {

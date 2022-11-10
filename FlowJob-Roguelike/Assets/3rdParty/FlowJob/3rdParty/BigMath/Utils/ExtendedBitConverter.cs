@@ -29,7 +29,7 @@ namespace BigMath.Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ToBytes(this short value, bool? asLittleEndian = null)
         {
-            var buffer = new byte[2];
+            byte[] buffer = new byte[2];
             value.ToBytes(buffer, 0, asLittleEndian);
             return buffer;
         }
@@ -142,7 +142,7 @@ namespace BigMath.Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ToBytes(this int value, bool? asLittleEndian = null)
         {
-            var buffer = new byte[4];
+            byte[] buffer = new byte[4];
             value.ToBytes(buffer, 0, asLittleEndian);
             return buffer;
         }
@@ -215,7 +215,7 @@ namespace BigMath.Utils
             int bytesLength = bytes.Length - offset;
             if (bytesLength < minLength)
             {
-                var b = new byte[minLength];
+                byte[] b = new byte[minLength];
                 Buffer.BlockCopy(bytes, offset, b, ale ? 0 : minLength - bytesLength, bytesLength);
                 bytes = b;
             }
@@ -277,7 +277,7 @@ namespace BigMath.Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ToBytes(this long value, bool? asLittleEndian = null)
         {
-            var buffer = new byte[8];
+            byte[] buffer = new byte[8];
             value.ToBytes(buffer, 0, asLittleEndian);
             return buffer;
         }
@@ -413,7 +413,7 @@ namespace BigMath.Utils
         /// <returns>Array of bytes.</returns>
         public static byte[] ToBytes(this Int128 value, bool? asLittleEndian = null, bool trimZeros = false)
         {
-            var buffer = new byte[16];
+            byte[] buffer = new byte[16];
             value.ToBytes(buffer, 0, asLittleEndian);
 
             if (trimZeros)
@@ -479,7 +479,7 @@ namespace BigMath.Utils
         /// <returns>Array of bytes.</returns>
         public static byte[] ToBytes(this Int256 value, bool? asLittleEndian = null, bool trimZeros = false)
         {
-            var buffer = new byte[32];
+            byte[] buffer = new byte[32];
             value.ToBytes(buffer, 0, asLittleEndian);
 
             if (trimZeros)

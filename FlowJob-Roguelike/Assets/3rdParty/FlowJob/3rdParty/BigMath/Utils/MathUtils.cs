@@ -52,7 +52,7 @@ namespace BigMath.Utils
             int shiftOffset = shift / valueLength;
             int bshift = shift % valueLength;
 
-            var shifted = new ulong[length];
+            ulong[] shifted = new ulong[length];
             for (int i = 0; i < length; i++)
             {
                 int ishift = i - shiftOffset;
@@ -115,7 +115,7 @@ namespace BigMath.Utils
             //  In right shifting, upper val is a special case because we need to preserve the sign bits, and because we don't need to or in
             //  any other values
             //
-            var shifted = new ulong[length];
+            ulong[] shifted = new ulong[length];
             shifted[length - 1] = (ulong)((long)values[length - 1] >> shift);    //Preserve sign of upper long
             for (int i = 0; i < length - 1; i++)
             {
@@ -146,7 +146,7 @@ namespace BigMath.Utils
             int shiftOffset = shift/valueLength;
             int bshift = shift%valueLength;
 
-            var shifted = new ulong[length];
+            ulong[] shifted = new ulong[length];
             for (int i = 0; i < length; i++)
             {
                 int ishift = i + shiftOffset;
@@ -166,7 +166,7 @@ namespace BigMath.Utils
 
         public static void GetPrimeMultipliers(this Int128 pq, out Int128 p, out Int128 q)
         {
-            var pq256 = (Int256) pq;
+            Int256 pq256 = (Int256) pq;
             Int256 p256, q256;
             pq256.GetPrimeMultipliers(out p256, out q256);
             p = (Int128) p256;
@@ -187,7 +187,7 @@ namespace BigMath.Utils
 
         public static Int256 PollardRho(Int256 number)
         {
-            var func = new Func<Int256, Int256, Int256>((param, mod) => ((param*param + 1)%mod));
+            Func<Int256, Int256, Int256> func = new Func<Int256, Int256, Int256>((param, mod) => ((param*param + 1)%mod));
 
             Int256 x = 2, y = 2, z;
             do
@@ -331,7 +331,7 @@ namespace BigMath.Utils
 
         private static uint[] TrimZeros(uint[] uints)
         {
-            var trimmed = new uint[GetLength(uints)];
+            uint[] trimmed = new uint[GetLength(uints)];
             Buffer.BlockCopy(uints, 0, trimmed, 0, trimmed.Length*4);
             return trimmed;
         }
@@ -365,8 +365,8 @@ namespace BigMath.Utils
             {
                 int shift = GetNormalizeShift(v[n - 1]);
 
-                var un = new uint[m + 1];
-                var vn = new uint[n];
+                uint[] un = new uint[m + 1];
+                uint[] vn = new uint[n];
 
                 Normalize(u, m, un, shift);
                 Normalize(v, n, vn, shift);
