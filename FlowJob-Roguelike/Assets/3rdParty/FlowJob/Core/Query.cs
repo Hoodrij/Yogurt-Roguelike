@@ -12,6 +12,11 @@ namespace FlowJob
         {
             return GetGroup().Single();
         }
+
+        public static ref TComponent Single<TComponent>() where TComponent : IComponent
+        {
+            return ref new Query().With<TComponent>().Single().Get<TComponent>();
+        }
         
         public static Query With<TComponent>(bool _ = false) where TComponent : IComponent
         {
@@ -47,7 +52,7 @@ namespace FlowJob
             return GetEnumerator();
         }
     }
-    
+
     public struct Query<TAspect> : IEnumerable<TAspect> where TAspect : struct, Aspect<TAspect>
     {
         internal Mask included;

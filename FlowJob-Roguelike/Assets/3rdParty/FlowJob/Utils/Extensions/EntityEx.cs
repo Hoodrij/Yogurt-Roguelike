@@ -26,7 +26,7 @@ namespace FlowJob
             foreach (byte componentId in meta->ComponentsMask.GetBytes())
             {
                 Storage storage = Storage.All[componentId];
-                result.Add(storage.DebugComponents[entity]);
+                result.Add(storage.ComponentsArray[entity]);
             }
 
             return result;

@@ -77,8 +77,6 @@ namespace FlowJob
             EntitiesMetas.Dispose();
             UnmanagedMemory.Cleanup();
             AspectCache.Clear();
-
-            Debug.Log(123);
         }
     }
 }

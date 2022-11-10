@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace FlowJob
@@ -49,6 +50,14 @@ namespace FlowJob
                             {
                                 Group.Cache.TryGetValue(meta->Groups[i], out Group group);
                                 group?.TryRemove(entity);
+                            }
+                            
+                            foreach (IComponent component in entity.GetComponents())
+                            {
+                                if (component is IDisposable disposable)
+                                {
+                                    disposable.Dispose();
+                                }
                             }
                             
                             meta->GroupsAmount = 0;

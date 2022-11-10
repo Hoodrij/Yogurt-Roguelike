@@ -10,6 +10,7 @@ namespace FlowJob
         internal static Storage[] All;
 
         internal Stack<Group> Groups = new();
+        internal abstract IComponent[] ComponentsArray { get; }
 
         internal static void Initialize()
         {
@@ -25,8 +26,6 @@ namespace FlowJob
                 }
             }
         }
-        
-        internal abstract IComponent[] DebugComponents { get; }
     }
 
     public class Storage<T> : Storage where T : IComponent
@@ -34,6 +33,7 @@ namespace FlowJob
         internal static Storage<T> Instance;
 
         private T[] Components = new T[Consts.SIZE_ENTITIES / 2];
+        internal override IComponent[] ComponentsArray => Components as IComponent[];
 
         public Storage()
         {
@@ -56,7 +56,5 @@ namespace FlowJob
         {
             return ref Components[index];
         }
-        
-        internal override IComponent[] DebugComponents => Components as IComponent[];
     }
 }
