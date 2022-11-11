@@ -65,6 +65,7 @@ namespace FlowJob
         public void Kill()
         {
             this.DebugCheckExist();
+            this.Enqueue(PostProcessor.Action.Kill, this);
 
             foreach (IComponent component in this.GetComponents())
             {
@@ -79,9 +80,6 @@ namespace FlowJob
             {
                 child.Kill();
             }
-            
-
-            this.Enqueue(PostProcessor.Action.Kill, this);
         }
     }
 }
