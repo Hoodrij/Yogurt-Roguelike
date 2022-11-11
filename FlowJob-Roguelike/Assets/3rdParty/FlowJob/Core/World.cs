@@ -13,7 +13,7 @@ namespace FlowJob
 
         internal PostProcessor PostProcessor = new();
         internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
-        internal EntityManagedMeta[] EntitiesManaged = new EntityManagedMeta[Consts.SIZE_ENTITIES];
+        internal ManagedMetasList EntitiesManaged = new(Consts.SIZE_ENTITIES);
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
         
@@ -23,10 +23,6 @@ namespace FlowJob
         {
             instance = this;
             Storage.Initialize();
-            for (int i = 0; i < EntitiesManaged.Length; i++)
-            {
-                EntitiesManaged[i].Initialize();
-            }
 
 #if UNITY_64
             UnityEngine.Application.quitting += Dispose;
@@ -56,7 +52,6 @@ namespace FlowJob
             meta->IsAlive = true;
             meta->ComponentsMask.Clear();
             meta->GroupsAmount = 0;
-            // instance.EntitiesManaged.
 
             instance.Entities.Add(entity);
 
@@ -85,7 +80,7 @@ namespace FlowJob
 
             Group.Cache.Clear();
             EntitiesMetas.Dispose();
-            EntitiesManaged = Array.Empty<EntityManagedMeta>();
+            EntitiesManaged.Clear();
             UnmanagedMemory.Cleanup();
             AspectCache.Clear();
         }

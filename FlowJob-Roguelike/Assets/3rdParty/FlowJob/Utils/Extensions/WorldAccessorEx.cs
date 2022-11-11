@@ -26,7 +26,7 @@ namespace FlowJob
         
         public static ref EntityManagedMeta GetManagedMeta(this World.Accessor a, Entity entity)
         {
-            return ref a.World.EntitiesManaged[entity];
+            return ref a.World.EntitiesManaged.Get(entity);
         }
 
         public static void RemoveEntity(this World.Accessor a, Entity entity)
