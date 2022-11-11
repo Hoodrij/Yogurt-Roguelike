@@ -73,20 +73,14 @@ namespace FlowJob
                     disposable.Dispose();
                 }
             }
-                            
-            this.RemoveEntity(this);
-            Meta->ComponentsMask.Clear();
-            Meta->IsAlive = false;
 
-            Age += 1;
-            Age %= int.MaxValue;
-            
-            this.Enqueue(GroupsUpdater.Action.Kill, this);
-            
-            foreach (Entity child in Managed.childs)
+            Meta->IsAlive = false;
+            foreach (Entity child in Managed.Childs)
             {
                 child.Kill();
             }
+
+            this.Enqueue(GroupsUpdater.Action.Kill, this);
         }
     }
 }

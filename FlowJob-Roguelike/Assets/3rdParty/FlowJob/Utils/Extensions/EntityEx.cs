@@ -9,8 +9,10 @@ namespace FlowJob
         internal class EntityDebugView
         {
             public int ID => entity.ID;
+            public bool Exist => entity.Exist;
+            public int Age => entity.Age;
             public List<IComponent> Components => entity.GetComponents();
-            
+
             private Entity entity;
             
             public EntityDebugView(Entity entity)

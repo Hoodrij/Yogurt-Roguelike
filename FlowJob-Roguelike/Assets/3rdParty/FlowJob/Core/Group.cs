@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FlowJob
 {
-    public class Group : World.Accessor, IEnumerable<Entity>, IEquatable<Group>, IComparable<Group>
+    internal class Group : World.Accessor, IEnumerable<Entity>, IEquatable<Group>, IComparable<Group>
     {
         internal static Dictionary<HashCode, Group> Cache = new();
 

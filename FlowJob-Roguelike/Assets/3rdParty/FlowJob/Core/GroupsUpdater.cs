@@ -31,6 +31,11 @@ namespace FlowJob
                 {
                     case Action.ComponentsChanged:
                         {
+                            if (meta->ComponentsMask.IsEmpty)
+                            {
+                                entity.Kill();
+                            }
+                            
                             Stack<Group> groups = Storage.All[operation.componentId].Groups;
                             foreach (Group group in groups)
                             {
@@ -52,6 +57,10 @@ namespace FlowJob
                             }
                             
                             meta->GroupsAmount = 0;
+                            meta->ComponentsMask.Clear();
+                            this.RemoveEntity(entity);
+                            entity.Age += 1;
+                            entity.Age %= int.MaxValue;
                         }
                         break;
                 }
