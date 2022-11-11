@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace FlowJob
 {
@@ -29,7 +28,9 @@ namespace FlowJob
                 EntitiesManaged[i].Initialize();
             }
 
-            Application.quitting += Dispose;
+#if UNITY_64
+            UnityEngine.Application.quitting += Dispose;
+#endif
         }
 
         internal static Entity CreateEntity()
@@ -64,7 +65,9 @@ namespace FlowJob
         private void Dispose()
         {
             instance = null;
-            Application.quitting -= Dispose;
+#if UNITY_64
+            UnityEngine.Application.quitting -= Dispose;
+#endif
             for (int i = 0; i < EntitiesMetas.Length; i++)
             {
                 EntitiesMetas.Get(i)->Dispose();
