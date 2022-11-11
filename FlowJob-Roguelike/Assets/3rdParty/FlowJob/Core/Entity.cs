@@ -12,7 +12,6 @@ namespace FlowJob
         internal int Age;
 
         public bool Exist => ID > 0 && Meta->IsAlive && Meta->Age == Age;
-        private string Name => string.Concat(this.GetComponents().Select(c => $"{c.GetType().Name} ").ToArray());
 
         public static Entity Create()
         {
@@ -68,6 +67,15 @@ namespace FlowJob
         public static bool operator !=(Entity entity1, Entity entity2)
         {
             return !(entity1 == entity2);
+        }
+        
+        private string Name
+        {
+            get
+            {
+                string components = string.Concat(this.GetComponents().Select(c => $"{c.GetType().Name} ").ToArray());
+                return (Exist ? "" : "[DEAD] ") + components;
+            }
         }
     }
 }
