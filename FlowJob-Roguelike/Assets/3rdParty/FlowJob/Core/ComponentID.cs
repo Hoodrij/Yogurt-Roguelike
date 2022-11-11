@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace FlowJob
 {
+    [DebuggerDisplay("{Name}")]
     public readonly struct ComponentID
     {
         private static Dictionary<Type, ComponentID> ComponentsIds = new();
@@ -36,6 +39,19 @@ namespace FlowJob
         public static implicit operator ComponentID(byte id)
         {
             return new ComponentID(id);
+        }
+        
+        private string Name
+        {
+            get
+            {
+                foreach ((Type key, ComponentID value) in ComponentsIds)
+                {
+                    if (value == ID) return key.Name;
+                }
+
+                return "None";
+            }
         }
     }
 }
