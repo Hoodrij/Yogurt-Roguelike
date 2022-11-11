@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Debug = UnityEngine.Debug;
 
 namespace FlowJob
@@ -12,6 +13,8 @@ namespace FlowJob
             public bool Exist => entity.Exist;
             public int Age => entity.Age;
             public List<IComponent> Components => entity.GetComponents();
+            public Entity Parent => entity.Managed.Parent;
+            public List<Entity> Childs => entity.Managed.Childs.ToList();
 
             private Entity entity;
             
@@ -62,6 +65,12 @@ namespace FlowJob
         {
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
             Debug.Assert(!entityHasComponent, $"Entity_{entity} already have [{typeof(T).Name}]");
+        }
+        
+        [Conditional("UNITY_EDITOR")]
+        internal static void DebugParentToSelf(this Entity entity, Entity parent)
+        {
+            Debug.Assert(entity != parent, $"Entity_{entity} trying parent self");
         }
     }
 }

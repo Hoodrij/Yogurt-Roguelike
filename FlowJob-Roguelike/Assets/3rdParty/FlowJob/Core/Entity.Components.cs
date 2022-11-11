@@ -32,7 +32,7 @@ namespace FlowJob
             
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
-            this.Enqueue(GroupsUpdater.Action.ComponentsChanged, this, componentID);
+            this.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
             Storage<T>.Instance.Add(component, ID);
 
             return this;
@@ -59,7 +59,7 @@ namespace FlowJob
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
-            this.Enqueue(GroupsUpdater.Action.ComponentsChanged, this, componentID);
+            this.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
         }
 
         public void Kill()
@@ -79,8 +79,9 @@ namespace FlowJob
             {
                 child.Kill();
             }
+            
 
-            this.Enqueue(GroupsUpdater.Action.Kill, this);
+            this.Enqueue(PostProcessor.Action.Kill, this);
         }
     }
 }

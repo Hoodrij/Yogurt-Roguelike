@@ -11,11 +11,11 @@ namespace FlowJob
             internal World World => instance;
         }
 
-        internal GroupsUpdater GroupsUpdater = new();
+        internal PostProcessor PostProcessor = new();
         internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
+        internal EntityManagedMeta[] EntitiesManaged = new EntityManagedMeta[Consts.SIZE_ENTITIES];
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
-        internal EntityManagedMeta[] EntitiesManaged = new EntityManagedMeta[Consts.SIZE_ENTITIES];
         
         private int nextEntityID = 1;
 
@@ -56,6 +56,7 @@ namespace FlowJob
             meta->IsAlive = true;
             meta->ComponentsMask.Clear();
             meta->GroupsAmount = 0;
+            // instance.EntitiesManaged.
 
             instance.Entities.Add(entity);
 
@@ -75,7 +76,7 @@ namespace FlowJob
 
             Entities.Clear();
             ReleasedEntities.Clear();
-            GroupsUpdater.Clear();
+            PostProcessor.Clear();
 
             foreach (Group group in Group.Cache.Values)
             {

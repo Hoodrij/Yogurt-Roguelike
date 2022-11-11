@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace FlowJob
 {
-    internal unsafe class GroupsUpdater : World.Accessor
+    internal unsafe class PostProcessor : World.Accessor
     {
         private Queue<EntityOperation> operations = new();
 
@@ -25,7 +25,7 @@ namespace FlowJob
             {
                 EntityOperation operation = operations.Dequeue();
                 Entity entity = operation.entity;
-                EntityMeta* meta = this.GetMeta(entity);
+                EntityMeta* meta = entity.Meta;
                 
                 switch (operation.action)
                 {
@@ -61,6 +61,8 @@ namespace FlowJob
                             this.RemoveEntity(entity);
                             entity.Age += 1;
                             entity.Age %= int.MaxValue;
+                            entity.Managed.Childs.Clear();
+                            entity.UnParent();
                         }
                         break;
                 }

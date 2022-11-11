@@ -10,16 +10,16 @@ namespace Roguelike.Jobs
         protected override async UniTask Run()
         {
             WorldDebug worldDebug = new WorldDebug();
-            
+
             Entity.Create()
                 .Add<Game>()
                 .Add<Life>()
                 .Add<Data>();
-
+            
             new SpawnLevelJob().Run();
-
-            Entity single = Query.With<Level>().Single();
-            single.Kill();
+            
+            Entity level = Query.With<Level>().Single();
+            level.Kill();
         }
     }
 }
