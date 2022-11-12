@@ -11,11 +11,11 @@ namespace FlowJob
         internal class EntityDebugView
         {
             public int ID => entity.ID;
-            public bool Exist => entity.Alive;
+            public bool Alive => entity.Alive;
             public int Age => entity.Age;
-            public List<IComponent> Components => entity.GetComponents();
+            public List<IComponent> Components => entity == Entity.Null ? new(): entity.GetComponents();
             public Entity Parent => entity.Managed.Parent;
-            public List<Entity> Childs => entity.Managed.Childs.ToList();
+            public List<Entity> Childs => entity == Entity.Null ? new() : entity.Managed.Childs.ToList();
 
             private Entity entity;
             

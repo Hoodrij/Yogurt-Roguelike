@@ -34,6 +34,7 @@ namespace FlowJob
         public void Initialize()
         {
             Childs = new();
+            Parent = Entity.Null;
         }
     }
 }
