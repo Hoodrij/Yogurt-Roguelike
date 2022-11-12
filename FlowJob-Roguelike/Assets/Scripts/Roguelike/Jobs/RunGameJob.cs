@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -8,18 +8,9 @@ namespace Roguelike.Jobs
 {
     public class RunGameJob : Job
     {
-        protected override async UniTask Run()
+        protected override async Task Run()
         {
             WorldDebug wd = new WorldDebug();
-
-            // Entity.Create()
-            //     .Add<Health>()
-            //     .Add<Actor>()
-            //     .Add<Position>()
-            //     .Add<Player>();
-            //
-            // PlayerAspect playerAspect = Aspect<PlayerAspect>.Single();
-            // playerAspect.ActorAspect.Position.Coord = Vector2Int.one;
 
             Entity.Create()
                 .Add<Game>()

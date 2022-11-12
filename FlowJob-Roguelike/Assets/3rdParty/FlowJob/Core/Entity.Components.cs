@@ -8,7 +8,7 @@ namespace FlowJob
 
         public Entity Add<T>() where T : IComponent, new()
         {
-            this.DebugCheckExist();
+            this.DebugCheckAlive();
             this.DebugAlreadyHave<T>();
             
             if (Has<T>()) return this;
@@ -25,7 +25,7 @@ namespace FlowJob
 
         public Entity Set<T>(T component) where T : IComponent
         {
-            this.DebugCheckExist();
+            this.DebugCheckAlive();
             
             if (Has<T>())
                 Remove<T>();
@@ -40,7 +40,7 @@ namespace FlowJob
 
         public ref T Get<T>() where T : IComponent
         {
-            this.DebugCheckExist();
+            this.DebugCheckAlive();
             this.DebugNoComponent<T>();
 
             return ref Storage<T>.Instance.Get(ID);
@@ -48,7 +48,7 @@ namespace FlowJob
 
         public bool Has<T>() where T : IComponent
         {
-            this.DebugCheckExist();
+            this.DebugCheckAlive();
 
             return Meta->ComponentsMask.Has(ComponentID.Of<T>());
         }
@@ -64,7 +64,7 @@ namespace FlowJob
 
         public void Kill()
         {
-            this.DebugCheckExist();
+            this.DebugCheckAlive();
             this.Enqueue(PostProcessor.Action.Kill, this);
 
             foreach (IComponent component in this.GetComponents())

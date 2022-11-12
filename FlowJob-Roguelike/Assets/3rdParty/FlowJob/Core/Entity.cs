@@ -8,10 +8,12 @@ namespace FlowJob
     [DebuggerTypeProxy(typeof(EntityEx.EntityDebugView))]
     public unsafe partial struct Entity : IComparable<Entity>, IEquatable<Entity>
     {
+        public static Entity Null = new Entity { ID = -1, Age = -1 };
+        
         public int ID;
         internal int Age;
 
-        public bool Exist => ID > 0 && Meta->IsAlive && Meta->Age == Age;
+        public bool Alive => ID > 0 && Meta->IsAlive && Meta->Age == Age;
 
         public static Entity Create()
         {
@@ -31,7 +33,7 @@ namespace FlowJob
 
         public override string ToString()
         {
-            return $"{ID} - [ {Name}]";
+            return Name;
         }
 
         public int CompareTo(Entity other)
@@ -73,8 +75,10 @@ namespace FlowJob
         {
             get
             {
+                if (this == Null)
+                    return "Entity.Null";
                 string components = string.Concat(this.GetComponents().Select(c => $"{c.GetType().Name} ").ToArray());
-                return (Exist ? "" : "[DEAD] ") + components;
+                return ID + (Alive ? " " : " [DEAD] ") + components;
             }
         }
     }

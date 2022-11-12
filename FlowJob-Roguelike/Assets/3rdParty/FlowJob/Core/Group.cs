@@ -46,8 +46,12 @@ namespace FlowJob
         public Entity Single()
         {
             this.ExecuteOperations();
-            Entity firstOrDefault = entities.FirstOrDefault();
-            return firstOrDefault;
+            if (entities.Count > 0)
+            {
+                return entities.First();
+            }
+
+            return Entity.Null;
         }
 
         internal unsafe void ProcessEntity(in Entity entity)

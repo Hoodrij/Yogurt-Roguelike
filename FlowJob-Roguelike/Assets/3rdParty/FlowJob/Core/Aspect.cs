@@ -1,4 +1,6 @@
-﻿namespace FlowJob
+﻿using UnityEngine;
+
+namespace FlowJob
 {
     public interface Aspect
     {
@@ -24,8 +26,8 @@
             return new TAspect { Entity = aspect.Entity };
         }
 
-        public static bool Exist(this Aspect aspect) => aspect.Entity.Exist;
-        
+        public static bool Alive(this Aspect aspect) => aspect.Entity.Alive;
+
         public static ref TComponent Get<TComponent>(this Aspect aspect) where TComponent : IComponent => ref aspect.Entity.Get<TComponent>();
         public static void Add<TComponent>(this Aspect aspect) where TComponent : IComponent, new() => aspect.Entity.Add<TComponent>();
         public static void Set<TComponent>(this Aspect aspect, TComponent component) where TComponent : IComponent => aspect.Entity.Set(component);

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Core.Tools.Collections;
-using Cysharp.Threading.Tasks;
 
 namespace Core.Tools.Observables
 {
@@ -17,8 +17,8 @@ namespace Core.Tools.Observables
         public void Listen(Action action, object owner = null) => listeners.Add(new WeakAction(action, owner));
         public void Unsubscribe(object owner) => listeners.RemoveWhere(weakAction => weakAction.IsOwnedBy(owner));
         public void Clear() => listeners.Clear();
-        
-        public static implicit operator UniTask(Event @event) => UniTask.RunOnThreadPool(async () => await @event);
+
+        public static implicit operator Task(Event @event) => Task.Run(async () => await @event);
     }
 
     public class Event<T>
@@ -39,6 +39,6 @@ namespace Core.Tools.Observables
 
         public void Clear() => listeners.Clear();
         
-        public static implicit operator UniTask<T>(Event<T> @event) => UniTask.RunOnThreadPool(async () => await @event);
+        public static implicit operator Task<T>(Event<T> @event) => Task.Run(async () => await @event);
     }
 }

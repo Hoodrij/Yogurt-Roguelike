@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using UnityEngine.Assertions;
 using Debug = UnityEngine.Debug;
 
 namespace FlowJob
@@ -10,7 +11,7 @@ namespace FlowJob
         internal class EntityDebugView
         {
             public int ID => entity.ID;
-            public bool Exist => entity.Exist;
+            public bool Exist => entity.Alive;
             public int Age => entity.Age;
             public List<IComponent> Components => entity.GetComponents();
             public Entity Parent => entity.Managed.Parent;
@@ -46,31 +47,57 @@ namespace FlowJob
         {
             return aspect.Entity;
         }
+        
+        internal static bool DebugCheckNull(this Entity entity)
+        {
+#if UNITY_EDITOR
+            if (entity == Entity.Null)
+            {
+                Debug.LogError($"Entity is Null");
+                return true;
+            }
+
+#endif
+            return false;
+        }
 
         [Conditional("UNITY_EDITOR")]
-        internal static void DebugCheckExist(this Entity entity)
+        internal static void DebugCheckAlive(this Entity entity)
         {
-            Debug.Assert(entity.Exist, $"Entity_{entity} does not Exist");
+            if (DebugCheckNull(entity)) return;
+            if (!entity.Alive)
+            {
+                Debug.LogError($"{entity} does not Exist");
+            }
         }
 
         [Conditional("UNITY_EDITOR")]
         internal static unsafe void DebugNoComponent<T>(this Entity entity) where T : IComponent
         {
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
-            Debug.Assert(entityHasComponent, $"Entity_{entity} does not have [{typeof(T).Name}]");
+            if (!entityHasComponent)
+            {
+                Debug.LogError($"{entity} does not have [{typeof(T).Name}]");
+            }
         }
 
         [Conditional("UNITY_EDITOR")]
         internal static unsafe void DebugAlreadyHave<T>(this Entity entity) where T : IComponent
         {
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
-            Debug.Assert(!entityHasComponent, $"Entity_{entity} already have [{typeof(T).Name}]");
+            if (entityHasComponent)
+            {
+                Debug.LogError($"{entity} already have [{typeof(T).Name}]");
+            }
         }
         
         [Conditional("UNITY_EDITOR")]
         internal static void DebugParentToSelf(this Entity entity, Entity parent)
         {
-            Debug.Assert(entity != parent, $"Entity_{entity} trying parent self");
+            if (entity == parent)
+            {
+                Debug.LogError($"{entity} trying parent self");
+            }
         }
     }
 }

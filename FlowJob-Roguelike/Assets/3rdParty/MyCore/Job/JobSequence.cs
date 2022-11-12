@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Tools.Observables;
-using Cysharp.Threading.Tasks;
+using UnityAsync;
 
 namespace Core.Tools
 {
@@ -55,7 +55,7 @@ namespace Core.Tools
             queue.Clear();
         }
 
-        private async UniTask ExecutionRoutine()
+        private async Task ExecutionRoutine()
         {
             while (queue.Count > 0 && lifetime.IsAlive)
             {
@@ -63,7 +63,7 @@ namespace Core.Tools
                 progressChangeEvent.Fire(Progress);
 
                 if (mode == EMode.OneByFrame)
-                    await UniTask.NextFrame();
+                    await Wait.Update;
             }
         }
     }

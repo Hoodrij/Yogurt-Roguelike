@@ -1,16 +1,19 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
+using Tools;
+using UnityAsync;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Roguelike.Jobs
 {
     public class RunTurnJob : Job
     {
-        protected override async UniTask Run()
+        protected override async Task Run()
         {
-            await this.WaitSeconds(1);
+            // await this.WaitSeconds(1);
             
             Vector2Int playerInput = await new GetPlayerInputJob().Run();
 

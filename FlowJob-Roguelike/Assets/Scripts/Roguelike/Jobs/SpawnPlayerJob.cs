@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnPlayerJob : Job<Entity>
     {
-        protected override async UniTask<Entity> Run()
+        protected override async Task<Entity> Run()
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();

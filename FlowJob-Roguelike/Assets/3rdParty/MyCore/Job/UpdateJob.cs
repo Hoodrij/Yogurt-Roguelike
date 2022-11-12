@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+using UnityAsync;
 
 namespace Core.Tools
 {
@@ -7,7 +7,7 @@ namespace Core.Tools
     {
         public Lifetime Lifetime { get; private set; }
     
-        public async UniTask Run(Lifetime parentLifetime)
+        public async Task Run(Lifetime parentLifetime)
         {
             using Lifetime _ = Lifetime = new Lifetime(parentLifetime);
             while (Lifetime.IsAlive)

@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using UnityAsync;
 using UnityEngine;
 
 namespace Tools
@@ -7,12 +8,12 @@ namespace Tools
     {
         public static IAssetLoader Instance { get; } = new ResourcesLoader();
         
-        public async UniTask<Object> Load(string path)
+        public async Task<Object> Load(string path)
         {
             return await Resources.LoadAsync(path);
         }
 
-        public async UniTask<TComponent> Load<TComponent>(string path) where TComponent : Component
+        public async Task<TComponent> Load<TComponent>(string path) where TComponent : Component
         {
             Object loaded = await Resources.LoadAsync<GameObject>(path);
             return ((GameObject) loaded).GetComponent<TComponent>();

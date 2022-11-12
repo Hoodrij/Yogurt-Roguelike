@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 
@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnLevelJob : Job
     {
-        protected override async UniTask Run()
+        protected override async Task Run()
         {
             Entity.Create()
                 .Add<Level>();

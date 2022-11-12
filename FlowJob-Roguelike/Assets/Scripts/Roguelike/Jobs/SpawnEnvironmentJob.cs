@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnEnvironmentJob : Job
     {
-        protected override async UniTask Run()
+        protected override async Task Run()
         {
             Data data = Query.Single<Data>();
             int xSize = data.BoardSize.x;
@@ -32,7 +32,7 @@ namespace Roguelike.Jobs
             }
         }
 
-        private async UniTask<Entity> SpawnFloor(Vector2Int coord)
+        private async Task<Entity> SpawnFloor(Vector2Int coord)
         {
             return Level.Create()
                 .Add<Floor>()
@@ -42,7 +42,7 @@ namespace Roguelike.Jobs
                 });
         }
 
-        private async UniTask<Entity> SpawnWall(Vector2Int coord)
+        private async Task<Entity> SpawnWall(Vector2Int coord)
         {
             return Level.Create()
                 .Add<Wall>()

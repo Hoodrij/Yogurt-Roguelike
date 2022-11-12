@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using Cysharp.Threading.Tasks;
+using UnityAsync;
 
 namespace Core.Tools
 {
@@ -22,7 +22,7 @@ namespace Core.Tools
 
         private async void AddChild(Lifetime child)
         {
-            await UniTask.WaitWhile(() => IsAlive);
+            await Wait.While(() => IsAlive);
             child.Kill();
         }
 

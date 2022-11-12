@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -8,7 +8,7 @@ namespace Roguelike.Jobs
 {
     public class GameOverCheckJob : Job<bool>
     {
-        protected override async UniTask<bool> Run()
+        protected override async Task<bool> Run()
         {
             PlayerAspect playerAspect = Aspect<PlayerAspect>.Single();
             bool isPlayerAlive = playerAspect.Health.Value > 0;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
+using UnityAsync;
 
 namespace Core.Tools.Collections
 {
@@ -47,10 +48,10 @@ namespace Core.Tools.Collections
             collection.Clear();
         }
 
-        private async UniTask WaitUnlock()
+        private async Task WaitUnlock()
         {
             if (isIterating)
-                await UniTask.WaitWhile(() => isIterating);
+                await Wait.While(() => isIterating);
         }
     }
 }

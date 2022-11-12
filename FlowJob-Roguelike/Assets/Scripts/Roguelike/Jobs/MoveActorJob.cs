@@ -1,5 +1,5 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Core.Tools;
 using Roguelike.Entities;
 
 namespace Roguelike.Jobs
@@ -13,7 +13,7 @@ namespace Roguelike.Jobs
             this.actorAspect = actorAspect;
         }
 
-        protected override async UniTask Run()
+        protected override async Task Run()
         {
             actorAspect.Position.Coord += actorAspect.Actor.MoveDecision;
         }

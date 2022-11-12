@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Tools
@@ -13,7 +13,7 @@ namespace Tools
             this.path = path;
         }
 
-        public async UniTask<GameObject> Spawn()
+        public async Task<GameObject> Spawn()
         {
             Object asset = await loader.Load(path);
             return (GameObject)Object.Instantiate(asset);
@@ -24,7 +24,7 @@ namespace Tools
     {
         public Asset(string path) : base(path) { }
 
-        public async UniTask<TComponent> Spawn()
+        public async Task<TComponent> Spawn()
         {
             TComponent prefab = await loader.Load<TComponent>(path);
             TComponent result = Object.Instantiate(prefab);
