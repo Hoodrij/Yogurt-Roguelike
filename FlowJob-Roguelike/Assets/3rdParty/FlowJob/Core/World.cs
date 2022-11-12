@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FlowJob
 {
-    public unsafe class World
+    internal unsafe class World
     {
         private static World instance;
         internal interface Accessor
@@ -24,7 +24,7 @@ namespace FlowJob
             instance = this;
             Storage.Initialize();
 
-#if UNITY_64
+#if UNITY_2020_1_OR_NEWER
             UnityEngine.Application.quitting += Dispose;
 #endif
         }
@@ -61,7 +61,7 @@ namespace FlowJob
         private void Dispose()
         {
             instance = null;
-#if UNITY_64
+#if UNITY_2020_1_OR_NEWER
             UnityEngine.Application.quitting -= Dispose;
 #endif
             for (int i = 0; i < EntitiesMetas.Length; i++)
