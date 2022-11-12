@@ -2,10 +2,7 @@
 using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
-using Tools;
-using UnityAsync;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Roguelike.Jobs
 {
