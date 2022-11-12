@@ -61,6 +61,7 @@ namespace UnityAsync
 			CurrentFrameCount = 0;
 			CurrentTime = 0;
 			CurrentUnscaledTime = 0;
+			updateCount = lateCount = fixedCount = 0;
 		}
 
 		/// <summary>
@@ -144,6 +145,7 @@ namespace UnityAsync
 			lateUpdates = null;
 			fixedUpdates = null;
 
+			Instance.StopAllCoroutines();
 			Instance = null;
 		}
 	}

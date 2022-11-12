@@ -2,6 +2,7 @@
 using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
+using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike.Jobs
@@ -10,7 +11,7 @@ namespace Roguelike.Jobs
     {
         protected override async Task Run()
         {
-            // await this.WaitSeconds(1);
+            await this.WaitSeconds(1);
             
             Vector2Int playerInput = await new GetPlayerInputJob().Run();
 
