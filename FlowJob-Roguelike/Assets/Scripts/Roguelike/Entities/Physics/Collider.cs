@@ -5,12 +5,7 @@ namespace Roguelike.Entities
 {
     public class Collider : IComponent
     {
-        
-    }
-
-    public class TriggerBody : IComponent
-    {
-        
+        public bool IsTrigger = false;
     }
 
     public class Position : IComponent

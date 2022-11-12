@@ -11,23 +11,14 @@ namespace Roguelike.Jobs
         {
             WorldDebug wd = new WorldDebug();
 
-            Entity game = Entity.Create().Add<Game>();
-            Entity level = Entity.Create().Add<Level>();
+            Entity.Create()
+                .Add<Game>()
+                .Add<Life>()
+                .Add<Data>()
+                .Add<Assets>();
             
-            level.SetParent(game);
+            new SpawnLevelJob().Run();
             
-            game.Kill();
-            Query.With<Game>().Single();
-
-            Entity data = Entity.Create().Add<Data>();
-
-            // Entity.Create()
-            //     .Add<Game>()
-            //     .Add<Life>()
-            //     .Add<Data>();
-            //
-            // new SpawnLevelJob().Run();
-            //
             // Entity level = Query.With<Level>().Single();
             // level.Kill();
         }
