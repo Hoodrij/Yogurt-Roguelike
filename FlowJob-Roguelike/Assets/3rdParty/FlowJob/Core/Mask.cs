@@ -12,20 +12,20 @@ namespace FlowJob
 
         public void Set(byte other)
         {
-            Int256 bigOther = Int256.One << other;
-            value |= bigOther;
+            Int256 otherMask = Int256.One << other;
+            value |= otherMask;
         }
         
         public void UnSet(byte other)
         {
-            Int256 bigOther = Int256.One << other;
-            value &= ~bigOther;
+            Int256 otherMask = Int256.One << other;
+            value &= ~otherMask;
         }
         
         public bool Has(byte other)
         {
-            Int256 bigOther = Int256.One << other;
-            return (value & bigOther) == bigOther;
+            Int256 otherMask = Int256.One << other;
+            return (value & otherMask) == otherMask;
         }
 
         public readonly bool HasAny(Mask other)
