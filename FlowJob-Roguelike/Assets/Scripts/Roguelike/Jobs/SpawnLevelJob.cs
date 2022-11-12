@@ -12,7 +12,7 @@ namespace Roguelike.Jobs
             Entity.Create()
                 .Add<Level>();
 
-            await new SpawnEnvironmentJob().Run();
+            // await new SpawnEnvironmentJob().Run();
             await new SpawnExitJob().Run();
             await new SpawnPlayerJob().Run();
         }

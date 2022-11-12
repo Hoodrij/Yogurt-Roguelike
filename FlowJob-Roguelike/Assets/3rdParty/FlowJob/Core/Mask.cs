@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using BigMath;
 
 namespace FlowJob
 {
+    [DebuggerDisplay("{Name}")]
     public struct Mask : IComparable<Int256>, IEquatable<Int256>
     {
         public bool IsEmpty => value == 0;
@@ -96,6 +99,15 @@ namespace FlowJob
         public override int GetHashCode()
         {
             return value.GetHashCode();
+        }
+        
+        private string Name
+        {
+            get
+            {
+                string components = string.Concat(GetBytes().Select(b => $"{((ComponentID)b).Name} "));
+                return components;
+            }
         }
     }
 }

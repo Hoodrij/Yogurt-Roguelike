@@ -9,7 +9,13 @@ namespace Tools
         
         public async UniTask<Object> Load(string path)
         {
-            return await Resources.LoadAsync<GameObject>(path);
+            return await Resources.LoadAsync(path);
+        }
+
+        public async UniTask<TComponent> Load<TComponent>(string path) where TComponent : Component
+        {
+            Object loaded = await Resources.LoadAsync<GameObject>(path);
+            return ((GameObject) loaded).GetComponent<TComponent>();
         }
     }
 }

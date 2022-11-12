@@ -15,7 +15,7 @@ namespace Roguelike.Jobs
             Assets assets = Query.Single<Assets>();
 
             Vector2Int coord = Vector2Int.one;
-            Entity entity = Level.Create()
+            Entity playerEntity = Level.Create()
                 .Add<Player>()
                 .Add<Actor>()
                 .Add<Collider>()
@@ -28,9 +28,10 @@ namespace Roguelike.Jobs
                     Value = data.StartingPlayerHealth
                 });
 
-            assets.Player.Spawn();
+            PlayerView playerView = await assets.Player.Spawn();
+            playerEntity.Add(playerView);
 
-            return entity;
+            return playerEntity;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 namespace FlowJob
 {
@@ -41,7 +40,7 @@ namespace FlowJob
             return new ComponentID(id);
         }
         
-        private string Name
+        internal string Name
         {
             get
             {

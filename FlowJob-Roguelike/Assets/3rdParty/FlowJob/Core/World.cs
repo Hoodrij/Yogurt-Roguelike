@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FlowJob
 {
@@ -21,7 +20,6 @@ namespace FlowJob
 
         private World()
         {
-            instance = this;
             Storage.Initialize();
 
 #if UNITY_2020_1_OR_NEWER
@@ -31,7 +29,7 @@ namespace FlowJob
 
         internal static Entity CreateEntity()
         {
-            if (instance == null) new World();
+            instance ??= new World();
             
             Entity entity;
             if (instance.ReleasedEntities.Count > 0)

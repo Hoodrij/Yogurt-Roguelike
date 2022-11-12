@@ -1,12 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using FlowJob;
+﻿using FlowJob;
 using Tools;
-using UnityEngine;
 
 namespace Roguelike.Entities
 {
     public class Assets : IComponent
     {
-        public readonly Asset Player = new Asset("Player");
+        public readonly Asset<PlayerView> Player = new("Player");
     }
 }
