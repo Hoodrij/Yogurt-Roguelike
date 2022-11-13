@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace FlowJob
+﻿namespace FlowJob
 {
     public interface Aspect
     {

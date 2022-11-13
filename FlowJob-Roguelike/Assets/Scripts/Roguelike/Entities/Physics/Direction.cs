@@ -1,9 +1,10 @@
-﻿using Core.Tools.ExtensionMethods;
+﻿using System;
+using Core.Tools.ExtensionMethods;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
-    public struct Direction
+    public struct Direction : IEquatable<Direction>
     {
         public static Direction Random => all.GetRandom();
         
@@ -11,6 +12,7 @@ namespace Roguelike.Entities
         public static readonly Direction Left = new Direction(Vector2Int.left);
         public static readonly Direction Up = new Direction(Vector2Int.up);
         public static readonly Direction Down = new Direction(Vector2Int.down);
+        public static readonly Direction None = new Direction(Vector2Int.zero);
         
         private static Direction[] all = { Right, Left, Up, Down };
 
@@ -30,5 +32,14 @@ namespace Roguelike.Entities
         {
             return new Direction(vector);
         }
+        
+        public static bool operator ==(Direction left, Direction right) => left.value.x == right.value.x && left.value.y == right.value.y;
+        public static bool operator !=(Direction left, Direction right) => !(left == right);
+
+        public override bool Equals(object other) => other is Direction other1 && Equals(other1);
+
+        public bool Equals(Direction other) => this == other;
+
+        public override int GetHashCode() => value.GetHashCode();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
+using Roguelike;
 using Roguelike.Entities;
 using Roguelike.Entities.Enemy;
 using Roguelike.Jobs;

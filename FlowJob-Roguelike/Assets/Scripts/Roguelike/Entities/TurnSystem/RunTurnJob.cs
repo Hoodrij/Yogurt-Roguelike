@@ -1,10 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using Entities.TurnSystem;
-using FlowJob;
-using Roguelike.Entities;
 using UnityAsync;
-using UnityEngine;
 
 namespace Roguelike.Jobs
 {
