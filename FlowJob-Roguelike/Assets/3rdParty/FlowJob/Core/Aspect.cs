@@ -1,4 +1,6 @@
-﻿namespace FlowJob
+﻿using UnityEngine;
+
+namespace FlowJob
 {
     public interface Aspect
     {
@@ -10,7 +12,7 @@
         {
             return AspectCache.Get<TAspect>();
         }
-        
+
         public static TAspect Single()
         {
             return new TAspect { Entity = Query().Single() };

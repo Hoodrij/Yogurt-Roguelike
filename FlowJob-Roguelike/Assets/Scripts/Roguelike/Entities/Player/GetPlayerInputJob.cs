@@ -8,7 +8,10 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Vector2Int> Update()
         {
-            return Vector2Int.up;
+            int x = (int) Input.GetAxisRaw("Horizontal");
+            int y = (int) Input.GetAxisRaw("Vertical");
+            
+            return new(x, y);
         }
     }
 }

@@ -1,20 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using FlowJob;
 using Roguelike.Entities;
 
 namespace Roguelike.Jobs
 {
-    public class MoveActorJob : Job
+    public class MoveCurrentActorJob : Job
     {
-        private ActorAspect actorAspect;
-
-        public MoveActorJob(ActorAspect actorAspect)
-        {
-            this.actorAspect = actorAspect;
-        }
-
         protected override async Task Update()
         {
+            ActorAspect actorAspect = Aspect<CurrentActorAspect>.Single().ActorAspect;
             actorAspect.Position.Coord += actorAspect.Actor.MoveDecision;
         }
     }
