@@ -9,11 +9,13 @@ namespace Core.Tools
     
         public async Task Run(Lifetime parentLifetime)
         {
-            using Lifetime _ = Lifetime = new Lifetime(parentLifetime);
-            while (Lifetime.IsAlive)
+            using (Lifetime = new Lifetime(parentLifetime))
             {
-                await this.WaitUpdate();
-                await Update();
+                while (Lifetime.IsAlive)
+                {
+                    await this.WaitUpdate();
+                    await Update();
+                }
             }
         }
         

@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnLevelJob : Job
     {
-        protected override async Task Run()
+        protected override async Task Update()
         {
             Entity.Create()
                 .Add<Level>();

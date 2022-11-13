@@ -145,8 +145,11 @@ namespace UnityAsync
 			lateUpdates = null;
 			fixedUpdates = null;
 
-			Instance.StopAllCoroutines();
-			Instance = null;
+			if (Instance.gameObject != null)
+			{
+				Instance.StopAllCoroutines();
+				Instance = null;
+			}
 		}
 	}
 }

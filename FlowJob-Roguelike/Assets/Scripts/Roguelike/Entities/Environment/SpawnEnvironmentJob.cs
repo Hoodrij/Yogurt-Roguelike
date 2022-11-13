@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnEnvironmentJob : Job
     {
-        protected override async Task Run()
+        protected override async Task Update()
         {
             Data data = Query.Single<Data>();
             int xSize = data.BoardSize.x;

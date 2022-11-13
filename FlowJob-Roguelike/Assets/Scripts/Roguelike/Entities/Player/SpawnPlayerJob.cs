@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnPlayerJob : Job<Entity>
     {
-        protected override async Task<Entity> Run()
+        protected override async Task<Entity> Update()
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
@@ -18,6 +18,7 @@ namespace Roguelike.Jobs
             Entity playerEntity = Level.Create()
                 .Add<Player>()
                 .Add<Actor>()
+                .Add<CurrentTurnActor>()
                 .Add<Collider>()
                 .Add(new Position
                 {

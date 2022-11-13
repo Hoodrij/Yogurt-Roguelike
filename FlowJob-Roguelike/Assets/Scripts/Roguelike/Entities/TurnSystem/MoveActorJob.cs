@@ -13,7 +13,7 @@ namespace Roguelike.Jobs
             this.actorAspect = actorAspect;
         }
 
-        protected override async Task Run()
+        protected override async Task Update()
         {
             actorAspect.Position.Coord += actorAspect.Actor.MoveDecision;
         }

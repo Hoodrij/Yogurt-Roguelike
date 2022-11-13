@@ -8,7 +8,7 @@ namespace Roguelike.Jobs
 {
     public class GameOverCheckJob : Job<bool>
     {
-        protected override async Task<bool> Run()
+        protected override async Task<bool> Update()
         {
             PlayerAspect playerAspect = Aspect<PlayerAspect>.Single();
             bool isPlayerAlive = playerAspect.Health.Value > 0;
@@ -16,7 +16,7 @@ namespace Roguelike.Jobs
             Entity exit = Query.With<Exit>().With<Position>().Single();
             Vector2Int exitPos = exit.Get<Position>().Coord;
             bool isPlayerAtExit = false;
-            return isPlayerAlive;
+            return !isPlayerAlive;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class SpawnExitJob : Job<Entity>
     {
-        protected override async Task<Entity> Run()
+        protected override async Task<Entity> Update()
         {
             Data data = Query.Single<Data>();
 

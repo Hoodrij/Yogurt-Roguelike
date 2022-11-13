@@ -8,17 +8,17 @@ namespace Core.Tools
     {
         public Event CompletedEvent { get; } = new Event();
         public Lifetime Lifetime { get; private set; }
-    
+
         public async Task Run(Lifetime parentLifetime = null)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
-                await Run();
+                await Update();
                 CompletedEvent.Fire();
             }
         }
         
-        protected abstract Task Run();
+        protected abstract Task Update();
     
         public static Job As(Func<Task> action) => new AnonymousJob(action);
     }
@@ -32,14 +32,14 @@ namespace Core.Tools
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
-                TResult result = await Run();
+                TResult result = await Update();
                 CompletedEvent.Fire(result);
                 return result;
             }
         }
         
-        protected abstract Task<TResult> Run();
-
+        protected abstract Task<TResult> Update();
+    
         public static Job<TResult> As(Func<Task<TResult>> action) => new AnonymousJob<TResult>(action);
     }
     

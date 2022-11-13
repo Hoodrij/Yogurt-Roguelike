@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class RunGameJob : Job
     {
-        protected override async Task Run()
+        protected override async Task Update()
         {
             WorldDebug wd = new WorldDebug();
 
