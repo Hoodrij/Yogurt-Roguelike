@@ -30,6 +30,11 @@ namespace Core.Tools
         {
             return lifetime.cts.Token;
         }
+        
+        public static implicit operator bool(Lifetime lifetime)
+        {
+            return lifetime.IsAlive;
+        }
 
         public void Dispose()
         {

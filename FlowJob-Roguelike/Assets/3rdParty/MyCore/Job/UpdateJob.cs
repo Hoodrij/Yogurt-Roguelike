@@ -3,11 +3,9 @@ using UnityAsync;
 
 namespace Core.Tools
 {
-    public abstract class UpdateJob : ILifetimeOwner
+    public abstract class UpdateJob : Job
     {
-        public Lifetime Lifetime { get; private set; }
-    
-        public async Task Run(Lifetime parentLifetime)
+        public override async Task<Void> Run(Lifetime parentLifetime)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
@@ -17,8 +15,7 @@ namespace Core.Tools
                     await Update();
                 }
             }
+            return default;
         }
-        
-        protected abstract Task Update();
     }
 }

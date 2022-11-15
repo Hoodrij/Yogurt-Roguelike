@@ -1,43 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Core.Tools.Observables;
-
-public static class EventEx
-{
-    public static EventAwaiter GetAwaiter(this Event e) => new EventAwaiter(e);
-    public static EventAwaiter<T> GetAwaiter<T>(this Event<T> e) => new EventAwaiter<T>(e);
-}
 
 namespace Core.Tools.Observables
 {
-    public class EventAwaiter : INotifyCompletion
-    {
-        private readonly Event observable;
-        private bool isCompleted;
-        private Action continuation;
-
-        internal EventAwaiter(Event observable)
-        {
-            this.observable = observable ?? throw new NullReferenceException();
-        }
-
-        public bool IsCompleted => isCompleted;
-        public void GetResult() { }
-
-        public void OnCompleted(Action continuation)
-        {
-            this.continuation = continuation;
-            observable.Listen(Listener);
-        }
-
-        private void Listener()
-        {
-            observable.Unsubscribe(this);
-            isCompleted = true;
-            continuation();
-        }
-    }
-    
     public class EventAwaiter<T> : INotifyCompletion
     {
         private readonly Event<T> observable;

@@ -27,29 +27,4 @@ namespace Core.Tools.Observables
         private bool IsAliveAsMonoBeh() => owner.Target is not MonoBehaviour mono || mono != null && mono.gameObject != null;
         private bool IsActiveAsMonoBeh() => owner.Target is not MonoBehaviour mono || mono.gameObject.activeInHierarchy;
     }
-    
-    internal class WeakAction
-    {
-        public bool IsAlive => owner.IsAlive && owner?.Target != null && IsAliveAsMonoBeh();
-        
-        private readonly WeakReference owner;
-        private readonly Action callback;
-
-        public WeakAction(Action action, object owner)
-        {
-            this.owner = new WeakReference(owner ?? action.Target);
-            callback = action;
-        }
-
-        public void Invoke()
-        {
-            if (IsActiveAsMonoBeh())
-                callback.Invoke();
-        }
-
-        public bool IsOwnedBy(object owner) => this.owner.Target == owner;
-        
-        private bool IsAliveAsMonoBeh() => owner.Target is not MonoBehaviour mono || mono != null && mono.gameObject != null;
-        private bool IsActiveAsMonoBeh() => owner.Target is not MonoBehaviour mono || mono.gameObject.activeInHierarchy;
-    }
 }
