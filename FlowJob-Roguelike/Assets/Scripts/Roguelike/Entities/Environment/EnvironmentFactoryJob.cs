@@ -7,7 +7,7 @@ using Collider = Roguelike.Entities.Collider;
 
 namespace Roguelike.Jobs
 {
-    public class SpawnEnvironmentJob : Job
+    public class EnvironmentFactoryJob : Job
     {
         protected override async Task Update()
         {

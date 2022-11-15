@@ -7,7 +7,7 @@ using Collider = Roguelike.Entities.Collider;
 
 namespace Roguelike.Jobs
 {
-    public class SpawnPlayerJob : Job<Entity>
+    public class PlayerFactoryJob : Job<Entity>
     {
         protected override async Task<Entity> Update()
         {
@@ -17,9 +17,12 @@ namespace Roguelike.Jobs
             Vector2Int coord = Vector2Int.one;
             Entity playerEntity = Level.Create()
                 .Add<Player>()
-                .Add<Agent>()
                 .Add<CurrentTurnAgent>()
                 .Add<Collider>()
+                .Add(new Agent
+                {
+                    GetMoveJob = new GetPlayerInputJob()
+                })
                 .Add(new Position
                 {
                     Coord = coord

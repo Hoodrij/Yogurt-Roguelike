@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Entities.TurnSystem;
 using UnityAsync;
 
 namespace Roguelike.Jobs
@@ -9,9 +8,8 @@ namespace Roguelike.Jobs
     {
         protected override async Task Update()
         {
-            await this.WaitSeconds(0.5f);
+            await this.WaitSeconds(0.2f);
             
-            await new WaitForMoveDecisionJob().Run();
             await new MoveCurrentAgentJob().Run();
 
             bool isLevelOver = await new GameOverCheckJob().Run();

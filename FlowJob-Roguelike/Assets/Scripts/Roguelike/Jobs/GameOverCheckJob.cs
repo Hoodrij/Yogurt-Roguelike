@@ -13,9 +13,11 @@ namespace Roguelike.Jobs
             PlayerAspect playerAspect = Aspect<PlayerAspect>.Single();
             bool isPlayerAlive = playerAspect.Health.Value > 0;
 
-            Entity exit = Query.With<Exit>().With<Position>().Single();
-            Vector2Int exitPos = exit.Get<Position>().Coord;
-            bool isPlayerAtExit = false;
+            playerAspect.AgentAspect.Position.Coord.log();
+
+            // Entity exit = Query.With<Exit>().With<Position>().Single();
+            // Vector2Int exitPos = exit.Get<Position>().Coord;
+            // bool isPlayerAtExit = false;
             return !isPlayerAlive;
         }
     }

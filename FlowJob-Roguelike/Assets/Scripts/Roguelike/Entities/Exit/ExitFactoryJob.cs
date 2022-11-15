@@ -7,7 +7,7 @@ using Collider = Roguelike.Entities.Collider;
 
 namespace Roguelike.Jobs
 {
-    public class SpawnExitJob : Job<Entity>
+    public class ExitFactoryJob : Job<Entity>
     {
         protected override async Task<Entity> Update()
         {

@@ -17,7 +17,7 @@ namespace Roguelike.Jobs
                 .Add<Data>()
                 .Add<Assets>();
             
-            await new SpawnLevelJob().Run();
+            await new LevelFactoryJob().Run();
             await new RunTurnJob().Run();
 
             // Entity level = Query.With<Level>().Single();

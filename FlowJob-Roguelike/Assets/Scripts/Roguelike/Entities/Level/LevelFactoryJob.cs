@@ -5,7 +5,7 @@ using Roguelike.Entities;
 
 namespace Roguelike.Jobs
 {
-    public class SpawnLevelJob : Job
+    public class LevelFactoryJob : Job
     {
         protected override async Task Update()
         {
@@ -13,8 +13,8 @@ namespace Roguelike.Jobs
                 .Add<Level>();
 
             // await new SpawnEnvironmentJob().Run();
-            await new SpawnExitJob().Run();
-            await new SpawnPlayerJob().Run();
+            await new ExitFactoryJob().Run();
+            await new PlayerFactoryJob().Run();
         }
     }
 }
