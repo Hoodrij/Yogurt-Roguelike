@@ -14,7 +14,7 @@ namespace Roguelike.Jobs
                 int x = (int) Input.GetAxisRaw("Horizontal");
                 int y = (int) Input.GetAxisRaw("Vertical");
 
-                return new Vector2Int(x, y);
+                return new Direction(x, y);
             }
 
             await this.WaitWhile(() => ReadInput() == Direction.None);

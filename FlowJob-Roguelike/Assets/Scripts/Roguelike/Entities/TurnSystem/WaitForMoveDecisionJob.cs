@@ -3,9 +3,7 @@ using Core.Tools;
 using FlowJob;
 using Roguelike;
 using Roguelike.Entities;
-using Roguelike.Entities.Enemy;
 using Roguelike.Jobs;
-using UnityEngine;
 
 namespace Entities.TurnSystem
 {
@@ -13,19 +11,15 @@ namespace Entities.TurnSystem
     {
         protected override async Task Update()
         {
-            ActorAspect actorAspect = Aspect<CurrentActorAspect>.Single().ActorAspect;
-            Vector2Int moveDecision = Vector2Int.zero;
-
-            if (actorAspect.Has<Player>())
-            {
-                moveDecision = await new GetPlayerInputJob().Run();
-            }
-            else if (actorAspect.Has<Ai>())
-            {
-                moveDecision = Direction.Random;
-            }
+            AgentAspect agentAspect = Aspect<CurrentAgentAspect>.Single().AgentAspect;
             
-            actorAspect.Actor.MoveDecision = moveDecision;
+            Direction moveDecision = agentAspect.Type switch
+            {
+                AgentType.Player => await new GetPlayerInputJob().Run(),
+                AgentType.Ai => Direction.Random,
+            };
+            
+            agentAspect.Agent.MoveDecision = moveDecision;
         }
     }
 }

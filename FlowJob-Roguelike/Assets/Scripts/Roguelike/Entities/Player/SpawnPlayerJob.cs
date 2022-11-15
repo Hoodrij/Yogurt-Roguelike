@@ -17,8 +17,8 @@ namespace Roguelike.Jobs
             Vector2Int coord = Vector2Int.one;
             Entity playerEntity = Level.Create()
                 .Add<Player>()
-                .Add<Actor>()
-                .Add<CurrentTurnActor>()
+                .Add<Agent>()
+                .Add<CurrentTurnAgent>()
                 .Add<Collider>()
                 .Add(new Position
                 {

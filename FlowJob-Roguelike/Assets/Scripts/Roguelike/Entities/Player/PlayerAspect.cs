@@ -8,7 +8,7 @@ namespace Roguelike.Entities
 
         public Player Player => this.Get<Player>();
         public Health Health => this.Get<Health>();
-        public ActorAspect ActorAspect => this.GetAspect<ActorAspect>();
+        public AgentAspect AgentAspect => this.GetAspect<AgentAspect>();
     }
 
     public class Player : IComponent

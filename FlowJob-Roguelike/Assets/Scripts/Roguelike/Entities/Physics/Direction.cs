@@ -18,7 +18,9 @@ namespace Roguelike
 
         private Vector2Int value;
 
-        private Direction(Vector2Int vector)
+        public Direction(int x, int y) : this(new Vector2Int(x, y)) { }
+        
+        public Direction(Vector2Int vector)
         {
             value = vector;
         }
