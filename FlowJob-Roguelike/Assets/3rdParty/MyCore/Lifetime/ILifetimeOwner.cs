@@ -2,6 +2,6 @@
 {
     public interface ILifetimeOwner
     {
-        Lifetime Lifetime { get; }
+        internal Lifetime Lifetime { get; }
     }
 }

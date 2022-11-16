@@ -7,11 +7,15 @@ namespace Roguelike.Jobs
 {
     public class MoveCurrentAgentJob : Job
     {
-        protected override async Task Update()
+        protected override async Task<Void> Update()
         {
             AgentAspect agentAspect = Aspect<CurrentAgentAspect>.Single().AgentAspect;
             Direction direction = await agentAspect.Agent.GetMoveJob.Run();
-            agentAspect.Position.Coord += direction; 
+            agentAspect.Position.Coord += direction;
+
+            agentAspect.Position.Coord.log();
+
+            return default;
         }
     }
 }

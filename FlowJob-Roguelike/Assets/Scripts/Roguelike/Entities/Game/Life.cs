@@ -27,38 +27,38 @@ namespace Roguelike.Entities
 
             private void Update()
             {
-                Life?.UpdateEvent.Fire();
+                Life?.UpdateEvent.Fire(default);
             }
 
             private void LateUpdate()
             {
-                Life?.LateUpdateEvent.Fire();
+                Life?.LateUpdateEvent.Fire(default);
             }
 
             private void FixedUpdate()
             {
-                Life?.FixedUpdateEvent.Fire();
+                Life?.FixedUpdateEvent.Fire(default);
             }
 
             private void OnApplicationFocus(bool focus)
             {
                 if (focus)
-                    Life?.ResumeEvent.Fire();
+                    Life?.ResumeEvent.Fire(default);
                 else
-                    Life?.PauseEvent.Fire();
+                    Life?.PauseEvent.Fire(default);
             }
 
             private void OnApplicationPause(bool pause)
             {
                 if (pause)
-                    Life?.PauseEvent.Fire();
+                    Life?.PauseEvent.Fire(default);
                 else
-                    Life?.ResumeEvent.Fire();
+                    Life?.ResumeEvent.Fire(default);
             }
 
             private void OnApplicationQuit()
             {
-                Life?.QuitEvent.Fire();
+                Life?.QuitEvent.Fire(default);
             }
         }
     }

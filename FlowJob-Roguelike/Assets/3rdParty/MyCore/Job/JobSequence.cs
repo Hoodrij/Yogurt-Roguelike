@@ -42,9 +42,11 @@ namespace Core.Tools
 
         public async Task<JobSequence> Run()
         {
-            initialTasksCount = queue.Count;
-            using Lifetime _ = lifetime = new Lifetime();
-            await ExecutionRoutine();
+            using (lifetime = new Lifetime())
+            {
+                initialTasksCount = queue.Count;
+                await ExecutionRoutine();
+            }
 
             return this;
         }

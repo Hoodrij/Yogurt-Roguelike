@@ -6,14 +6,16 @@ namespace Roguelike.Jobs
 {
     public class RunTurnJob : Job
     {
-        protected override async Task Update()
+        protected override async Task<Void> Update()
         {
             await this.WaitSeconds(0.2f);
-            
+
             await new MoveCurrentAgentJob().Run();
 
             bool isLevelOver = await new GameOverCheckJob().Run();
             if (!isLevelOver) await new RunTurnJob().Run();
+            
+            return default;
         }
     }
 }

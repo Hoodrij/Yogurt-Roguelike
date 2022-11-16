@@ -1,27 +1,23 @@
 using System;
 using System.Threading.Tasks;
-using Core.Tools.Observables;
 
-namespace Core.Tools
+namespace Core.Tools 
 {
     public abstract class Job<TResult> : ILifetimeOwner
     {
-        public Event<TResult> CompletedEvent { get; } = new Event<TResult>();
-        public Lifetime Lifetime { get; internal set; }
-        
+        Lifetime ILifetimeOwner.Lifetime => Lifetime;
+        private protected Lifetime Lifetime;
+
         public virtual async Task<TResult> Run(Lifetime parentLifetime = null)
         {
-            using (Lifetime = new Lifetime(parentLifetime))
+            Job<TResult> job = ((Job<TResult>) Activator.CreateInstance(GetType()));
+            using (job.Lifetime = new Lifetime(parentLifetime))
             {
-                TResult result = await Update();
-                CompletedEvent.Fire(result);
-                return result;
+                return await job.Update();
             }
         }
-        
+
         protected abstract Task<TResult> Update();
-    
-        public static Job<TResult> As(Func<Task<TResult>> action) => new AnonymousJob<TResult>(action);
     }
     
     public abstract class Job : Job<Void> { }

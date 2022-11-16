@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class LevelFactoryJob : Job
     {
-        protected override async Task Update()
+        protected override async Task<Void> Update()
         {
             Entity.Create()
                 .Add<Level>();
@@ -15,6 +15,8 @@ namespace Roguelike.Jobs
             // await new SpawnEnvironmentJob().Run();
             await new ExitFactoryJob().Run();
             await new PlayerFactoryJob().Run();
+
+            return default;
         }
     }
 }
