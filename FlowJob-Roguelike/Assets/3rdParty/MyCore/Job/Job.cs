@@ -5,12 +5,11 @@ namespace Core.Tools
 {
     public abstract class Job<TResult> : ILifetimeOwner
     {
-        Lifetime ILifetimeOwner.Lifetime => Lifetime;
-        private protected Lifetime Lifetime;
+        public Lifetime Lifetime { get; private protected set; }
 
         public virtual async Task<TResult> Run(Lifetime parentLifetime = null)
         {
-            Job<TResult> job = ((Job<TResult>) Activator.CreateInstance(GetType()));
+            Job<TResult> job = (Job<TResult>) Activator.CreateInstance(GetType());
             using (job.Lifetime = new Lifetime(parentLifetime))
             {
                 return await job.Update();
