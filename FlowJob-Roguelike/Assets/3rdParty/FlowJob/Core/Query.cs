@@ -1,99 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FlowJob
 {
-    public struct Query : IEnumerable<Entity>
+    public interface Query
     {
-        private Mask included;
-        private Mask excluded;
+        internal Mask Included { get; set; }
+        internal Mask Excluded { get; set; }
 
-        public Entity Single()
+        public static CQuery Of<TComponent>() where TComponent : IComponent
         {
-            return GetGroup().Single();
+            return new CQuery().With<TComponent>();
         }
-
+        
+        public static AQuery<TAspect> Of<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
+        {
+            return AspectCache.Get<TAspect>();
+        }
+        
         public static ref TComponent Single<TComponent>() where TComponent : IComponent
         {
-            return ref new Query().With<TComponent>().Single().Get<TComponent>();
+            return ref new CQuery().With<TComponent>().Single().Get<TComponent>();
         }
         
-        public static Query With<TComponent>(bool _ = false) where TComponent : IComponent
+        public static TAspect Single<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
         {
-            return new Query().With<TComponent>();
+            return new TAspect { Entity = ((Query)Of<TAspect>()).GetGroup().Single() };
         }
 
-        public Query With<TComponent>() where TComponent : IComponent
+        protected internal Group GetGroup()
         {
-            included.Set(ComponentID.Of<TComponent>());
-            return this;
-        }
-        
-        public Query Without<TComponent>() where TComponent : IComponent
-        {
-            excluded.Set(ComponentID.Of<TComponent>());
-            return this;
-        }
-
-        private Group GetGroup()
-        {
-            Composition composition = new Composition(included, excluded);
+            Composition composition = new Composition(Included, Excluded);
             Group group = Group.GetGroup(composition);
             return group;
-        }
-
-        public IEnumerator<Entity> GetEnumerator()
-        {
-            return GetGroup().GetEnumerator(); 
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 
-    public struct Query<TAspect> : IEnumerable<TAspect> where TAspect : struct, Aspect<TAspect>
+    public struct CQuery : Query, IEnumerable<Entity>
     {
-        internal Mask included;
-        internal Mask excluded;
+        Mask Query.Included { get; set; }
+        Mask Query.Excluded { get; set; }
+        private Query This => this;
         
-        public Entity Single()
+        public CQuery With<TComponent>() where TComponent : IComponent
         {
-            return GetGroup().Single();
+            This.Included.Set(ComponentID.Of<TComponent>());
+            return this;
         }
+        
+        public CQuery Without<TComponent>() where TComponent : IComponent
+        {
+            This.Excluded.Set(ComponentID.Of<TComponent>());
+            return this;
+        }
+        
+        public Entity Single() => This.GetGroup().Single();
 
-        public Query<TAspect> With<TComponent>() where TComponent : IComponent
+        public IEnumerator<Entity> GetEnumerator() => This.GetGroup().GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+    
+    public struct AQuery<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
+    {
+        Mask Query.Included { get; set; }
+        Mask Query.Excluded { get; set; }
+        private Query This => this;
+        
+        public AQuery<TAspect> With<TComponent>() where TComponent : IComponent
         {
-            included.Set(ComponentID.Of<TComponent>());
+            This.Included.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        public Query<TAspect> Without<TComponent>() where TComponent : IComponent
+        public AQuery<TAspect> Without<TComponent>() where TComponent : IComponent
         {
-            excluded.Set(ComponentID.Of<TComponent>());
+            This.Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        private Group GetGroup()
+        public TAspect Single() => new TAspect { Entity = This.GetGroup().Single() };
+
+        public IEnumerator<Aspect<TAspect>> GetEnumerator()
         {
-            Composition composition = new Composition(included, excluded);
-            Group group = Group.GetGroup(composition);
-            return group;
-        }
-        
-        public IEnumerator<TAspect> GetEnumerator()
-        {
-            foreach (Entity entity in GetGroup())
+            foreach (Entity entity in This.GetGroup())
             {
                 TAspect aspect = new TAspect { Entity = entity };
                 yield return aspect;
             }
         }
-    
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

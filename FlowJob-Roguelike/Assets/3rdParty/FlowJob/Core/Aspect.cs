@@ -6,15 +6,7 @@
     }
     public interface Aspect<TAspect> : Aspect where TAspect : struct, Aspect<TAspect>
     {
-        public static Query<TAspect> Query()
-        {
-            return AspectCache.Get<TAspect>();
-        }
-
-        public static TAspect Single()
-        {
-            return new TAspect { Entity = Query().Single() };
-        }
+        
     }
 
     public static class AspectEx

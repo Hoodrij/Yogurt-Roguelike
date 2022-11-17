@@ -7,7 +7,7 @@ namespace Roguelike.Entities
         public static Entity Create()
         {
             Entity entity = Entity.Create();
-            entity.SetParent(Query.With<Level>().Single());
+            entity.SetParent(Query.Of<Level>().Single());
             return entity;
         }
     }
