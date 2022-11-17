@@ -8,9 +8,9 @@ namespace FlowJob
     {
         private static Dictionary<Type, Mask> cache = new();
         
-        public static AQuery<TAspect> Get<TAspect>() where TAspect : struct, Aspect<TAspect>
+        public static QueryOfAspect<TAspect> Get<TAspect>() where TAspect : struct, Aspect<TAspect>
         {
-            AQuery<TAspect> query = new AQuery<TAspect>();
+            QueryOfAspect<TAspect> query = new QueryOfAspect<TAspect>();
             Type aspectType = typeof(TAspect);
 
             if (!cache.TryGetValue(aspectType, out Mask mask))

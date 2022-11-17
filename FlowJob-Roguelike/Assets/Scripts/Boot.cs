@@ -1,6 +1,4 @@
-﻿using FlowJob;
-using Roguelike.Entities;
-using Roguelike.Jobs;
+﻿using Roguelike.Jobs;
 using UnityEngine;
 
 namespace Roguelike
@@ -10,13 +8,13 @@ namespace Roguelike
         private async void Awake()
         {
             new RunGameJob().Run();
-
-            CQuery cQuery = Query.Of<Player>();
-            Player player = Query.Single<Player>();
-            Entity player1 = Query.Of<Player>().Single();
-
-            PlayerAspect playerAspect = Query.Single<PlayerAspect>();
-            PlayerAspect playerAspect1 = Query.Of<PlayerAspect>().Single();
+            
+            // QueryOfEntity query = Query.Of<Player>();
+            // Entity player = Query.Of<Player>().Single();
+            // Player player1 = Query.Single<Player>();
+            //
+            // PlayerAspect playerAspect = Query.Single<PlayerAspect>();
+            // PlayerAspect playerAspect1 = Query.Of<PlayerAspect>().Single();
         }
     }
 }

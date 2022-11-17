@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace FlowJob
 {
@@ -9,19 +8,19 @@ namespace FlowJob
         internal Mask Included { get; set; }
         internal Mask Excluded { get; set; }
 
-        public static CQuery Of<TComponent>() where TComponent : IComponent
+        public static QueryOfEntity Of<TComponent>() where TComponent : IComponent
         {
-            return new CQuery().With<TComponent>();
+            return new QueryOfEntity().With<TComponent>();
         }
-        
-        public static AQuery<TAspect> Of<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
-        {
-            return AspectCache.Get<TAspect>();
-        }
-        
+
         public static ref TComponent Single<TComponent>() where TComponent : IComponent
         {
-            return ref new CQuery().With<TComponent>().Single().Get<TComponent>();
+            return ref new QueryOfEntity().With<TComponent>().Single().Get<TComponent>();
+        }
+        
+        public static QueryOfAspect<TAspect> Of<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
+        {
+            return AspectCache.Get<TAspect>();
         }
         
         public static TAspect Single<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
@@ -37,19 +36,19 @@ namespace FlowJob
         }
     }
 
-    public struct CQuery : Query, IEnumerable<Entity>
+    public struct QueryOfEntity : Query, IEnumerable<Entity>
     {
         Mask Query.Included { get; set; }
         Mask Query.Excluded { get; set; }
         private Query This => this;
         
-        public CQuery With<TComponent>() where TComponent : IComponent
+        public QueryOfEntity With<TComponent>() where TComponent : IComponent
         {
             This.Included.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        public CQuery Without<TComponent>() where TComponent : IComponent
+        public QueryOfEntity Without<TComponent>() where TComponent : IComponent
         {
             This.Excluded.Set(ComponentID.Of<TComponent>());
             return this;
@@ -61,19 +60,19 @@ namespace FlowJob
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
     
-    public struct AQuery<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
+    public struct QueryOfAspect<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
     {
         Mask Query.Included { get; set; }
         Mask Query.Excluded { get; set; }
         private Query This => this;
         
-        public AQuery<TAspect> With<TComponent>() where TComponent : IComponent
+        public QueryOfAspect<TAspect> With<TComponent>() where TComponent : IComponent
         {
             This.Included.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        public AQuery<TAspect> Without<TComponent>() where TComponent : IComponent
+        public QueryOfAspect<TAspect> Without<TComponent>() where TComponent : IComponent
         {
             This.Excluded.Set(ComponentID.Of<TComponent>());
             return this;
