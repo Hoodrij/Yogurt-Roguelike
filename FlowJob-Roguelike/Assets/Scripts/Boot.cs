@@ -17,8 +17,6 @@ namespace Roguelike
 
             PlayerAspect playerAspect = Query.Single<PlayerAspect>();
             PlayerAspect playerAspect1 = Query.Of<PlayerAspect>().Single();
-
-            playerAspect.Alive().log();
         }
     }
 }
