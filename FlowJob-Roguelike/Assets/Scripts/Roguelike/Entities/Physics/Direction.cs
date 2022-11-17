@@ -22,7 +22,7 @@ namespace Roguelike
         
         public Direction(Vector2Int vector)
         {
-            value = vector;
+            value = vector.Normalized();
         }
         
         public static implicit operator Vector2Int(Direction dir)
@@ -43,5 +43,10 @@ namespace Roguelike
         public bool Equals(Direction other) => this == other;
 
         public override int GetHashCode() => value.GetHashCode();
+
+        public override string ToString()
+        {
+            return value.ToString();
+        }
     }
 }

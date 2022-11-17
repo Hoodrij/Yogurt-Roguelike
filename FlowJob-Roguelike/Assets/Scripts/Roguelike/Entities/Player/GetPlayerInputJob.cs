@@ -18,7 +18,7 @@ namespace Roguelike.Jobs
             }
 
             await this.WaitWhile(() => ReadInput() == Direction.None);
-            
+
             return ReadInput();
         }
     }
