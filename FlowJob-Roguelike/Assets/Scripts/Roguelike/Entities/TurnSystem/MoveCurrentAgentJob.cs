@@ -10,7 +10,7 @@ namespace Roguelike.Jobs
         protected override async Task<Void> Update()
         {
             AgentAspect agentAspect = Aspect<CurrentAgentAspect>.Single().AgentAspect;
-            Direction direction = await agentAspect.Agent.GetMoveJob.Run();
+            Direction direction = await agentAspect.Agent.MoveJob.Run();
             agentAspect.Position.Coord += direction;
 
             agentAspect.Position.Coord.log();

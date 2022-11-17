@@ -13,7 +13,7 @@ namespace Roguelike.Jobs
             await new MoveCurrentAgentJob().Run();
 
             bool isLevelOver = await new GameOverCheckJob().Run();
-            if (!isLevelOver) await new RunTurnJob().Run();
+            if (!isLevelOver) await this.Run();
             
             return default;
         }

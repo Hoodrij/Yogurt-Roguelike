@@ -5,7 +5,7 @@ namespace Roguelike.Entities
 {
     public class Agent : IComponent
     {
-        public Job<Direction> GetMoveJob { get; set; }
+        public Job<Direction> MoveJob { get; set; }
     }
     
     public class CurrentTurnAgent : IComponent { }

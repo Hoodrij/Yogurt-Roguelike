@@ -17,6 +17,8 @@ namespace Core.Tools
         }
 
         protected abstract Task<TResult> Update();
+        
+        public static Job<TResult> As(Func<Task<TResult>> action) => new AnonJob<TResult>(action);
     }
     
     public abstract class Job : Job<Void> { }

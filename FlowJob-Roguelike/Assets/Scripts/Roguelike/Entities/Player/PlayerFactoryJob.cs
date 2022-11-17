@@ -21,7 +21,7 @@ namespace Roguelike.Jobs
                 .Add<Collider>()
                 .Add(new Agent
                 {
-                    GetMoveJob = new GetPlayerInputJob()
+                    MoveJob = new GetPlayerInputJob()
                 })
                 .Add(new Position
                 {
