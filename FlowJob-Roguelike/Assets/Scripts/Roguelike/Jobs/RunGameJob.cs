@@ -9,8 +9,6 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Void> Update()
         {
-            WorldDebug wd = new WorldDebug();
-
             Entity.Create()
                 .Add<Game>()
                 .Add<Life>()

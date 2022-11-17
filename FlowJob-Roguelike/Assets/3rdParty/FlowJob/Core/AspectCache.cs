@@ -19,7 +19,7 @@ namespace FlowJob
                 cache.Add(aspectType, mask);
             }
 
-            ((Query)query).Included = mask;
+            query.Included = mask;
             return query;
         }
         

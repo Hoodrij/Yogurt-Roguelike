@@ -1,4 +1,5 @@
-﻿using Roguelike.Jobs;
+﻿using FlowJob;
+using Roguelike.Jobs;
 using UnityEngine;
 
 namespace Roguelike
@@ -7,8 +8,9 @@ namespace Roguelike
     {
         private async void Awake()
         {
+            WorldDebug wd = new WorldDebug();
             new RunGameJob().Run();
-            
+
             // QueryOfEntity query = Query.Of<Player>();
             // Entity player = Query.Of<Player>().Single();
             // Player player1 = Query.Single<Player>();

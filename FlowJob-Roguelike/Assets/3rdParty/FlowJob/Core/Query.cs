@@ -5,9 +5,6 @@ namespace FlowJob
 {
     public interface Query
     {
-        internal Mask Included { get; set; }
-        internal Mask Excluded { get; set; }
-
         public static QueryOfEntity Of<TComponent>() where TComponent : IComponent
         {
             return new QueryOfEntity().With<TComponent>();
@@ -25,64 +22,69 @@ namespace FlowJob
         
         public static TAspect Single<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
         {
-            return new TAspect { Entity = ((Query)Of<TAspect>()).GetGroup().Single() };
-        }
-
-        protected internal Group GetGroup()
-        {
-            Composition composition = new Composition(Included, Excluded);
-            Group group = Group.GetGroup(composition);
-            return group;
+            return new TAspect { Entity = Of<TAspect>().GetGroup().Single() };
         }
     }
 
     public struct QueryOfEntity : Query, IEnumerable<Entity>
     {
-        Mask Query.Included { get; set; }
-        Mask Query.Excluded { get; set; }
-        private Query This => this;
-        
+        internal Mask Included { get; set; }
+        internal Mask Excluded { get; set; }
+
         public QueryOfEntity With<TComponent>() where TComponent : IComponent
         {
-            This.Included.Set(ComponentID.Of<TComponent>());
+            Included.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
         public QueryOfEntity Without<TComponent>() where TComponent : IComponent
         {
-            This.Excluded.Set(ComponentID.Of<TComponent>());
+            Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        public Entity Single() => This.GetGroup().Single();
+        public Entity Single() => GetGroup().Single();
 
-        public IEnumerator<Entity> GetEnumerator() => This.GetGroup().GetEnumerator();
+        private Group GetGroup()
+        {
+            Composition composition = new Composition(Included, Excluded);
+            Group group = Group.GetGroup(composition);
+            return group;
+        }
+
+        public IEnumerator<Entity> GetEnumerator() => GetGroup().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
     
     public struct QueryOfAspect<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
     {
-        Mask Query.Included { get; set; }
-        Mask Query.Excluded { get; set; }
-        private Query This => this;
+        internal Mask Included { get; set; }
+        internal Mask Excluded { get; set; }
         
         public QueryOfAspect<TAspect> With<TComponent>() where TComponent : IComponent
         {
-            This.Included.Set(ComponentID.Of<TComponent>());
+            Included.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
         public QueryOfAspect<TAspect> Without<TComponent>() where TComponent : IComponent
         {
-            This.Excluded.Set(ComponentID.Of<TComponent>());
+            Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
         
-        public TAspect Single() => new TAspect { Entity = This.GetGroup().Single() };
+        public TAspect Single() => new TAspect { Entity = GetGroup().Single() };
 
+        internal Group GetGroup()
+        {
+            Composition composition = new Composition(Included, Excluded);
+            Group group = Group.GetGroup(composition);
+            return group;
+        }
+        
         public IEnumerator<Aspect<TAspect>> GetEnumerator()
         {
-            foreach (Entity entity in This.GetGroup())
+            foreach (Entity entity in GetGroup())
             {
                 TAspect aspect = new TAspect { Entity = entity };
                 yield return aspect;
