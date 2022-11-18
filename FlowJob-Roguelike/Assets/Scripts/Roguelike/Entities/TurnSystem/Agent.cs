@@ -16,6 +16,7 @@ namespace Roguelike.Entities
         
         public Agent Agent => this.Get<Agent>();
         public Position Position => this.Get<Position>();
+        public AgentView View => this.Get<AgentView>();
     }
 
     public struct CurrentAgentAspect : Aspect<CurrentAgentAspect>

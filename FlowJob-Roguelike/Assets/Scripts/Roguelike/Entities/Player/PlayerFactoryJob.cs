@@ -32,8 +32,9 @@ namespace Roguelike.Jobs
                     Value = data.StartingPlayerHealth
                 });
 
-            PlayerView playerView = await assets.Player.Spawn();
-            playerEntity.Add(playerView);
+            AgentView view = await assets.Player.Spawn();
+            view.Update(playerEntity.ToAspect<AgentAspect>());
+            playerEntity.Add(view);
 
             return playerEntity;
         }
