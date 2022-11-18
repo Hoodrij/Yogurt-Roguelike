@@ -22,7 +22,7 @@ namespace FlowJob
         
         public static TAspect Single<TAspect>(Void _ = default) where TAspect : struct, Aspect<TAspect>
         {
-            return new TAspect { Entity = Of<TAspect>().GetGroup().Single() };
+            return Of<TAspect>().GetGroup().Single().ToAspect<TAspect>();
         }
     }
 
@@ -72,8 +72,8 @@ namespace FlowJob
             Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
-        
-        public TAspect Single() => new TAspect { Entity = GetGroup().Single() };
+
+        public TAspect Single() => GetGroup().Single().ToAspect<TAspect>();
 
         internal Group GetGroup()
         {
@@ -86,8 +86,7 @@ namespace FlowJob
         {
             foreach (Entity entity in GetGroup())
             {
-                TAspect aspect = new TAspect { Entity = entity };
-                yield return aspect;
+                yield return entity.ToAspect<TAspect>();
             }
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

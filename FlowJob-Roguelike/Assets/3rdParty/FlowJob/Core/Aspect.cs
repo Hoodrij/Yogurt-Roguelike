@@ -13,7 +13,7 @@
     {
         public static TAspect GetAspect<TAspect>(this Aspect aspect) where TAspect : struct, Aspect<TAspect>
         {
-            return new TAspect { Entity = aspect.Entity };
+            return aspect.Entity.ToAspect<TAspect>();
         }
 
         public static bool Alive(this Aspect aspect) => aspect.Entity.Alive;

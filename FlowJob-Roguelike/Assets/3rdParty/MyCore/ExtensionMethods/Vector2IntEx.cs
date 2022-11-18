@@ -20,5 +20,15 @@ namespace Core.Tools.ExtensionMethods
                 return i.y > 0 ? Vector2Int.up : Vector2Int.down;
             }
         } 
+        
+        public static Vector3 ToV3XY(this Vector2Int v2)
+        {
+            return new Vector3(v2.x, v2.y, 0);
+        }
+
+        public static Vector3 ToV3XZ(this Vector2Int v2)
+        {
+            return new Vector3(v2.x, 0, v2.y);
+        }
     }
 }

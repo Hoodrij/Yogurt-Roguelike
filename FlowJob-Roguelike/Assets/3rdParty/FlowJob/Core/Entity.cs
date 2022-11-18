@@ -70,7 +70,7 @@ namespace FlowJob
         {
             return !(entity1 == entity2);
         }
-        
+
         private string Name
         {
             get

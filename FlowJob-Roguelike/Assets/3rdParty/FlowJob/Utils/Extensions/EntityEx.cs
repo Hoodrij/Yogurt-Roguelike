@@ -37,9 +37,9 @@ namespace FlowJob
             return result;
         }
 
-        public static T ToAspect<T>(this Entity entity) where T : struct, Aspect<T>
+        public static TAspect ToAspect<TAspect>(this Entity entity) where TAspect : struct, Aspect<TAspect>
         {
-            return new T { Entity = entity };
+            return new TAspect { Entity = entity };
         }
         
         public static Entity FromAspect(this Entity entity, Aspect aspect)
