@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace FlowJob
 {
+    // QueryOfEntity query = Query.Of<Player>();
+    // Entity player = Query.Of<Player>().Single();
+    // Player player1 = Query.Single<Player>();
+    //
+    // PlayerAspect playerAspect = Query.Single<PlayerAspect>();
+    // PlayerAspect playerAspect1 = Query.Of<PlayerAspect>().Single();
     public interface Query
     {
         public static QueryOfEntity Of<TComponent>() where TComponent : IComponent
