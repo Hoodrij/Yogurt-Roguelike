@@ -6,7 +6,7 @@ namespace Roguelike.Entities
 {
     public class AgentView : MonoBehaviour, IComponent
     {
-        public void Update(AgentAspect agentAspect)
+        public void UpdateView(AgentAspect agentAspect)
         {
             transform.position = agentAspect.Position.Coord.ToV3XY();
         }

@@ -30,5 +30,10 @@ namespace Core.Tools.ExtensionMethods
         {
             return new Vector3(v2.x, 0, v2.y);
         }
+
+        public static Vector2Int RandomTo(this Vector2Int v2)
+        {
+            return new Vector2Int(v2.x.RandomTo(), v2.y.RandomTo());
+        }
     }
 }

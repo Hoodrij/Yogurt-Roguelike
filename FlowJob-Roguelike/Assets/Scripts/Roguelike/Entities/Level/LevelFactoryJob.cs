@@ -15,6 +15,8 @@ namespace Roguelike.Jobs
             // await new SpawnEnvironmentJob().Run();
             await new ExitFactoryJob().Run();
             await new PlayerFactoryJob().Run();
+            await new PlayerFactoryJob().Run();
+            await new PlayerFactoryJob().Run();
 
             return default;
         }

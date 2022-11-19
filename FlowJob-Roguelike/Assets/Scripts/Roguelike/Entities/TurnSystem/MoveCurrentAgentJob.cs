@@ -13,7 +13,7 @@ namespace Roguelike.Jobs
             Direction direction = await agentAspect.Agent.MoveJob.Run();
             agentAspect.Position.Coord += direction;
             
-            agentAspect.View.Update(agentAspect);
+            agentAspect.View.UpdateView(agentAspect);
 
             return default;
         }
