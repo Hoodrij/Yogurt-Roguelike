@@ -28,8 +28,8 @@ namespace FlowJob
 
     public struct QueryOfEntity : Query, IEnumerable<Entity>
     {
-        internal Mask Included { get; set; }
-        internal Mask Excluded { get; set; }
+        internal Mask Included;
+        internal Mask Excluded;
 
         public QueryOfEntity With<TComponent>() where TComponent : IComponent
         {
@@ -58,8 +58,8 @@ namespace FlowJob
     
     public struct QueryOfAspect<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
     {
-        internal Mask Included { get; set; }
-        internal Mask Excluded { get; set; }
+        internal Mask Included;
+        internal Mask Excluded;
         
         public QueryOfAspect<TAspect> With<TComponent>() where TComponent : IComponent
         {
