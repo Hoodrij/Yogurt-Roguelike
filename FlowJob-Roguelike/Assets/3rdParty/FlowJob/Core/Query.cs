@@ -62,7 +62,7 @@ namespace FlowJob
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
     
-    public struct QueryOfAspect<TAspect> : Query, IEnumerable<Aspect<TAspect>> where TAspect : struct, Aspect<TAspect>
+    public struct QueryOfAspect<TAspect> : Query, IEnumerable<TAspect> where TAspect : struct, Aspect<TAspect>
     {
         internal Mask Included;
         internal Mask Excluded;
@@ -88,7 +88,7 @@ namespace FlowJob
             return group;
         }
         
-        public IEnumerator<Aspect<TAspect>> GetEnumerator()
+        public IEnumerator<TAspect> GetEnumerator()
         {
             foreach (Entity entity in GetGroup())
             {

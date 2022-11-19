@@ -78,7 +78,7 @@ namespace FlowJob
                 if (this == Null)
                     return "Entity.Null";
                 string components = string.Concat(this.GetComponents().Select(c => $"{c.GetType().Name} ").ToArray());
-                return ID + (Alive ? " " : " [DEAD] ") + components;
+                return "Entity_" + ID + (Alive ? " " : " [DEAD] ") + $"[{components}]";
             }
         }
     }
