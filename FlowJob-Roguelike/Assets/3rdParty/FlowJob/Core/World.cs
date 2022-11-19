@@ -62,21 +62,22 @@ namespace FlowJob
 #if UNITY_2020_1_OR_NEWER
             UnityEngine.Application.quitting -= Dispose;
 #endif
-            for (int i = 0; i < EntitiesMetas.Length; i++)
-            {
-                EntitiesMetas.Get(i)->Dispose();
-            }
 
             Entities.Clear();
             ReleasedEntities.Clear();
             PostProcessor.Clear();
 
+            Group.Cache.Clear();
             foreach (Group group in Group.Cache.Values)
             {
                 group.Dispose();
             }
-
-            Group.Cache.Clear();
+            
+            //TODO this breaks Unity for some reason
+            // for (int i = 0; i < EntitiesMetas.Length; i++)
+            // {
+            //     EntitiesMetas.Get(i)->Dispose();
+            // }
             EntitiesMetas.Dispose();
             EntitiesManaged.Clear();
             UnmanagedMemory.Cleanup();
