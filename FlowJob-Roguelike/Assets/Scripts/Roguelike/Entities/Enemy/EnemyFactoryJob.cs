@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
-using Roguelike.Entities;
 using UnityEngine;
 
-namespace Roguelike.Jobs
+namespace Roguelike.Entities
 {
-    public class PlayerFactoryJob : Job<Entity>
+    public class EnemyFactoryJob : Job<Entity>
     {
         protected override async Task<Entity> Update()
         {
@@ -15,15 +15,14 @@ namespace Roguelike.Jobs
             Data data = Query.Single<Data>();
 
             AgentAspect agentAspect = await new AgentFactoryJob().Run();
-            agentAspect.Add<Player>();
-            agentAspect.Agent.MoveJob = new GetPlayerInputJob();
-            agentAspect.Position.Coord = Vector2Int.one;
-            agentAspect.Health.Value = data.StartingPlayerHealth;
+            agentAspect.Agent.MoveJob = new GetEnemyMoveJob();
+            agentAspect.Position.Coord = (Vector2Int.one * 10).RandomTo();
+            agentAspect.Health.Value = data.EnemyHealth;
 
-            AgentView view = await assets.Player.Spawn();
+            AgentView view = await assets.Enemy.Spawn();
             agentAspect.Add(view);
             view.UpdateView(agentAspect);
-
+            
             return agentAspect.Entity;
         }
     }

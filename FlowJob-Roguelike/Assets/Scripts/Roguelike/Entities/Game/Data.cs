@@ -7,5 +7,6 @@ namespace Roguelike.Entities
     {
         public readonly Vector2Int BoardSize = new Vector2Int(10, 10);
         public readonly int StartingPlayerHealth = 100;
+        public readonly int EnemyHealth = 2;
     }
 }

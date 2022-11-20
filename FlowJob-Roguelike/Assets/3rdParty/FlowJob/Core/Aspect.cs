@@ -20,6 +20,7 @@
 
         public static ref TComponent Get<TComponent>(this Aspect aspect) where TComponent : IComponent => ref aspect.Entity.Get<TComponent>();
         public static void Add<TComponent>(this Aspect aspect) where TComponent : IComponent, new() => aspect.Entity.Add<TComponent>();
+        public static void Add<TComponent>(this Aspect aspect, TComponent component) where TComponent : IComponent => aspect.Entity.Set(component);
         public static void Set<TComponent>(this Aspect aspect, TComponent component) where TComponent : IComponent => aspect.Entity.Set(component);
         public static bool Has<TComponent>(this Aspect aspect) where TComponent : IComponent => aspect.Entity.Has<TComponent>();
         public static void Remove<TComponent>(this Aspect aspect) where TComponent : IComponent => aspect.Entity.Remove<TComponent>();
