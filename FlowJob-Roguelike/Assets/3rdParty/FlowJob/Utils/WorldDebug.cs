@@ -5,6 +5,6 @@ namespace FlowJob
 {
     public class WorldDebug : World.Accessor
     {
-        public List<Entity> Entities => this.GetEntities().Where(e => e.Alive).ToList();
+        public List<Entity> Entities => this.GetEntities().Where(e => e.Exist).ToList();
     }
 }

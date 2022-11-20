@@ -13,7 +13,7 @@ namespace FlowJob
         public int ID;
         internal int Age;
 
-        public bool Alive => ID > 0 && Meta->IsAlive && Meta->Age == Age;
+        public bool Exist => ID > 0 && Meta->IsAlive && Meta->Age == Age;
 
         public static Entity Create()
         {
@@ -78,7 +78,7 @@ namespace FlowJob
                 if (this == Null)
                     return "Entity.Null";
                 string components = string.Concat(this.GetComponents().Select(c => $"{c.GetType().Name} ").ToArray());
-                return "Entity_" + ID + (Alive ? " " : " [DEAD] ") + $"[{components}]";
+                return "Entity_" + ID + (Meta->IsAlive ? " " : " [DEAD] ") + $"[{components}]";
             }
         }
     }

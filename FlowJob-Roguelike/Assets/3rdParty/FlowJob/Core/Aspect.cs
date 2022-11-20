@@ -16,7 +16,7 @@
             return aspect.Entity.ToAspect<TAspect>();
         }
 
-        public static bool Alive(this Aspect aspect) => aspect.Entity.Alive;
+        public static bool Exist(this Aspect aspect) => aspect.Entity.Exist;
 
         public static ref TComponent Get<TComponent>(this Aspect aspect) where TComponent : IComponent => ref aspect.Entity.Get<TComponent>();
         public static void Add<TComponent>(this Aspect aspect) where TComponent : IComponent, new() => aspect.Entity.Add<TComponent>();

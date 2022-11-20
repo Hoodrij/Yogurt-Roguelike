@@ -10,7 +10,7 @@ namespace FlowJob
         internal class EntityDebugView
         {
             public int ID => entity.ID;
-            public bool Alive => entity.Alive;
+            public unsafe bool Alive => entity.Meta->IsAlive;
             public int Age => entity.Age;
             public List<IComponent> Components => entity == Entity.Null ? new(): entity.GetComponents();
             public Entity Parent => entity.Managed.Parent;
@@ -64,7 +64,7 @@ namespace FlowJob
         internal static void DebugCheckAlive(this Entity entity)
         {
             if (DebugCheckNull(entity)) return;
-            if (!entity.Alive)
+            if (!entity.Exist)
             {
                 Debug.LogError($"{entity} does not Exist");
             }
