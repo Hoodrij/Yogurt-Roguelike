@@ -1,4 +1,5 @@
 ﻿using Core.Tools.ExtensionMethods;
+using DG.Tweening;
 using FlowJob;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ namespace Roguelike.Entities
     {
         public void UpdateView(AgentAspect agentAspect)
         {
-            transform.position = agentAspect.Position.Coord.ToV3XY();
+            transform.DOKill();
+            transform.DOMove(agentAspect.Position.Coord.ToV3XY(), 0.05f);
         }
     }
 }
