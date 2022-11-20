@@ -16,7 +16,6 @@ namespace Roguelike.Jobs
             bool isLevelOver = await new GameOverCheckJob().Run();
             if (!isLevelOver)
             {
-                
                 await this.Run();
             }
             

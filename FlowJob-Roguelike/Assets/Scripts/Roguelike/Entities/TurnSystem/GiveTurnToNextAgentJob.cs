@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
@@ -9,17 +11,26 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Void> Update()
         {
-            Level level = Query.Single<Level>();
-
-            foreach (Entity entity in Query.Of<CurrentTurnAgent>())
-            {
-                entity.Remove<CurrentTurnAgent>();
-            }
-
-            level.CurrentAgentIndex++;
-            level.CurrentAgentIndex %= level.Agents.Count;
+            bool currentAgentFound = false;
             
-            level.Agents[level.CurrentAgentIndex].Add<CurrentTurnAgent>();
+            foreach (AgentAspect agentAspect in Query.Of<AgentAspect>())
+            {
+                if (agentAspect.Has<CurrentAgentTag>())
+                {
+                    agentAspect.Remove<CurrentAgentTag>();
+                    currentAgentFound = true;
+                } 
+                else if (currentAgentFound)
+                {
+                    agentAspect.Add<CurrentAgentTag>();
+                    break;
+                }
+            }
+            
+            if (!Query.Single<CurrentAgentAspect>().Exist())
+            {
+                Query.Of<Agent>().Single().Add<CurrentAgentTag>();
+            }
 
             return default;
         }

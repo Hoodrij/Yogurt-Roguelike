@@ -8,7 +8,7 @@ namespace Roguelike.Entities
         public Job<Direction> MoveJob { get; set; }
     }
     
-    public class CurrentTurnAgent : IComponent { }
+    public class CurrentAgentTag : IComponent { }
 
     public struct AgentAspect : Aspect<AgentAspect>
     {
@@ -24,6 +24,6 @@ namespace Roguelike.Entities
         public Entity Entity { get; set; }
 
         public AgentAspect AgentAspect => this.GetAspect<AgentAspect>();
-        public CurrentTurnAgent Tag => this.Get<CurrentTurnAgent>();
+        public CurrentAgentTag Tag => this.Get<CurrentAgentTag>();
     }
 }

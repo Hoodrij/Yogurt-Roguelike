@@ -9,12 +9,11 @@ using Collider = Roguelike.Entities.Collider;
 
 namespace Entities.TurnSystem
 {
-    public class AgentFactoryJob : Job<Entity>
+    public class AgentFactoryJob : Job<Entity> 
     {
         protected override async Task<Entity> Update()
         {
             Data data = Query.Single<Data>();
-            Level level = Query.Single<Level>();
 
             Vector2Int coord = (Vector2Int.one * 10).RandomTo();
             Entity agentEntity = Level.Create()
@@ -32,8 +31,6 @@ namespace Entities.TurnSystem
                     Value = data.StartingPlayerHealth
                 });
             
-            level.Agents.Add(agentEntity);
-
             return agentEntity;
         }
     }
