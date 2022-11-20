@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Core.Tools;
+using FlowJob;
+using Roguelike.Entities;
+using UnityAsync;
 
 namespace Roguelike.Jobs
 {
@@ -7,6 +11,7 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Void> Update()
         {
+            await this.WaitSeconds(GetDelay());
             await new GiveTurnToNextAgentJob().Run();
             await new MoveCurrentAgentJob().Run();
 
@@ -17,6 +22,13 @@ namespace Roguelike.Jobs
             }
             
             return default;
+        }
+
+        private float GetDelay()
+        {
+            int agentsCount = Query.Of<Agent>().Count();
+
+            return 0.15f / agentsCount;
         }
     }
 }

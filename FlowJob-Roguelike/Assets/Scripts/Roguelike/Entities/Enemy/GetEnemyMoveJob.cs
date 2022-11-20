@@ -8,7 +8,6 @@ namespace Roguelike.Entities
     {
         protected override async Task<Direction> Update()
         {
-            await this.WaitSeconds(0.05f);
             return Direction.Random;
         }
     }
