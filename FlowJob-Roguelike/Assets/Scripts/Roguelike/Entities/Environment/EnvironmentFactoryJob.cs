@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Entities.Environment;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -30,29 +31,44 @@ namespace Roguelike.Jobs
                     }
                 }
             }
+            
+            foreach (Entity entity in Query.Of<TileView>().With<Position>())
+            {
+                entity.Get<TileView>().UpdateView(entity.Get<Position>());
+            }
 
             return default;
         }
 
         private async Task<Entity> SpawnFloor(Vector2Int coord)
         {
-            return Level.Create()
+            Assets assets = Query.Single<Assets>();
+
+            Entity entity = Level.Create()
                 .Add<Floor>()
                 .Add(new Position
                 {
                     Coord = coord
-                });
+                })
+                .Add(await assets.Floor.Spawn());
+
+            return entity;
         }
 
         private async Task<Entity> SpawnWall(Vector2Int coord)
         {
-            return Level.Create()
+            Assets assets = Query.Single<Assets>();
+
+            Entity entity = Level.Create()
                 .Add<Wall>()
                 .Add<Collider>()
                 .Add(new Position
                 {
                     Coord = coord
-                });
+                })
+                .Add(await assets.Wall.Spawn());
+
+            return entity;
         }
     }
 }

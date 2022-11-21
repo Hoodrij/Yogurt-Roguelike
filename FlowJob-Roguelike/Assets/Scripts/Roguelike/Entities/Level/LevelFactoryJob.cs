@@ -12,9 +12,21 @@ namespace Roguelike.Jobs
             Entity.Create()
                 .Add<Level>();
 
-            // await new SpawnEnvironmentJob().Run();
+            await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();
             await new PlayerFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
+            await new EnemyFactoryJob().Run();
             await new EnemyFactoryJob().Run();
             await new EnemyFactoryJob().Run();
             await new EnemyFactoryJob().Run();

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
@@ -14,9 +15,13 @@ namespace Roguelike.Entities
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
 
+            int minPos = data.PlayerStartPosition.x + 2; 
+            int maxPos = data.BoardSize.x - minPos - 1; 
+            Vector2Int position = (minPos..maxPos).GetRandomVector2Int();
+            
             AgentAspect agentAspect = await new AgentFactoryJob().Run();
             agentAspect.Agent.MoveJob = new GetEnemyMoveJob();
-            agentAspect.Position.Coord = (Vector2Int.one * 10).RandomTo();
+            agentAspect.Position.Coord = position;
             agentAspect.Health.Value = data.EnemyHealth;
 
             AgentView view = await assets.Enemy.Spawn();
