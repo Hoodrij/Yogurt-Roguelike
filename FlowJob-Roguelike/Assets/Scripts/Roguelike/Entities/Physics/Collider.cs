@@ -14,14 +14,15 @@ namespace Roguelike.Entities
         public static IEnumerable<Vector2Int> GetFreeCoordsAround(Vector2Int origin)
         {
             Dictionary<Vector2Int,PhysBodyAspect> bodies = GetAllBodies();
-
-            Vector2Int up = origin + Direction.Up;
-            Vector2Int down = origin + Direction.Down;
-            Vector2Int right = origin + Direction.Right;
-            Vector2Int left = origin + Direction.Left;
-
-            Vector2Int[] array = { up, down, right, left };
-            return array.Where(point => !bodies.ContainsKey(point)).Select(point => point - origin);
+            
+            foreach (Direction direction in Direction.All)
+            {
+                Vector2Int newPoint = origin + direction;
+                if (!bodies.TryGetValue(newPoint, out var _))
+                {
+                    yield return direction;
+                }
+            }
         }
 
         public static IEnumerable<Vector2Int> GetFreeCoords(Range range)

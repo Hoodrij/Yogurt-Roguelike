@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public struct Direction : IEquatable<Direction>
     {
-        public static Direction Random => all.GetRandom();
+        public static Direction Random => All.GetRandom();
         
         public static readonly Direction Right = new Direction(Vector2Int.right);
         public static readonly Direction Left = new Direction(Vector2Int.left);
@@ -14,7 +14,7 @@ namespace Roguelike
         public static readonly Direction Down = new Direction(Vector2Int.down);
         public static readonly Direction None = new Direction(Vector2Int.zero);
         
-        private static Direction[] all = { Right, Left, Up, Down };
+        public static Direction[] All = { Right, Left, Up, Down };
 
         private Vector2Int value;
 
