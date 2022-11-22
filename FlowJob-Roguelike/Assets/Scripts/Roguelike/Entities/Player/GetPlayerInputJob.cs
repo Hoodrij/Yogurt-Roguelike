@@ -20,7 +20,7 @@ namespace Roguelike.Jobs
                 return new Direction(x, y);
             }
 
-            Position playerPosition = Query.Single<PlayerAspect>().AgentAspect.Position;
+            Position playerPosition = Query.Single<PlayerAspect>().AgentAspect.PhysBodyAspect.Position;
 
             await this.WaitWhile(() =>
             {

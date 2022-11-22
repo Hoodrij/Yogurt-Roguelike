@@ -10,7 +10,7 @@ namespace Roguelike.Entities
         public void UpdateView(AgentAspect agentAspect)
         {
             transform.DOKill();
-            transform.DOMove(agentAspect.Position.Coord.ToV3XY(), 0.05f);
+            transform.DOMove(agentAspect.PhysBodyAspect.Position.Coord.ToV3XY(), 0.05f);
         }
     }
 }

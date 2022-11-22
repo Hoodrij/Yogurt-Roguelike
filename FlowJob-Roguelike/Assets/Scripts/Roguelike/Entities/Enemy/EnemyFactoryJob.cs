@@ -17,8 +17,8 @@ namespace Roguelike.Entities
 
             AgentAspect agentAspect = await new AgentFactoryJob().Run();
             agentAspect.Agent.MoveJob = new GetEnemyMoveJob();
-            agentAspect.Position.Coord = GetSpawnPosition();
             agentAspect.Health.Value = data.EnemyHealth;
+            agentAspect.PhysBodyAspect.Position.Coord = GetSpawnPosition();
 
             AgentView view = await assets.Enemy.Spawn();
             agentAspect.Add(view);
@@ -28,19 +28,11 @@ namespace Roguelike.Entities
 
             Vector2Int GetSpawnPosition()
             {
-                int triesCount = 10;
-                for (int i = 0; i < triesCount; i++)
-                {
-                    int minPos = data.PlayerStartPosition.x + 2; 
-                    int maxPos = data.BoardSize.x - minPos - 1; 
-                    Vector2Int position = (minPos..maxPos).GetRandomVector2Int();
-                    
-                    if (Collider.GetColliderAtPosition(position) == null)
-                    {
-                        return position;
-                    }
-                }
-                return Vector2Int.one * -1;
+                int minPos = data.PlayerStartPosition.x + 2; 
+                int maxPos = data.BoardSize.x - minPos - 1;
+
+                Range range = (minPos..maxPos);
+                return Collider.GetFreeCoords(range).GetRandom();
             }
         }
     }

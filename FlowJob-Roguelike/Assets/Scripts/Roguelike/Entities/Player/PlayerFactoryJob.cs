@@ -17,7 +17,7 @@ namespace Roguelike.Jobs
             AgentAspect agentAspect = await new AgentFactoryJob().Run();
             agentAspect.Add<Player>();
             agentAspect.Agent.MoveJob = new GetPlayerInputJob();
-            agentAspect.Position.Coord = data.PlayerStartPosition;
+            agentAspect.PhysBodyAspect.Position.Coord = data.PlayerStartPosition;
             agentAspect.Health.Value = data.StartingPlayerHealth;
 
             AgentView view = await assets.Player.Spawn();

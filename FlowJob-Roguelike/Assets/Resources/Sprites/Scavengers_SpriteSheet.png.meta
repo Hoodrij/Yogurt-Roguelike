@@ -237,7 +237,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -1479,9 +1479,9 @@ TextureImporter:
       Food_0: 21300036
       Enemy2_Idle_0: 21300024
       Enemy1_Idle_1: 21300014
-      Food_1: 21300038
-      Scavengers_SpriteSheet_36: 21300072
       Scavengers_SpriteSheet_32: 21300064
+      Scavengers_SpriteSheet_36: 21300072
+      Food_1: 21300038
       Enemy2_Idle_3: 21300030
       Player_Idle_3: 21300006
       RuinedWall_4: 21300104

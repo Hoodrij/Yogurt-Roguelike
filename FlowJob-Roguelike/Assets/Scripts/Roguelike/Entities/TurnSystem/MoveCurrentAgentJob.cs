@@ -11,7 +11,7 @@ namespace Roguelike.Jobs
         {
             AgentAspect agentAspect = Query.Single<CurrentAgentAspect>().AgentAspect;
             Direction direction = await agentAspect.Agent.MoveJob.Run();
-            agentAspect.Position.Coord += direction;
+            agentAspect.PhysBodyAspect.Position.Coord += direction;
             
             agentAspect.View.UpdateView(agentAspect);
 

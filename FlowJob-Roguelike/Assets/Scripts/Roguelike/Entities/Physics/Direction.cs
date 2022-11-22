@@ -37,6 +37,7 @@ namespace Roguelike
         
         public static bool operator ==(Direction left, Direction right) => left.value.x == right.value.x && left.value.y == right.value.y;
         public static bool operator !=(Direction left, Direction right) => !(left == right);
+        public static Vector2Int operator +(Vector2Int position, Direction direction) => position + direction.value;
 
         public override bool Equals(object other) => other is Direction other1 && Equals(other1);
 
