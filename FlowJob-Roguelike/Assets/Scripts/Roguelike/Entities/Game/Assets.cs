@@ -10,5 +10,6 @@ namespace Roguelike.Entities
         public readonly Asset<AgentView> Enemy = new("Enemy");
         public readonly Asset<TileView> Wall = new("Wall");
         public readonly Asset<TileView> Floor = new("Floor");
+        public readonly Asset<TileView> Exit = new("Exit");
     }
 }

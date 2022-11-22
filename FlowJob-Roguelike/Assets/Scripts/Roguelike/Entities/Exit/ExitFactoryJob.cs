@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Entities.Environment;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Roguelike.Jobs
         protected override async Task<Entity> Update()
         {
             Data data = Query.Single<Data>();
+            Assets assets = Query.Single<Assets>();
 
             Vector2Int coord = data.BoardSize - Vector2Int.one - Vector2Int.one;
             Entity entity = Level.Create()
@@ -21,6 +23,10 @@ namespace Roguelike.Jobs
                 {
                     Coord = coord
                 });
+
+            TileView view = await assets.Exit.Spawn();
+            entity.Add(view);
+            view.UpdateView(entity.Get<Position>());
             
             return entity;
         }
