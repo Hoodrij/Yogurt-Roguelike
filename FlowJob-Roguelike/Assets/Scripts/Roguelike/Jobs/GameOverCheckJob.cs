@@ -10,7 +10,7 @@ namespace Roguelike.Jobs
         protected override async Task<bool> Update()
         {
             PlayerAspect playerAspect = Query.Single<PlayerAspect>();
-            bool isPlayerAlive = playerAspect.Health.Value > 0;
+            bool isPlayerAlive = playerAspect.AgentAspect.Health.Value > 0;
 
             // playerAspect.AgentAspect.Position.Coord.log();
 

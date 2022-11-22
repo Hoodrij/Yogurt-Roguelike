@@ -7,7 +7,6 @@ namespace Roguelike.Entities
         public Entity Entity { get; set; }
 
         public Player Player => this.Get<Player>();
-        public Health Health => this.Get<Health>();
         public AgentAspect AgentAspect => this.GetAspect<AgentAspect>();
     }
 

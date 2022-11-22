@@ -11,7 +11,7 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Void> Update()
         {
-            await this.WaitSeconds(GetDelay());
+            await this.WaitSecondsRealtime(GetDelay());
             await new GiveTurnToNextAgentJob().Run();
             await new MoveCurrentAgentJob().Run();
 
