@@ -11,7 +11,7 @@ namespace Entities
 {
     public static class Physics
     {
-        public static IEnumerable<Vector2Int> GetFreeDirectionsAround(Vector2Int origin)
+        public static IEnumerable<Direction> GetFreeDirectionsAround(Vector2Int origin)
         {
             foreach (Direction direction in Direction.All)
             {
