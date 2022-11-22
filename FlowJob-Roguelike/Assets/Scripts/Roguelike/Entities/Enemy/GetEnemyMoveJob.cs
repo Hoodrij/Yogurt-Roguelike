@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
-using UnityEngine;
+using Physics = Entities.Physics;
 
 namespace Roguelike.Entities
 {
@@ -13,7 +12,7 @@ namespace Roguelike.Entities
         {
             Position enemyPos = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect.Position;
 
-            return Collider.GetFreeCoordsAround(enemyPos.Coord).GetRandom();
+            return Physics.GetFreeDirectionsAround(enemyPos.Coord).GetRandom();
         }
     }
 }

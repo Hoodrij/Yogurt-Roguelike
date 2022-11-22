@@ -4,7 +4,7 @@ using FlowJob;
 using Roguelike.Entities;
 using UnityAsync;
 using UnityEngine;
-using Collider = Roguelike.Entities.Collider;
+using Physics = Entities.Physics;
 
 namespace Roguelike.Jobs
 {
@@ -27,7 +27,7 @@ namespace Roguelike.Jobs
                 Direction direction = ReadInput();
                 Vector2Int newPlayerPosition = playerPosition.Coord + direction;
                 return direction == Direction.None 
-                       || Collider.GetColliderAtPosition(newPlayerPosition) != null;
+                       || Physics.GetColliderAtPosition(newPlayerPosition) != null;
             });
 
             return ReadInput();

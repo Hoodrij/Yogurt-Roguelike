@@ -5,6 +5,7 @@ using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
 using UnityEngine;
+using Physics = Entities.Physics;
 
 namespace Roguelike.Entities
 {
@@ -32,7 +33,7 @@ namespace Roguelike.Entities
                 int maxPos = data.BoardSize.x - minPos - 1;
 
                 Range range = (minPos..maxPos);
-                return Collider.GetFreeCoords(range).GetRandom();
+                return Physics.GetFreeCoords(range).GetRandom();
             }
         }
     }
