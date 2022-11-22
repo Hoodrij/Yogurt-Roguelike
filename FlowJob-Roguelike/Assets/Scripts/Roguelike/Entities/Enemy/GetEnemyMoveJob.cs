@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using UnityAsync;
+using FlowJob;
+using UnityEngine;
 
 namespace Roguelike.Entities
 {
@@ -8,7 +9,19 @@ namespace Roguelike.Entities
     {
         protected override async Task<Direction> Update()
         {
-            return Direction.Random;
+            Position enemyPos = Query.Single<CurrentAgentAspect>().AgentAspect.Position;
+            int triesCount = 10;
+            for (int i = 0; i < triesCount; i++)
+            {
+                Direction direction = Direction.Random;
+                Vector2Int newPos = enemyPos.Coord + direction;
+                if (Collider.GetColliderAtPosition(newPos) == null)
+                {
+                    return direction;
+                }
+            }
+            
+            return Direction.None;
         }
     }
 }

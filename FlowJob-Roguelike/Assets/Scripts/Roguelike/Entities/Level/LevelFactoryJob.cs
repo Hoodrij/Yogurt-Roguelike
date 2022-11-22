@@ -18,18 +18,6 @@ namespace Roguelike.Jobs
             await new EnemyFactoryJob().Run();
             await new EnemyFactoryJob().Run();
             await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
 
             return default;
         }
