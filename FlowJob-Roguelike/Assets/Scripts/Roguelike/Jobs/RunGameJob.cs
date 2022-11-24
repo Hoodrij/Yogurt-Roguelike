@@ -18,8 +18,8 @@ namespace Roguelike.Jobs
             await new LevelFactoryJob().Run();
             await new RunTurnJob().Run();
 
-            // Entity level = Query.With<Level>().Single();
-            // level.Kill();
+            Entity level = Query.Of<Level>().Single();
+            level.Kill();
 
             return default;
         }

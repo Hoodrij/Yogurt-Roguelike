@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowJob;
-using Roguelike;
 using Roguelike.Entities;
 using UnityEngine;
-using Collider = Roguelike.Entities.Collider;
 
-namespace Entities
+namespace Roguelike
 {
     public static class Physics
     {
@@ -34,13 +32,18 @@ namespace Entities
             }
         }
 
-        public static Collider GetColliderAtPosition(Vector2Int coord)
+        public static IEnumerable<Collider> GetColliderAtPosition(Vector2Int coord)
         {
-            Collider collider = Query.Of<PhysBodyAspect>()
+            return Query.Of<PhysBodyAspect>()
                 .Where(body => body.Position.Coord == coord)
-                .Select(body => body.Collider)
-                .FirstOrDefault();
-            return collider ?? Collider.Empty;
+                .Select(body => body.Collider);
+        }
+        
+        public static IEnumerable<Entity> GetEntitiesAtPosition(Vector2Int coord)
+        {
+            return Query.Of<PhysBodyAspect>()
+                .Where(body => body.Position.Coord == coord)
+                .Select(body => body.Entity);
         }
     }
 }

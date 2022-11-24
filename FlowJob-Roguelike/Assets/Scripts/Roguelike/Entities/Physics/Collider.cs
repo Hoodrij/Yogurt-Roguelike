@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class Collider : IComponent
     {
@@ -11,9 +13,9 @@ namespace Roguelike.Entities
         public CollisionLayer Layer;
         public CollisionLayer CollisionMap;
 
-        public bool CanMoveAt(Collider other)
+        public bool CanMoveAt(IEnumerable<Collider> others)
         {
-            return !CollisionMap.HasFlag(other.Layer);
+            return others.All(other => !CollisionMap.HasFlag(other.Layer));
         }
     }
 

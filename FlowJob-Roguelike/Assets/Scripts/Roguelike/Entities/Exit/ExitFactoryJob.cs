@@ -4,7 +4,6 @@ using Entities.Environment;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
-using Collider = Roguelike.Entities.Collider;
 
 namespace Roguelike.Jobs
 {

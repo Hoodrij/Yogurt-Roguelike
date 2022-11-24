@@ -2,7 +2,6 @@
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
-using Physics = Entities.Physics;
 
 namespace Roguelike.Entities
 {

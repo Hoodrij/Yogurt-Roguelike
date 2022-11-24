@@ -1,11 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
 using UnityAsync;
 using UnityEngine;
-using Collider = Roguelike.Entities.Collider;
-using Physics = Entities.Physics;
 
 namespace Roguelike.Jobs
 {
@@ -24,16 +23,15 @@ namespace Roguelike.Jobs
             PhysBodyAspect bodyAspect = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect;
             Collider playerCollider = bodyAspect.Collider;
             Position playerPosition = bodyAspect.Position;
-            Collider colliderPlayerIsMovingAt;
 
             await this.WaitUntil(() =>
             {
                 Direction direction = ReadInput();
                 Vector2Int newPlayerPosition = playerPosition.Coord + direction;
-                colliderPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
+                IEnumerable<Collider> collidersPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
                 
                 return direction != Direction.None
-                       && playerCollider.CanMoveAt(colliderPlayerIsMovingAt);
+                       && playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
             });
 
             return ReadInput();

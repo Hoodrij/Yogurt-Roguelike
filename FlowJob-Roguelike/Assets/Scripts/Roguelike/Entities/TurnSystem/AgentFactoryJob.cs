@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
+using Roguelike;
 using Roguelike.Entities;
-using Collider = Roguelike.Entities.Collider;
 
 namespace Entities.TurnSystem
 {

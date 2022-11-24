@@ -5,7 +5,6 @@ using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
 using UnityEngine;
-using Physics = Entities.Physics;
 
 namespace Roguelike.Entities
 {
