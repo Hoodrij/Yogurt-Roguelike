@@ -14,7 +14,6 @@ namespace Roguelike.Jobs
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
 
-            Vector2Int coord = data.BoardSize - Vector2Int.one - Vector2Int.one;
             Entity entity = Level.Create()
                 .Add<Exit>()
                 .Add(new Collider
@@ -23,7 +22,7 @@ namespace Roguelike.Jobs
                 })
                 .Add(new Position
                 {
-                    Coord = coord
+                    Coord = data.ExitPosition
                 });
 
             TileView view = await assets.Exit.Spawn();
