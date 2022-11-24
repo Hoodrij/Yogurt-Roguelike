@@ -4,6 +4,7 @@ using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
+using Roguelike.Jobs;
 using UnityEngine;
 using Physics = Entities.Physics;
 
@@ -20,6 +21,8 @@ namespace Roguelike.Entities
             agentAspect.Agent.MoveJob = new GetEnemyMoveJob();
             agentAspect.Health.Value = data.EnemyHealth;
             agentAspect.PhysBodyAspect.Position.Coord = GetSpawnPosition();
+            agentAspect.PhysBodyAspect.Collider.Layer = CollisionLayer.Destructible;
+            agentAspect.PhysBodyAspect.Collider.CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable;
 
             AgentView view = await assets.Enemy.Spawn();
             agentAspect.Add(view);

@@ -61,7 +61,7 @@ namespace Roguelike.Jobs
 
             Entity entity = Level.Create()
                 .Add<Wall>()
-                .Add<Collider>()
+                .Add(Collider.Hard)
                 .Add(new Position
                 {
                     Coord = coord

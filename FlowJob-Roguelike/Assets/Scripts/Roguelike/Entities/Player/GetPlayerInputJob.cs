@@ -21,7 +21,9 @@ namespace Roguelike.Jobs
                 return new Direction(x, y);
             }
 
-            Position playerPosition = Query.Single<PlayerAspect>().AgentAspect.PhysBodyAspect.Position;
+            PhysBodyAspect bodyAspect = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect;
+            Collider playerCollider = bodyAspect.Collider;
+            Position playerPosition = bodyAspect.Position;
             Collider colliderPlayerIsMovingAt;
 
             await this.WaitUntil(() =>
@@ -29,10 +31,9 @@ namespace Roguelike.Jobs
                 Direction direction = ReadInput();
                 Vector2Int newPlayerPosition = playerPosition.Coord + direction;
                 colliderPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
-                bool canMoveAtCollider = colliderPlayerIsMovingAt == null || colliderPlayerIsMovingAt.IsTrigger;
                 
                 return direction != Direction.None
-                       && canMoveAtCollider;
+                       && playerCollider.CanMoveAt(colliderPlayerIsMovingAt);
             });
 
             return ReadInput();

@@ -17,6 +17,8 @@ namespace Roguelike.Jobs
             agentAspect.Add<Player>();
             agentAspect.Agent.MoveJob = new GetPlayerInputJob();
             agentAspect.PhysBodyAspect.Position.Coord = data.PlayerStartPosition;
+            agentAspect.PhysBodyAspect.Collider.Layer = CollisionLayer.Destructible;
+            agentAspect.PhysBodyAspect.Collider.CollisionMap = CollisionLayer.Hard;
             agentAspect.Health.Value = data.StartingPlayerHealth;
 
             AgentView view = await assets.Player.Spawn();

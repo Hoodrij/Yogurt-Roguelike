@@ -18,7 +18,10 @@ namespace Roguelike.Jobs
             Vector2Int coord = data.BoardSize - Vector2Int.one - Vector2Int.one;
             Entity entity = Level.Create()
                 .Add<Exit>()
-                .Add(new Collider { IsTrigger = true })
+                .Add(new Collider
+                {
+                    Layer = CollisionLayer.Interactable
+                })
                 .Add(new Position
                 {
                     Coord = coord

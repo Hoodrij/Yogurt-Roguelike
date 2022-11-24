@@ -36,10 +36,11 @@ namespace Entities
 
         public static Collider GetColliderAtPosition(Vector2Int coord)
         {
-            return Query.Of<PhysBodyAspect>()
+            Collider collider = Query.Of<PhysBodyAspect>()
                 .Where(body => body.Position.Coord == coord)
                 .Select(body => body.Collider)
                 .FirstOrDefault();
+            return collider ?? Collider.Empty;
         }
     }
 }
