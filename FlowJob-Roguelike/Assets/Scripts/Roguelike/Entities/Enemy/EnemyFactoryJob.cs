@@ -4,7 +4,6 @@ using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
-using Roguelike.Jobs;
 using UnityEngine;
 using Physics = Entities.Physics;
 
