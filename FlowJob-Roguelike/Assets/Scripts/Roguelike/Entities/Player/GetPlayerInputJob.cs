@@ -4,6 +4,7 @@ using FlowJob;
 using Roguelike.Entities;
 using UnityAsync;
 using UnityEngine;
+using Collider = Roguelike.Entities.Collider;
 using Physics = Entities.Physics;
 
 namespace Roguelike.Jobs
@@ -21,13 +22,17 @@ namespace Roguelike.Jobs
             }
 
             Position playerPosition = Query.Single<PlayerAspect>().AgentAspect.PhysBodyAspect.Position;
+            Collider colliderPlayerIsMovingAt;
 
-            await this.WaitWhile(() =>
+            await this.WaitUntil(() =>
             {
                 Direction direction = ReadInput();
                 Vector2Int newPlayerPosition = playerPosition.Coord + direction;
-                return direction == Direction.None 
-                       || Physics.GetColliderAtPosition(newPlayerPosition) != null;
+                colliderPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
+                bool canMoveAtCollider = colliderPlayerIsMovingAt == null || colliderPlayerIsMovingAt.IsTrigger;
+                
+                return direction != Direction.None
+                       && canMoveAtCollider;
             });
 
             return ReadInput();
