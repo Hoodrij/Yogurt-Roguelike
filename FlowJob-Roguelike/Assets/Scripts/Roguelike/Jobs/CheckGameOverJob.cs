@@ -12,6 +12,9 @@ namespace Roguelike.Jobs
     {
         protected override async Task<bool> Update()
         {
+            if (!Query.Of<Agent>().With<Player>().Single().Exist)
+                return default;
+            
             AgentAspect agentAspect = Query.Of<AgentAspect>().With<Player>().Single();
 
             Vector2Int playerPosition = agentAspect.PhysBodyAspect.Position.Coord;
