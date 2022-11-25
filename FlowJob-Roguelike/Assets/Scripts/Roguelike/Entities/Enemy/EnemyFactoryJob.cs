@@ -30,11 +30,7 @@ namespace Roguelike.Entities
 
             Vector2Int GetSpawnPosition()
             {
-                int minPos = data.PlayerStartPosition.x + 2; 
-                int maxPos = data.BoardSize.x - minPos - 1;
-
-                Range range = (minPos..maxPos);
-                return Physics.GetFreeCoords(range).GetRandom();
+                return Physics.GetFreeCoords(data.EnemySpawnRange).GetRandom();
             }
         }
     }

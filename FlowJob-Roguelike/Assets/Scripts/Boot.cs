@@ -1,5 +1,4 @@
-﻿using FlowJob;
-using Roguelike.Jobs;
+﻿using Roguelike.Jobs;
 using UnityEngine;
 
 namespace Roguelike
@@ -9,11 +8,6 @@ namespace Roguelike
         private async void Awake()
         {
             new RunGameJob().Run();
-        }
-
-        private void Update()
-        {
-            WorldDebug worldDebug = new WorldDebug();
         }
     }
 }

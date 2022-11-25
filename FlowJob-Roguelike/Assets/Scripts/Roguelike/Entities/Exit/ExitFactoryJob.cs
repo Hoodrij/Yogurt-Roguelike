@@ -3,7 +3,6 @@ using Core.Tools;
 using Entities.Environment;
 using FlowJob;
 using Roguelike.Entities;
-using UnityEngine;
 
 namespace Roguelike.Jobs
 {
