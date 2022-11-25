@@ -15,9 +15,10 @@ namespace Roguelike.Jobs
             await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();
             await new PlayerFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
-            await new EnemyFactoryJob().Run();
+            for (int i = 0; i < 4; i++)
+            {
+                await new EnemyFactoryJob().Run();
+            }
 
             return default;
         }
