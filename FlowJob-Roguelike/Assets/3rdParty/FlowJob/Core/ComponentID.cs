@@ -7,7 +7,10 @@ namespace FlowJob
     [DebuggerDisplay("{Name}")]
     public readonly struct ComponentID
     {
-        private static Dictionary<Type, ComponentID> ComponentsIds = new();
+        private static Dictionary<Type, ComponentID> ComponentsIds = new()
+        {
+            { typeof(Void), 0 }
+        };
 
         private readonly byte ID;
 

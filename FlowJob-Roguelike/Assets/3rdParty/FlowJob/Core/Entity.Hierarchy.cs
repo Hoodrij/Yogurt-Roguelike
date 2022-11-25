@@ -16,6 +16,7 @@ namespace FlowJob
 
         public void UnParent()
         {
+            if (Managed.Parent == Null) return;
             Managed.Parent.Managed.Childs.Remove(this);
             Managed.Parent = default;
         }
