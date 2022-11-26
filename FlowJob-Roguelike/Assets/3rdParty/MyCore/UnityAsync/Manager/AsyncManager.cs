@@ -46,10 +46,10 @@ namespace UnityAsync
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		static void Initialize()
 		{
-			// void OnTaskSchedulerOnUnobservedTaskException(object _, UnobservedTaskExceptionEventArgs e) => Debug.LogException(e.Exception);
-			//
-			// TaskScheduler.UnobservedTaskException -= OnTaskSchedulerOnUnobservedTaskException;
-			// TaskScheduler.UnobservedTaskException += OnTaskSchedulerOnUnobservedTaskException;
+			void OnTaskSchedulerOnUnobservedTaskException(object _, UnobservedTaskExceptionEventArgs e) => Debug.LogException(e.Exception);
+			
+			TaskScheduler.UnobservedTaskException -= OnTaskSchedulerOnUnobservedTaskException;
+			TaskScheduler.UnobservedTaskException += OnTaskSchedulerOnUnobservedTaskException;
 			
 			unityThreadId = Thread.CurrentThread.ManagedThreadId;
 			UnitySyncContext = SynchronizationContext.Current;
