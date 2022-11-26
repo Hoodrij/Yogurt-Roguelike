@@ -73,11 +73,10 @@ namespace FlowJob
                 group.Dispose();
             }
             
-            //TODO this breaks Unity for some reason
-            // for (int i = 0; i < EntitiesMetas.Length; i++)
-            // {
-            //     EntitiesMetas.Get(i)->Dispose();
-            // }
+            for (int i = 0; i < EntitiesMetas.Length; i++)
+            {
+                EntitiesMetas.Get(i)->Dispose();
+            }
             EntitiesMetas.Dispose();
             EntitiesManaged.Clear();
             UnmanagedMemory.Cleanup();

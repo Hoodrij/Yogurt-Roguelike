@@ -6,7 +6,7 @@ namespace FlowJob
     [StructLayout(LayoutKind.Sequential)]
     public unsafe struct EntityMeta : IInitialize
     {
-        private const int SIZE = sizeof(ushort);
+        private const int SIZE = sizeof(int);
         
         internal bool IsAlive;
         internal int Age;
@@ -19,7 +19,7 @@ namespace FlowJob
         public void Initialize()
         {
             groupsLength = 4;
-            Groups = (int*) Marshal.AllocHGlobal(groupsLength * SIZE);
+            Groups = (int*)Marshal.AllocHGlobal(groupsLength * SIZE);
             GroupsAmount = 0;
         }
 
@@ -33,7 +33,7 @@ namespace FlowJob
             if (groupsLength == GroupsAmount)
             {
                 groupsLength = (byte) (GroupsAmount << 1);
-                Groups = (int*) Marshal.ReAllocHGlobal((IntPtr) Groups, (IntPtr) (groupsLength * sizeof(ushort)));
+                Groups = (int*) Marshal.ReAllocHGlobal((IntPtr) Groups, (IntPtr) (groupsLength * SIZE));
             }
         
             Groups[GroupsAmount++] = groupID;

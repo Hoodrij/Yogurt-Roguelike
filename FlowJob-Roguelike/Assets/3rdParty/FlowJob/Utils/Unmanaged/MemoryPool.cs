@@ -29,9 +29,10 @@ namespace FlowJob
                 Length <<= 1;
                 memory = (void*) UnmanagedMemory.ReAlloc(memory, Length * elementSize);
                 
-                for (int i = 0; i < Length; i++)
+                for (int i = Length >> 1; i < Length; i++)
                 {
-                    Get(i)->Initialize();
+                    T* initialize = (T*) ((byte*) memory + i * elementSize);
+                    initialize->Initialize();
                 }
             }
             return (T*) ((byte*) memory + index * elementSize);
