@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Core.Tools;
-using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace Roguelike.Jobs
 {
     public class CheckGameOverJob : Job<bool>
     {
-        protected override async UniTask<bool> Update()
+        protected override async Task<bool> Update()
         {
             if (!Query.Of<Agent>().With<Player>().Single().Exist)
                 return default;

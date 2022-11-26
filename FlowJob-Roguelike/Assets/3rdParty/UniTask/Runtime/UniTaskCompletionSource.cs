@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Cysharp.Threading.Tasks.Internal;
+using Debug = UnityEngine.Debug;
 
 namespace Cysharp.Threading.Tasks
 {

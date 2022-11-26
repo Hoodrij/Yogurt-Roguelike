@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using Cysharp.Threading.Tasks.Triggers;
 using System;
+using Cysharp.Threading.Tasks.Internal;
 
 namespace Cysharp.Threading.Tasks
 {

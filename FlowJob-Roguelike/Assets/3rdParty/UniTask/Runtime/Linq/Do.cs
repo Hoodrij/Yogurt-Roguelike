@@ -1,6 +1,9 @@
-﻿using Cysharp.Threading.Tasks.Internal;
+﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Internal;
+using Cysharp.Threading.Tasks.Linq;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Cysharp.Threading.Tasks.Linq
 {

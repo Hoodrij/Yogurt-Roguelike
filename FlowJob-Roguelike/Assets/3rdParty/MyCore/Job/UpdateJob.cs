@@ -1,10 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using UnityAsync;
 
 namespace Core.Tools
 {
     public abstract class UpdateJob : Job
     {
-        public new async UniTask<Void> Run(Lifetime parentLifetime)
+        public override async Task<Void> Run(Lifetime parentLifetime)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {
