@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
 using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike.Entities
 {
     public class GetEnemyMoveJob : Job<Direction>
     {
-        protected override async Task<Direction> Update()
+        protected override async UniTask<Direction> Update()
         {
             Position enemyPos = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect.Position;
 

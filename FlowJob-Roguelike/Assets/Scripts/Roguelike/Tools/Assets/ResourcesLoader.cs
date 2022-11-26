@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using UnityAsync;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Tools

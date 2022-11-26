@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Tools 
 {
@@ -7,7 +7,7 @@ namespace Core.Tools
     {
         public Lifetime Lifetime { get; private protected set; }
 
-        public virtual async Task<TResult> Run(Lifetime parentLifetime = null)
+        public async UniTask<TResult> Run(Lifetime parentLifetime = null)
         {
             Job<TResult> job = (Job<TResult>) Activator.CreateInstance(GetType());
             using (job.Lifetime = new Lifetime(parentLifetime))
@@ -16,9 +16,9 @@ namespace Core.Tools
             }
         }
 
-        protected abstract Task<TResult> Update();
-        
-        public static Job<TResult> As(Func<Task<TResult>> action) => new AnonJob<TResult>(action);
+        protected abstract UniTask<TResult> Update();
+
+        public static Job<TResult> As(Func<UniTask<TResult>> action) => new AnonJob<TResult>(action);
     }
     
     public abstract class Job : Job<Void> { }

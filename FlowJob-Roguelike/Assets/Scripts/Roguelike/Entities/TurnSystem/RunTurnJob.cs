@@ -1,15 +1,15 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
 using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Entities;
-using UnityAsync;
 
 namespace Roguelike.Jobs
 {
     public class RunTurnJob : Job
     {
-        protected override async Task<Void> Update()
+        protected override async UniTask<Void> Update()
         {
             await this.WaitSecondsRealtime(GetDelay());
             await new GiveTurnToNextAgentJob().Run();

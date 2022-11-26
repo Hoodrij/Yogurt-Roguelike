@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Entities;
@@ -8,7 +8,7 @@ namespace Roguelike.Jobs
 {
     public class PlayerFactoryJob : Job<Entity>
     {
-        protected override async Task<Entity> Update()
+        protected override async UniTask<Entity> Update()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();

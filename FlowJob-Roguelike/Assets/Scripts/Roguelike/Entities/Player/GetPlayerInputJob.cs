@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Entities;
-using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike.Jobs
 {
     public class GetPlayerInputJob : Job<Direction>
     {
-        protected override async Task<Direction> Update()
+        protected override async UniTask<Direction> Update()
         {
             Direction ReadInput()
             {

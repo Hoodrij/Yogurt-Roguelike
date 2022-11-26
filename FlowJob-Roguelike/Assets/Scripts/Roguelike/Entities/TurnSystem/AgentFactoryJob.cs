@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike;
 using Roguelike.Entities;
@@ -8,7 +8,7 @@ namespace Entities.TurnSystem
 {
     public class AgentFactoryJob : Job<AgentAspect> 
     {
-        protected override async Task<AgentAspect> Update()
+        protected override async UniTask<AgentAspect> Update()
         {
             Entity agentEntity = Level.Create()
                 .Add<Collider>()
