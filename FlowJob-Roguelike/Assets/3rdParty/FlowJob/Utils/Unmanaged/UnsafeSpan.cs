@@ -4,19 +4,19 @@ using System.Runtime.InteropServices;
 
 namespace FlowJob
 {
-    public unsafe struct UnsafeSpan<T> where T : unmanaged, IInitialize
+    public unsafe struct UnsafeSpan<T> where T : unmanaged, IInitialize, IDisposable
     {
-        public int Length;
+        private int length;
         private int elementSize;
         private void* memoryPointer;
 
         public UnsafeSpan(int length)
         {
-            Length = length < 4 ? 4 : length;
+            this.length = length < 4 ? 4 : length;
             elementSize = sizeof(T);
-            memoryPointer = Marshal.AllocHGlobal(Length * elementSize).ToPointer();
+            memoryPointer = Marshal.AllocHGlobal(this.length * elementSize).ToPointer();
 
-            for (int i = 0; i < Length; i++)
+            for (int i = 0; i < length; i++)
             {
                 Get(i)->Initialize();
             }
@@ -25,15 +25,14 @@ namespace FlowJob
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T* Get(int index)
         {
-            if (index >= Length)
+            if (index >= length)
             {
-                Length <<= 1;
-                memoryPointer = Marshal.ReAllocHGlobal((IntPtr)memoryPointer, (IntPtr)(Length * elementSize)).ToPointer();
+                length <<= 1;
+                memoryPointer = Marshal.ReAllocHGlobal((IntPtr)memoryPointer, (IntPtr)(length * elementSize)).ToPointer();
                 
-                for (int i = Length >> 1; i < Length; i++)
+                for (int i = length >> 1; i < length; i++)
                 {
-                    T* initialize = (T*) ((byte*) memoryPointer + i * elementSize);
-                    initialize->Initialize();
+                    Get(i)->Initialize();
                 }
             }
             return (T*) ((byte*) memoryPointer + index * elementSize);
@@ -41,9 +40,14 @@ namespace FlowJob
 
         public void Dispose()
         {
+            for (int i = 0; i < length; i++)
+            {
+                Get(i)->Dispose();
+            }
+            
             Marshal.FreeHGlobal((IntPtr)memoryPointer);
             memoryPointer = null;
-            Length = 0;
+            length = 0;
         }
     }
 

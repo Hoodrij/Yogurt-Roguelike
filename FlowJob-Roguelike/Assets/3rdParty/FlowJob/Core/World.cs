@@ -73,10 +73,6 @@ namespace FlowJob
                 group.Dispose();
             }
             
-            for (int i = 0; i < EntitiesMetas.Length; i++)
-            {
-                EntitiesMetas.Get(i)->Dispose();
-            }
             EntitiesMetas.Dispose();
             EntitiesManaged.Clear();
             AspectCache.Clear();

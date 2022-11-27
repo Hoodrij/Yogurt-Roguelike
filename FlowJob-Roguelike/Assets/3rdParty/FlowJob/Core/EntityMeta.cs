@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace FlowJob
 {
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct EntityMeta : IInitialize
+    public unsafe struct EntityMeta : IInitialize, IDisposable
     {
         private const int SIZE = sizeof(int);
         
