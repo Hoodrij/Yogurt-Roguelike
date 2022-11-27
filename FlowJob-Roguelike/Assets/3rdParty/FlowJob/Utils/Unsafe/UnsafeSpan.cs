@@ -6,8 +6,8 @@ namespace FlowJob
 {
     public unsafe struct UnsafeSpan<T> where T : unmanaged, IInitialize, IDisposable
     {
-        private int length;
         private int elementSize;
+        private int length;
         private void* memoryPointer;
 
         public UnsafeSpan(int length)
@@ -20,6 +20,16 @@ namespace FlowJob
             {
                 Get(i)->Initialize();
             }
+        }
+
+        public T* this[int index]
+        {
+            get => Get(index);
+            // set
+            // {
+                // T* t = Get(index);
+                // t = &value;
+            // }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

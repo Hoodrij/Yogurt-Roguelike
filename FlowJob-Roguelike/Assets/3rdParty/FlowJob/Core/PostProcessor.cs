@@ -52,7 +52,7 @@ namespace FlowJob
                         {
                             for (int i = 0; i < meta->GroupsAmount; i++)
                             {
-                                Group.Cache.TryGetValue(meta->Groups[i], out Group group);
+                                Group.Cache.TryGetValue(meta->Groups[i]->Id, out Group group);
                                 group?.TryRemove(entity);
                             }
                             

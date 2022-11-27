@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace FlowJob
@@ -6,54 +7,52 @@ namespace FlowJob
     [StructLayout(LayoutKind.Sequential)]
     public unsafe struct EntityMeta : IInitialize, IDisposable
     {
-        private const int SIZE = sizeof(int);
-        
         internal bool IsAlive;
         internal int Age;
         internal Mask ComponentsMask;
 
-        private byte groupsLength;
         internal byte GroupsAmount;
-        internal int* Groups;
+        internal UnsafeSpan<GroupId> Groups;
 
         public void Initialize()
         {
-            groupsLength = 4;
-            Groups = (int*)Marshal.AllocHGlobal(groupsLength * SIZE);
             GroupsAmount = 0;
+            Groups = new(4);
         }
 
         public void Dispose()
         {
-            Marshal.FreeHGlobal((IntPtr) Groups);
+            Groups.Dispose();
         }
 
         public void AddGroup(int groupID)
         {
-            if (groupsLength == GroupsAmount)
-            {
-                groupsLength = (byte) (GroupsAmount << 1);
-                Groups = (int*) Marshal.ReAllocHGlobal((IntPtr) Groups, (IntPtr) (groupsLength * SIZE));
-            }
-        
-            Groups[GroupsAmount++] = groupID;
+            Groups[GroupsAmount++]->Id = groupID;
         }
         
         public void RemoveGroup(int groupID)
         {
             for (int i = 0; i <= GroupsAmount; i++)
             {
-                if (Groups[i] == groupID)
+                if (Groups[i]->Id == groupID)
                 {
                     for (int j = i; j < GroupsAmount; ++j)
                     {
-                        Groups[j] = Groups[j + 1];
+                        Groups[j]->Id = Groups[j + 1]->Id;
                     }
         
                     GroupsAmount--;
                     break;
                 }
             }
+        }
+
+        public struct GroupId : IInitialize, IDisposable
+        {
+            public int Id;
+            
+            public void Initialize() { }
+            public void Dispose() { }
         }
     }
 }
