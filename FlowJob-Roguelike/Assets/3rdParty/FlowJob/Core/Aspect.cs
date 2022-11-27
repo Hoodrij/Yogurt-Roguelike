@@ -4,7 +4,7 @@
     {
         public Entity Entity { get; set; }
     }
-    public interface Aspect<TAspect> : Aspect where TAspect : struct, Aspect<TAspect>
+    public interface Aspect<TSelf> : Aspect where TSelf : struct, Aspect<TSelf>
     {
         
     }
