@@ -11,7 +11,7 @@ namespace FlowJob
         }
 
         internal PostProcessor PostProcessor = new();
-        internal MemoryPool<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
+        internal UnsafeSpan<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
         internal ManagedMetasList EntitiesManaged = new(Consts.SIZE_ENTITIES);
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
@@ -79,7 +79,6 @@ namespace FlowJob
             }
             EntitiesMetas.Dispose();
             EntitiesManaged.Clear();
-            UnmanagedMemory.Cleanup();
             AspectCache.Clear();
         }
     }

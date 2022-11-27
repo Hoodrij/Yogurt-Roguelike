@@ -1,19 +1,20 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace FlowJob
 {
-    public unsafe struct MemoryPool<T> where T : unmanaged, IInitialize
+    public unsafe struct UnsafeSpan<T> where T : unmanaged, IInitialize
     {
         public int Length;
         private int elementSize;
-        private void* memory;
+        private void* memoryPointer;
 
-        public MemoryPool(int length)
+        public UnsafeSpan(int length)
         {
-            Length = length < 1 ? 1 : length;
+            Length = length < 4 ? 4 : length;
             elementSize = sizeof(T);
-            memory = (void*) UnmanagedMemory.Alloc(Length * elementSize);
+            memoryPointer = Marshal.AllocHGlobal(Length * elementSize).ToPointer();
 
             for (int i = 0; i < Length; i++)
             {
@@ -27,21 +28,21 @@ namespace FlowJob
             if (index >= Length)
             {
                 Length <<= 1;
-                memory = (void*) UnmanagedMemory.ReAlloc(memory, Length * elementSize);
+                memoryPointer = Marshal.ReAllocHGlobal((IntPtr)memoryPointer, (IntPtr)(Length * elementSize)).ToPointer();
                 
                 for (int i = Length >> 1; i < Length; i++)
                 {
-                    T* initialize = (T*) ((byte*) memory + i * elementSize);
+                    T* initialize = (T*) ((byte*) memoryPointer + i * elementSize);
                     initialize->Initialize();
                 }
             }
-            return (T*) ((byte*) memory + index * elementSize);
+            return (T*) ((byte*) memoryPointer + index * elementSize);
         }
 
         public void Dispose()
         {
-            UnmanagedMemory.Free((IntPtr) memory);
-            memory = null;
+            Marshal.FreeHGlobal((IntPtr)memoryPointer);
+            memoryPointer = null;
             Length = 0;
         }
     }
