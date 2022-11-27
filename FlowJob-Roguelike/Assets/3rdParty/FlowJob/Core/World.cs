@@ -22,7 +22,7 @@ namespace FlowJob
         {
             Storage.Initialize();
 
-#if UNITY_2020_1_OR_NEWER
+#if UNITY_2018_1_OR_NEWER
             UnityEngine.Application.quitting += Dispose;
 #endif
         }
@@ -59,7 +59,7 @@ namespace FlowJob
         private void Dispose()
         {
             instance = null;
-#if UNITY_2020_1_OR_NEWER
+#if UNITY_2018_1_OR_NEWER
             UnityEngine.Application.quitting -= Dispose;
 #endif
 
