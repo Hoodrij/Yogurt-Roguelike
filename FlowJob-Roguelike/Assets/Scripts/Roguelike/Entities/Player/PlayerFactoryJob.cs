@@ -12,14 +12,18 @@ namespace Roguelike.Jobs
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
+            GameAspect game = Query.Single<GameAspect>();
 
-            AgentAspect agentAspect = await new AgentFactoryJob().Run();
+            AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
+            {
+                Layer = CollisionLayer.Destructible,
+                CollisionMap = CollisionLayer.Hard,
+                MoveJob = new GetPlayerInputJob(),
+                Position = data.PlayerStartPosition
+            });
+            
             agentAspect.Add<Player>();
-            agentAspect.Agent.MoveJob = new GetPlayerInputJob();
-            agentAspect.PhysBodyAspect.Position.Coord = data.PlayerStartPosition;
-            agentAspect.PhysBodyAspect.Collider.Layer = CollisionLayer.Destructible;
-            agentAspect.PhysBodyAspect.Collider.CollisionMap = CollisionLayer.Hard;
-            agentAspect.Health.Value = data.StartingPlayerHealth;
+            agentAspect.Set(game.Health);
 
             AgentView view = await assets.Player.Spawn();
             agentAspect.Add(view);

@@ -3,17 +3,37 @@ using Core.Tools;
 using FlowJob;
 using Roguelike;
 using Roguelike.Entities;
+using UnityEngine;
+using Collider = Roguelike.Collider;
 
 namespace Entities.TurnSystem
 {
-    public class AgentFactoryJob : Job<AgentAspect> 
+    public class AgentFactoryJob : Job<AgentAspect, AgentFactoryJob.Args> 
     {
-        protected override async Task<AgentAspect> Run()
+        public struct Args
+        {
+            public Job<Direction> MoveJob;
+            public Vector2Int Position;
+            public CollisionLayer Layer;
+            public CollisionLayer CollisionMap;
+        }
+        
+        protected override async Task<AgentAspect> Run(Args args)
         {
             Entity agentEntity = Level.Create()
-                .Add<Collider>()
-                .Add(new Agent())
-                .Add(new Position())
+                .Add(new Collider
+                {
+                    Layer = args.Layer,
+                    CollisionMap = args.CollisionMap
+                })
+                .Add(new Agent
+                {
+                    MoveJob = args.MoveJob
+                })
+                .Add(new Position
+                {
+                    Coord = args.Position
+                })
                 .Add(new Health());
             
             return agentEntity.ToAspect<AgentAspect>();

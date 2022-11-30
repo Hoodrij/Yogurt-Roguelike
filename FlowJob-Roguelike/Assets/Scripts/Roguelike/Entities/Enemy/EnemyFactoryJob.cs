@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
@@ -14,13 +13,15 @@ namespace Roguelike.Entities
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
-
-            AgentAspect agentAspect = await new AgentFactoryJob().Run();
-            agentAspect.Agent.MoveJob = new GetEnemyMoveJob();
+            
+            AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
+            {
+                Layer = CollisionLayer.Destructible,
+                CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable,
+                MoveJob = new GetEnemyMoveJob(),
+                Position = GetSpawnPosition()
+            });
             agentAspect.Health.Value = data.EnemyHealth;
-            agentAspect.PhysBodyAspect.Position.Coord = GetSpawnPosition();
-            agentAspect.PhysBodyAspect.Collider.Layer = CollisionLayer.Destructible;
-            agentAspect.PhysBodyAspect.Collider.CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable;
 
             AgentView view = await assets.Enemy.Spawn();
             agentAspect.Add(view);
