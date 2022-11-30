@@ -5,7 +5,7 @@ namespace Core.Tools
 {
     public abstract class UpdateJob : Job
     {
-        public override async Task<Void> Run(Lifetime parentLifetime, Void args = default)
+        public override async Task<Void> Run(Void args, Lifetime parentLifetime)
         {
             using (Lifetime = new Lifetime(parentLifetime))
             {

@@ -61,7 +61,7 @@ namespace Core.Tools
         {
             while (queue.Count > 0 && lifetime.IsAlive)
             {
-                await queue.Dequeue().Run(lifetime);
+                await queue.Dequeue().Run(Void._, lifetime);
                 progressChangeEvent.Fire(Progress);
 
                 if (mode == EMode.OneByFrame)
