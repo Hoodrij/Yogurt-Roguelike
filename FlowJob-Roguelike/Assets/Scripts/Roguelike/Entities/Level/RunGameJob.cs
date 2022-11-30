@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class RunGameJob : Job
     {
-        protected override async Task Update()
+        protected override async Task Run()
         {
             Entity.Create()
                 .Add<Game>()

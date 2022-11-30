@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class MoveCurrentAgentJob : Job
     {
-        protected override async Task Update()
+        protected override async Task Run()
         {
             AgentAspect agentAspect = Query.Single<CurrentAgentAspect>().AgentAspect;
             Direction direction = await agentAspect.Agent.MoveJob.Run();

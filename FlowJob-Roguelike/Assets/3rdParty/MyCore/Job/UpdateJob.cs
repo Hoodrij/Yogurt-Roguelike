@@ -12,7 +12,7 @@ namespace Core.Tools
                 while (Lifetime.IsAlive)
                 {
                     await this.WaitUpdate();
-                    await Update(args);
+                    await Run(args);
                 }
             }
             return default;

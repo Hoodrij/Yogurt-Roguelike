@@ -10,10 +10,10 @@ namespace Roguelike.Jobs
 {
     public class CheckGameOverJob : Job<bool>
     {
-        protected override async Task<bool> Update()
+        protected override async Task<bool> Run()
         {
             if (!Query.Of<Agent>().With<Player>().Single().Exist)
-                return default;
+                return false;
             
             AgentAspect agentAspect = Query.Of<AgentAspect>().With<Player>().Single();
 

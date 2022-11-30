@@ -8,7 +8,7 @@ namespace Roguelike.Jobs
 {
     public class ExitFactoryJob : Job<Entity>
     {
-        protected override async Task<Entity> Update()
+        protected override async Task<Entity> Run()
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();

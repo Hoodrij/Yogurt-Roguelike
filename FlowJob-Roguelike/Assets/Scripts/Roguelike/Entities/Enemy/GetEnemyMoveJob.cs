@@ -7,7 +7,7 @@ namespace Roguelike.Entities
 {
     public class GetEnemyMoveJob : Job<Direction>
     {
-        protected override async Task<Direction> Update()
+        protected override async Task<Direction> Run()
         {
             Position enemyPos = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect.Position;
 

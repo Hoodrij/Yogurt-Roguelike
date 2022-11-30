@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class GiveTurnToNextAgentJob : Job
     {
-        protected override async Task Update()
+        protected override async Task Run()
         {
             bool currentAgentFound = false;
             

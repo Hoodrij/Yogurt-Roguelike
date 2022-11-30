@@ -10,7 +10,7 @@ namespace Roguelike.Jobs
 {
     public class GetPlayerInputJob : Job<Direction>
     {
-        protected override async Task<Direction> Update()
+        protected override async Task<Direction> Run()
         {
             Direction ReadInput()
             {

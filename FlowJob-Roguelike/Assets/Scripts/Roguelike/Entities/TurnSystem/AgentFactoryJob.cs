@@ -8,7 +8,7 @@ namespace Entities.TurnSystem
 {
     public class AgentFactoryJob : Job<AgentAspect> 
     {
-        protected override async Task<AgentAspect> Update()
+        protected override async Task<AgentAspect> Run()
         {
             Entity agentEntity = Level.Create()
                 .Add<Collider>()

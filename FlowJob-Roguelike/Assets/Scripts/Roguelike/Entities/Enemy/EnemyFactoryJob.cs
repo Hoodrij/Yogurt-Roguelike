@@ -10,7 +10,7 @@ namespace Roguelike.Entities
 {
     public class EnemyFactoryJob : Job<Entity>
     {
-        protected override async Task<Entity> Update()
+        protected override async Task<Entity> Run()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
