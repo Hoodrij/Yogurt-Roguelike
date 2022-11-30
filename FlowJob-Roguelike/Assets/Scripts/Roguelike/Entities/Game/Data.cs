@@ -20,7 +20,7 @@ namespace Roguelike.Entities
             }
         }
 
-        public readonly int StartingPlayerHealth = 100;
+        public readonly int StartingPlayerHealth = 20;
         public readonly int EnemyHealth = 2;
     }
 }

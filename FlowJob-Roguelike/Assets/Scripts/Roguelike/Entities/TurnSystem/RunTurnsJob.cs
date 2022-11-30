@@ -11,7 +11,7 @@ namespace Roguelike.Jobs
     {
         protected override async Task Run()
         {
-            while (!await IsGameOver())
+            while (!await IsExitReached() && !await IsGameOver())
             {
                 await this.WaitSecondsRealtime(GetDelay());
                 await new GiveTurnToNextAgentJob().Run();
@@ -19,6 +19,11 @@ namespace Roguelike.Jobs
             }
         }
 
+        private async Task<bool> IsExitReached()
+        {
+            return await new CheckExitReachedJob().Run();
+        }
+        
         private async Task<bool> IsGameOver()
         {
             return await new CheckGameOverJob().Run();

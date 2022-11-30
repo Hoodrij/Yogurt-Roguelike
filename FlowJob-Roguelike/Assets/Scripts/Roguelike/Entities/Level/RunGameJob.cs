@@ -20,7 +20,7 @@ namespace Roguelike.Jobs
                 Value = entity.Get<Data>().StartingPlayerHealth
             });
 
-            while (true)
+            while (!await IsGameOver())
             {
                 await new LevelFactoryJob().Run();
                 await new RunTurnsJob().Run();
@@ -28,6 +28,11 @@ namespace Roguelike.Jobs
                 Entity level = Query.Of<Level>().Single();
                 level.Kill();
             }
+        }
+
+        private static async Task<bool> IsGameOver()
+        {
+            return await new CheckGameOverJob().Run();
         }
     }
 }
