@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class RunTurnJob : Job
     {
-        protected override async Task<Void> Update()
+        protected override async Task Update()
         {
             await this.WaitSecondsRealtime(GetDelay());
             await new GiveTurnToNextAgentJob().Run();
@@ -20,8 +20,6 @@ namespace Roguelike.Jobs
             {
                 await this.Run();
             }
-            
-            return default;
         }
 
         private float GetDelay()

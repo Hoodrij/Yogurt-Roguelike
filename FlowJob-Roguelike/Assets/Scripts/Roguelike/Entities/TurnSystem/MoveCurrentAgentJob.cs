@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class MoveCurrentAgentJob : Job
     {
-        protected override async Task<Void> Update()
+        protected override async Task Update()
         {
             AgentAspect agentAspect = Query.Single<CurrentAgentAspect>().AgentAspect;
             Direction direction = await agentAspect.Agent.MoveJob.Run();
@@ -15,8 +15,6 @@ namespace Roguelike.Jobs
             
             agentAspect.PhysBodyAspect.Position.Coord += direction;
             agentAspect.View.UpdateView(agentAspect);
-
-            return default;
         }
     }
 }

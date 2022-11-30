@@ -9,7 +9,7 @@ namespace Roguelike.Jobs
 {
     public class EnvironmentFactoryJob : Job
     {
-        protected override async Task<Void> Update()
+        protected override async Task Update()
         {
             Data data = Query.Single<Data>();
             int xSize = data.BoardSize.x;
@@ -35,8 +35,6 @@ namespace Roguelike.Jobs
             {
                 entity.Get<TileView>().UpdateView(entity.Get<Position>());
             }
-
-            return default;
         }
 
         private async Task<Entity> SpawnFloor(Vector2Int coord)

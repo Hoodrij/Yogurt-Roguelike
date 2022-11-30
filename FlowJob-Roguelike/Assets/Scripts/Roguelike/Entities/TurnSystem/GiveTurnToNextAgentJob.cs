@@ -7,7 +7,7 @@ namespace Roguelike.Jobs
 {
     public class GiveTurnToNextAgentJob : Job
     {
-        protected override async Task<Void> Update()
+        protected override async Task Update()
         {
             bool currentAgentFound = false;
             
@@ -29,8 +29,6 @@ namespace Roguelike.Jobs
             {
                 Query.Of<Agent>().Single().Add<CurrentAgentTag>();
             }
-
-            return default;
         }
     }
 }
