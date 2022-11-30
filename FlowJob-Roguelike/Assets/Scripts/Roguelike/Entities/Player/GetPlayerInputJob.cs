@@ -34,6 +34,9 @@ namespace Roguelike.Jobs
                        && playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
             });
 
+            Health playerHealth = Query.Single<PlayerAspect>().AgentAspect.Health;
+            playerHealth.Value--.log();
+            
             return ReadInput();
         }
     }

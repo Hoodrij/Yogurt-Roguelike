@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
@@ -11,7 +12,10 @@ namespace Roguelike.Entities
         {
             Position enemyPos = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect.Position;
 
-            return Physics.GetFreeDirectionsAround(enemyPos.Coord).GetRandom();
+            IEnumerable<Direction> freeDirectionsAround = Physics.GetFreeDirectionsAround(enemyPos.Coord);
+            if (freeDirectionsAround.IsEmpty())
+                return Direction.Random;
+            return freeDirectionsAround.GetRandom();
         }
     }
 }

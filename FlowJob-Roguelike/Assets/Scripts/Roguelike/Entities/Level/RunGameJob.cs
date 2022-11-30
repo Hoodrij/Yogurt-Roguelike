@@ -9,11 +9,16 @@ namespace Roguelike.Jobs
     {
         protected override async Task Run()
         {
-            Entity.Create()
+            Entity entity = Entity.Create()
                 .Add<Game>()
                 .Add<Life>()
                 .Add<Data>()
                 .Add<Assets>();
+
+            entity.Add(new Health
+            {
+                Value = entity.Get<Data>().StartingPlayerHealth
+            });
 
             while (true)
             {
