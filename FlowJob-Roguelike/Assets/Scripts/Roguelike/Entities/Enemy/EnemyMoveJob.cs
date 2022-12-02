@@ -5,23 +5,16 @@ using Core.Tools.ExtensionMethods;
 
 namespace Roguelike.Entities
 {
-    public class EnemyMoveJob : Job<Void, AgentAspect>
+    public class EnemyMoveJob : Job<Direction, AgentAspect>
     {
-        protected override async Task<Void> Run(AgentAspect agentAspect)
+        protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            agentAspect.MoveBy(GetMoveDirection());
-            
-            readonly Direction GetMoveDirection()
-            {
-                Position enemyPos = agentAspect.PhysBodyAspect.Position;
+            Position enemyPos = agentAspect.PhysBodyAspect.Position;
 
-                IEnumerable<Direction> freeDirectionsAround = Physics.GetFreeDirectionsAround(enemyPos.Value);
-                if (freeDirectionsAround.IsEmpty())
-                    return Direction.Random;
-                return freeDirectionsAround.GetRandom();
-            }
-
-            return default;
+            IEnumerable<Direction> freeDirectionsAround = Physics.GetFreeDirectionsAround(enemyPos.Value);
+            if (freeDirectionsAround.IsEmpty())
+                return Direction.Random;
+            return freeDirectionsAround.GetRandom();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Roguelike.Entities
 {
     public class Agent : IComponent
     {
-        public Job<Void, AgentAspect> MoveJob { get; set; }
+        public Job<Direction, AgentAspect> MoveJob { get; set; }
     }
 
     public struct AgentAspect : Aspect<AgentAspect>
@@ -16,11 +16,5 @@ namespace Roguelike.Entities
         public Health Health => this.Get<Health>();
         public AgentView View => this.Get<AgentView>();
         public PhysBodyAspect PhysBodyAspect => this.GetAspect<PhysBodyAspect>();
-
-        public void MoveBy(Direction direction)
-        {
-            PhysBodyAspect.Position.Value += direction;
-            View.UpdateView(this);
-        }
     }
 }

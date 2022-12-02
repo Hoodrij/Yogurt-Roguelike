@@ -6,16 +6,11 @@ using Roguelike.Jobs;
 
 namespace Entities.Player
 {
-    public class PlayerMoveJob : Job<Void, AgentAspect>
+    public class PlayerMoveJob : Job<Direction, AgentAspect>
     {
-        protected override async Task<Void> Run(AgentAspect agentAspect)
+        protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            Direction direction = await new GetPlayerInputJob().Run();
-            agentAspect.MoveBy(direction);
-            
-            await new ChangeHealthJob().Run(-1);
-
-            return default;
+            return await new GetPlayerInputJob().Run();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Roguelike.Jobs
             return direction;
             
             
-            readonly Direction ReadInput()
+            Direction ReadInput()
             {
                 int x = (int) Input.GetAxisRaw("Horizontal");
                 int y = (int) Input.GetAxisRaw("Vertical");
@@ -36,12 +36,12 @@ namespace Roguelike.Jobs
                 return new Direction(x, y);
             }
 
-            readonly bool DirectionIsValid()
+            bool DirectionIsValid()
             {
                 return direction != Direction.None;
             }
 
-            readonly bool CanMoveAtDirection()
+            bool CanMoveAtDirection()
             {
                 Vector2Int newPlayerPosition = playerPosition.Value + direction;
                 IEnumerable<Collider> collidersPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);

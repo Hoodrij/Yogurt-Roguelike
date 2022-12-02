@@ -16,7 +16,7 @@ namespace Roguelike.Jobs
 
             await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();
-            for (int i = 0; i < 3.RandomTo(); i++)
+            for (int i = 0; i < 4.RandomTo(); i++)
             {
                 await new FoodFactoryJob().Run();
             }

@@ -45,6 +45,18 @@ namespace FlowJob
 
             return ref Storage<T>.Instance.Get(ID);
         }
+        
+        public bool TryGet<T>(out T t) where T : IComponent
+        {
+            bool has = Has<T>();
+            t = default;
+            if (has)
+            {
+                t = Storage<T>.Instance.Get(ID);
+            }
+
+            return has;
+        }
 
         public bool Has<T>() where T : IComponent
         {
