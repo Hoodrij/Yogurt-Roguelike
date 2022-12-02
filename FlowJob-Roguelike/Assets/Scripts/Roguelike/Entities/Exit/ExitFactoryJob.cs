@@ -21,12 +21,12 @@ namespace Roguelike.Jobs
                 })
                 .Add(new Position
                 {
-                    Coord = data.ExitPosition
+                    Value = data.ExitPosition
                 });
 
             TileView view = await assets.Exit.Spawn();
             entity.Add(view);
-            view.SetPosition(entity.Get<Position>().Coord);
+            view.SetPosition(entity.Get<Position>().Value);
             
             return entity;
         }

@@ -43,7 +43,7 @@ namespace Roguelike.Jobs
 
             readonly bool CanMoveAtDirection()
             {
-                Vector2Int newPlayerPosition = playerPosition.Coord + direction;
+                Vector2Int newPlayerPosition = playerPosition.Value + direction;
                 IEnumerable<Collider> collidersPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
                 return playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
             }

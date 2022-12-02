@@ -5,6 +5,6 @@ namespace Roguelike.Entities
 {
     public class Position : IComponent
     {
-        public Vector2Int Coord;
+        public Vector2Int Value;
     }
 }

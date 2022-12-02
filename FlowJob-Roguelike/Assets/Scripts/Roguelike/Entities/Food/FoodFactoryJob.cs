@@ -28,7 +28,7 @@ namespace Roguelike.Entities.Food
                 })
                 .Add(new Position
                 {
-                    Coord = spawnPosition
+                    Value = spawnPosition
                 })
                 .Add(new Collider
                 {

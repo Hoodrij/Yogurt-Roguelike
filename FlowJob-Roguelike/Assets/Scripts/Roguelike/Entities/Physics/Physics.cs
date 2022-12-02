@@ -15,7 +15,7 @@ namespace Roguelike
             foreach (Direction direction in Direction.All)
             {
                 Vector2Int newPoint = origin + direction;
-                if (Query.Of<PhysBodyAspect>().All(body => body.Position.Coord != newPoint))
+                if (Query.Of<PhysBodyAspect>().All(body => body.Position.Value != newPoint))
                     yield return direction;
             }
         }
@@ -32,7 +32,7 @@ namespace Roguelike
                     if (noOtherBodies)
                         yield return point;
                         
-                    if (Query.Of<PhysBodyAspect>().All(body => body.Position.Coord != point))
+                    if (Query.Of<PhysBodyAspect>().All(body => body.Position.Value != point))
                         yield return point;
                 }
             }
@@ -42,7 +42,7 @@ namespace Roguelike
         {
             foreach (PhysBodyAspect body in Query.Of<PhysBodyAspect>())
             {
-                if (body.Position.Coord == coord) 
+                if (body.Position.Value == coord) 
                     yield return body.Collider;
             }
         }
@@ -50,7 +50,7 @@ namespace Roguelike
         public static IEnumerable<Entity> GetEntitiesAtPosition(Vector2Int coord)
         {
             return Query.Of<PhysBodyAspect>()
-                .Where(body => body.Position.Coord == coord)
+                .Where(body => body.Position.Value == coord)
                 .Select(body => body.Entity);
         }
     }

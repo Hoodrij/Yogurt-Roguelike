@@ -32,7 +32,7 @@ namespace Entities.TurnSystem
                 })
                 .Add(new Position
                 {
-                    Coord = args.Position
+                    Value = args.Position
                 })
                 .Add(new Health());
             

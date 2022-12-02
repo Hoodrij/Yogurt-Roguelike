@@ -19,7 +19,7 @@ namespace Roguelike.Entities
 
         public void MoveBy(Direction direction)
         {
-            PhysBodyAspect.Position.Coord += direction;
+            PhysBodyAspect.Position.Value += direction;
             View.UpdateView(this);
         }
     }

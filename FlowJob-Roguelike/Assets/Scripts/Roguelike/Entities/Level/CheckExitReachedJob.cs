@@ -17,7 +17,7 @@ namespace Roguelike.Jobs
 
             AgentAspect playerAgent = Query.Single<PlayerAspect>().AgentAspect;
 
-            Vector2Int playerPosition = playerAgent.PhysBodyAspect.Position.Coord;
+            Vector2Int playerPosition = playerAgent.PhysBodyAspect.Position.Value;
             IEnumerable<Entity> entitiesAtPosition = Physics.GetEntitiesAtPosition(playerPosition);
             if (entitiesAtPosition.Any(entity => entity.Has<Exit>()))
                 return true;

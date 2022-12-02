@@ -46,7 +46,7 @@ namespace Roguelike.Jobs
                 .Add<Floor>()
                 .Add(new Position
                 {
-                    Coord = coord
+                    Value = coord
                 })
                 .Add(tileView); 
 
@@ -67,7 +67,7 @@ namespace Roguelike.Jobs
                 .Add(Collider.Hard)
                 .Add(new Position
                 {
-                    Coord = coord
+                    Value = coord
                 })
                 .Add(tileView);
 
