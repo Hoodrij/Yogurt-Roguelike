@@ -9,16 +9,7 @@ namespace Roguelike.Jobs
     {
         protected override async Task Run()
         {
-            Entity entity = Entity.Create()
-                .Add<Game>()
-                .Add<Life>()
-                .Add<Data>()
-                .Add<Assets>();
-
-            entity.Add(new Health
-            {
-                Value = entity.Get<Data>().StartingPlayerHealth
-            });
+            await new GameFactoryJob().Run(); 
 
             while (!await IsGameOver())
             {
@@ -30,9 +21,6 @@ namespace Roguelike.Jobs
             }
         }
 
-        private static async Task<bool> IsGameOver()
-        {
-            return await new CheckGameOverJob().Run();
-        }
+        private static async Task<bool> IsGameOver() => await new CheckGameOverJob().Run();
     }
 }
