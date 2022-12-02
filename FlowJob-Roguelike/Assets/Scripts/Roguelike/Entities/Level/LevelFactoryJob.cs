@@ -22,7 +22,7 @@ namespace Roguelike.Jobs
             }
             
             await new PlayerFactoryJob().Run();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4.RandomTo(); i++)
             {
                 await new EnemyFactoryJob().Run();
             }

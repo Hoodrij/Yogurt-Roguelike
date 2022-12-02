@@ -24,8 +24,8 @@ namespace Roguelike.Entities
             entity.Add(health);
 
             UI ui = await assets.UI.Spawn();
-            entity.Add(ui);
             ui.UpdateView(health.Value);
+            entity.Add(ui);
 
             return entity.ToAspect<GameAspect>();
         }
