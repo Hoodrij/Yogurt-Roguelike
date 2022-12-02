@@ -17,6 +17,17 @@ namespace Entities.TurnSystem
             {
                 agentAspect.Health.Value += food.Value;
                 target.Kill();
+                return true;
+            }
+            
+            if (target.TryGet(out Health health))
+            {
+                health.Value--;
+                if (health.Value <= 0)
+                {
+                    target.Kill();
+                    return true;
+                }
             }
 
             if (agentAspect.Has<Roguelike.Entities.Player>())

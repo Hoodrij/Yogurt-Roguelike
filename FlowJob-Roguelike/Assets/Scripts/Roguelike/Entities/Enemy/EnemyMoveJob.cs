@@ -12,8 +12,6 @@ namespace Roguelike.Entities
             Position enemyPos = agentAspect.PhysBodyAspect.Position;
 
             IEnumerable<Direction> freeDirectionsAround = Physics.GetFreeDirectionsAround(enemyPos.Value);
-            if (freeDirectionsAround.IsEmpty())
-                return Direction.Random;
             return freeDirectionsAround.GetRandom();
         }
     }
