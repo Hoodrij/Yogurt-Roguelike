@@ -17,25 +17,35 @@ namespace Roguelike.Jobs
             Collider playerCollider = bodyAspect.Collider;
             Position playerPosition = bodyAspect.Position;
 
+            Direction direction = default;
+
             await this.WaitUntil(() =>
             {
-                Direction direction = ReadInput();
-                Vector2Int newPlayerPosition = playerPosition.Coord + direction;
-                IEnumerable<Collider> collidersPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
-                
-                return direction != Direction.None
-                       && playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
-
+                direction = ReadInput();
+                return DirectionIsValid() && CanMoveAtDirection();
             });
+
+            return direction;
             
-            return ReadInput();
             
-            Direction ReadInput()
+            readonly Direction ReadInput()
             {
                 int x = (int) Input.GetAxisRaw("Horizontal");
                 int y = (int) Input.GetAxisRaw("Vertical");
 
                 return new Direction(x, y);
+            }
+
+            readonly bool DirectionIsValid()
+            {
+                return direction != Direction.None;
+            }
+
+            readonly bool CanMoveAtDirection()
+            {
+                Vector2Int newPlayerPosition = playerPosition.Coord + direction;
+                IEnumerable<Collider> collidersPlayerIsMovingAt = Physics.GetColliderAtPosition(newPlayerPosition);
+                return playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
             }
         }
     }

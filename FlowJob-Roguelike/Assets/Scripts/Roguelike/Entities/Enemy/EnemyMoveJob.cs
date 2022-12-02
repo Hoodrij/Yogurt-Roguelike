@@ -11,7 +11,7 @@ namespace Roguelike.Entities
         {
             agentAspect.MoveBy(GetMoveDirection());
             
-            Direction GetMoveDirection()
+            readonly Direction GetMoveDirection()
             {
                 Position enemyPos = agentAspect.PhysBodyAspect.Position;
 
