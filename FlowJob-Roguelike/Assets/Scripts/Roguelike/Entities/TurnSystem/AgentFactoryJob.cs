@@ -12,7 +12,7 @@ namespace Entities.TurnSystem
     {
         public struct Args
         {
-            public Job<Direction> MoveJob;
+            public Job<Void, AgentAspect> MoveJob;
             public Vector2Int Position;
             public CollisionLayer Layer;
             public CollisionLayer CollisionMap;

@@ -12,15 +12,8 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Direction> Run()
         {
-            Direction ReadInput()
-            {
-                int x = (int) Input.GetAxisRaw("Horizontal");
-                int y = (int) Input.GetAxisRaw("Vertical");
-
-                return new Direction(x, y);
-            }
-
-            PhysBodyAspect bodyAspect = Query.Single<CurrentAgentAspect>().AgentAspect.PhysBodyAspect;
+            AgentAspect agentAspect = Query.Single<PlayerAspect>().AgentAspect;
+            PhysBodyAspect bodyAspect = agentAspect.PhysBodyAspect;
             Collider playerCollider = bodyAspect.Collider;
             Position playerPosition = bodyAspect.Position;
 
@@ -34,10 +27,16 @@ namespace Roguelike.Jobs
                        && playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
 
             });
-
-            await new ChangeHealthJob().Run(-1);
             
             return ReadInput();
+            
+            Direction ReadInput()
+            {
+                int x = (int) Input.GetAxisRaw("Horizontal");
+                int y = (int) Input.GetAxisRaw("Vertical");
+
+                return new Direction(x, y);
+            }
         }
     }
 }

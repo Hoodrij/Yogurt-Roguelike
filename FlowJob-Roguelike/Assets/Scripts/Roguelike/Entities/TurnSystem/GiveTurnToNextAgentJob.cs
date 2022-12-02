@@ -13,21 +13,21 @@ namespace Roguelike.Jobs
             
             foreach (AgentAspect agentAspect in Query.Of<AgentAspect>())
             {
-                if (agentAspect.Has<CurrentAgentTag>())
+                if (agentAspect.Has<TurnOwner>())
                 {
-                    agentAspect.Remove<CurrentAgentTag>();
+                    agentAspect.Remove<TurnOwner>();
                     currentAgentFound = true;
                 } 
                 else if (currentAgentFound)
                 {
-                    agentAspect.Add<CurrentAgentTag>();
+                    agentAspect.Add<TurnOwner>();
                     break;
                 }
             }
             
-            if (!Query.Single<CurrentAgentAspect>().Exist())
+            if (!Query.Of<TurnOwner>().Single().Exist)
             {
-                Query.Of<Agent>().Single().Add<CurrentAgentTag>();
+                Query.Of<Agent>().Single().Add<TurnOwner>();
             }
         }
     }

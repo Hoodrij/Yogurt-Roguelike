@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Entities.Player;
 using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Entities;
@@ -18,7 +19,7 @@ namespace Roguelike.Jobs
             {
                 Layer = CollisionLayer.Destructible,
                 CollisionMap = CollisionLayer.Hard,
-                MoveJob = new GetPlayerInputJob(),
+                MoveJob = new PlayerMoveJob(),
                 Position = data.PlayerStartPosition
             });
             

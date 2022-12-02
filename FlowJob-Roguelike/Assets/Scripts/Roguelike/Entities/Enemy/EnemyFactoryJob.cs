@@ -18,7 +18,7 @@ namespace Roguelike.Entities
             {
                 Layer = CollisionLayer.Destructible,
                 CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable,
-                MoveJob = new GetEnemyMoveJob(),
+                MoveJob = new EnemyMoveJob(),
                 Position = GetSpawnPosition()
             });
             agentAspect.Health.Value = data.EnemyHealth;
