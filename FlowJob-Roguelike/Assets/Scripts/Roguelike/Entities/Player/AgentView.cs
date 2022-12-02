@@ -8,10 +8,10 @@ namespace Roguelike.Entities
 {
     public class AgentView : MonoBehaviour, IComponent, IDisposable
     {
-        public void UpdateView(AgentAspect agentAspect)
+        public void UpdateView(AgentAspect agentAspect, float duration = 0.05f)
         {
             transform.DOKill();
-            transform.DOMove(agentAspect.PhysBodyAspect.Position.Value.ToV3XY(), 0.05f);
+            transform.DOMove(agentAspect.PhysBodyAspect.Position.Value.ToV3XY(), duration);
         }
         
         public void Dispose()

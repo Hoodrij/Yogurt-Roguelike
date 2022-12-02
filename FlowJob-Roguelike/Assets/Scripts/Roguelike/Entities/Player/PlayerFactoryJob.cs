@@ -20,15 +20,12 @@ namespace Roguelike.Jobs
                 Layer = CollisionLayer.Destructible,
                 CollisionMap = CollisionLayer.Hard,
                 MoveJob = new PlayerMoveJob(),
-                Position = data.PlayerStartPosition
+                Position = data.PlayerStartPosition,
+                ViewRef = assets.Player
             });
             
             agentAspect.Add<Player>();
             agentAspect.Set(game.Health);
-
-            AgentView view = await assets.Player.Spawn();
-            agentAspect.Add(view);
-            view.UpdateView(agentAspect);
 
             return agentAspect.Entity;
         }

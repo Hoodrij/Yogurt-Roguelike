@@ -11,11 +11,10 @@ namespace Entities.TurnSystem
         protected override async Task<bool> Run((AgentAspect agent, Entity target) data)
         {
             Entity target = data.target;
-            AgentAspect agentAspect = data.agent;
             
             if (target.TryGet(out Food food))
             {
-                agentAspect.Health.Value += food.Value;
+                await new ChangeHealthJob().Run(food.Value);
                 target.Kill();
                 return true;
             }
@@ -28,11 +27,6 @@ namespace Entities.TurnSystem
                     target.Kill();
                     return true;
                 }
-            }
-
-            if (agentAspect.Has<Roguelike.Entities.Player>())
-            {
-                await new ChangeHealthJob().Run(-1);
             }
             
             return true;

@@ -10,7 +10,9 @@ namespace Entities.Player
     {
         protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            return await new GetPlayerInputJob().Run();
+            Direction direction = await new GetPlayerInputJob().Run();
+            await new ChangeHealthJob().Run(-1);
+            return direction;
         }
     }
 }

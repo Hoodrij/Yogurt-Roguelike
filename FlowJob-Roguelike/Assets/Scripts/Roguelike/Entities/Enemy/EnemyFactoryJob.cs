@@ -19,14 +19,11 @@ namespace Roguelike.Entities
                 Layer = CollisionLayer.Destructible,
                 CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable,
                 MoveJob = new EnemyMoveJob(),
-                Position = GetSpawnPosition()
+                Position = GetSpawnPosition(),
+                ViewRef = assets.Enemy,
             });
             agentAspect.Health.Value = data.EnemyHealth;
 
-            AgentView view = await assets.Enemy.Spawn();
-            agentAspect.Add(view);
-            view.UpdateView(agentAspect);
-            
             return agentAspect.Entity;
 
             Vector2Int GetSpawnPosition()
