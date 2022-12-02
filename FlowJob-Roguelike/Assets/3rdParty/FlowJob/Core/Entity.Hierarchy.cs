@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Core.Tools.Collections;
 
 namespace FlowJob
 {
@@ -19,11 +20,6 @@ namespace FlowJob
             if (Managed.Parent == Null) return;
             Managed.Parent.Managed.Childs.Remove(this);
             Managed.Parent = default;
-        }
-
-        public HashSet<Entity> GetChilds()
-        {
-            return Managed.Childs;
         }
     }
     

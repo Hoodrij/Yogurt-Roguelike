@@ -56,13 +56,11 @@ namespace FlowJob
                                 group?.TryRemove(entity);
                             }
                             
+                            this.RemoveEntity(entity);
                             meta->GroupsAmount = 0;
                             meta->ComponentsMask.Clear();
-                            this.RemoveEntity(entity);
                             entity.Age += 1;
                             entity.Age %= int.MaxValue;
-                            entity.Managed.Childs.Clear();
-                            entity.UnParent();
                         }
                         break;
                 }

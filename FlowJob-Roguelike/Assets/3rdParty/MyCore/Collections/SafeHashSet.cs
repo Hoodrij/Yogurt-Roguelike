@@ -29,6 +29,12 @@ namespace Core.Tools.Collections
             await WaitUnlock();
             collection.Add(item);
         }
+        
+        public async void Remove(T item)
+        {
+            await WaitUnlock();
+            collection.Remove(item);
+        }
 
         public async void RemoveWhere(Predicate<T> predicate)
         {

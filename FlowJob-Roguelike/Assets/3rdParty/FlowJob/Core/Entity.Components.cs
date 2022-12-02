@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace FlowJob
 {
@@ -88,10 +89,12 @@ namespace FlowJob
             }
 
             Meta->IsAlive = false;
-            foreach (Entity child in Managed.Childs)
+            while (Managed.Childs.Count > 0)
             {
-                child.Kill();
+                Managed.Childs.First().Kill();
             }
+
+            UnParent();
         }
     }
 }
