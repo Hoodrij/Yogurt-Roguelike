@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Core.Tools.ExtensionMethods;
 using Entities.Environment;
 using FlowJob;
 using Roguelike.Entities;
@@ -30,32 +31,37 @@ namespace Roguelike.Jobs
                     }
                 }
             }
-            
-            foreach (Entity entity in Query.Of<TileView>().With<Position>())
-            {
-                entity.Get<TileView>().UpdateView(entity.Get<Position>());
-            }
         }
 
         private async Task<Entity> SpawnFloor(Vector2Int coord)
         {
+            Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
 
+            TileView tileView = await assets.Tile.Spawn();
+            tileView.SetView(data.FloorSprites.GetRandom());
+            tileView.SetPosition(coord);
+            
             Entity entity = Level.Create()
                 .Add<Floor>()
                 .Add(new Position
                 {
                     Coord = coord
                 })
-                .Add(await assets.Floor.Spawn());
+                .Add(tileView);
 
             return entity;
         }
 
         private async Task<Entity> SpawnWall(Vector2Int coord)
         {
+            Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
 
+            TileView tileView = await assets.Tile.Spawn();
+            tileView.SetView(data.WallSprites.GetRandom());
+            tileView.SetPosition(coord);
+            
             Entity entity = Level.Create()
                 .Add<Wall>()
                 .Add(Collider.Hard)
@@ -63,7 +69,7 @@ namespace Roguelike.Jobs
                 {
                     Coord = coord
                 })
-                .Add(await assets.Wall.Spawn());
+                .Add(tileView);
 
             return entity;
         }

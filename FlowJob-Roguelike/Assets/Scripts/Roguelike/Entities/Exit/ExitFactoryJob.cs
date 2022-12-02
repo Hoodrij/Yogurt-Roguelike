@@ -26,7 +26,7 @@ namespace Roguelike.Jobs
 
             TileView view = await assets.Exit.Spawn();
             entity.Add(view);
-            view.UpdateView(entity.Get<Position>());
+            view.SetPosition(entity.Get<Position>().Coord);
             
             return entity;
         }

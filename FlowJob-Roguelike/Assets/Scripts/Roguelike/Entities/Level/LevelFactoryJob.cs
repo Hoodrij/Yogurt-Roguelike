@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
+using Core.Tools.ExtensionMethods;
 using FlowJob;
 using Roguelike.Entities;
+using Roguelike.Entities.Food;
 
 namespace Roguelike.Jobs
 {
@@ -14,6 +16,11 @@ namespace Roguelike.Jobs
 
             await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();
+            for (int i = 0; i < 3.RandomTo(); i++)
+            {
+                await new FoodFactoryJob().Run();
+            }
+            
             await new PlayerFactoryJob().Run();
             for (int i = 0; i < 3; i++)
             {

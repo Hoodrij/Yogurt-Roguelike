@@ -8,9 +8,16 @@ namespace Entities.Environment
 {
     public class TileView : MonoBehaviour, IComponent, IDisposable
     {
-        public void UpdateView(Position position)
+        [SerializeField] private SpriteRenderer renderer;
+        
+        public void SetPosition(Vector2Int position)
         {
-            transform.position = position.Coord.ToV3XY();
+            transform.position = position.ToV3XY();
+        }
+
+        public void SetView(Sprite sprite)
+        {
+            renderer.sprite = sprite;
         }
 
         public void Dispose()
