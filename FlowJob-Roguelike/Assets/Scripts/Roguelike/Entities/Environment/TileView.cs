@@ -1,7 +1,6 @@
 ﻿using System;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
-using Roguelike.Entities;
 using UnityEngine;
 
 namespace Entities.Environment

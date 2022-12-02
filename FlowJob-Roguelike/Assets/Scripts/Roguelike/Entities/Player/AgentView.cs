@@ -13,7 +13,7 @@ namespace Roguelike.Entities
             transform.DOKill();
             transform.DOMove(agentAspect.PhysBodyAspect.Position.Coord.ToV3XY(), 0.05f);
         }
-
+        
         public void Dispose()
         {
             gameObject.Destroy();

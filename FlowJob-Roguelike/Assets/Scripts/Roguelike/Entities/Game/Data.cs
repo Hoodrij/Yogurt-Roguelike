@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FlowJob;
-using Tools;
 using UnityEngine;
 
 namespace Roguelike.Entities

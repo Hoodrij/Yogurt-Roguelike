@@ -48,7 +48,7 @@ namespace Roguelike.Jobs
                 {
                     Coord = coord
                 })
-                .Add(tileView);
+                .Add(tileView); 
 
             return entity;
         }
