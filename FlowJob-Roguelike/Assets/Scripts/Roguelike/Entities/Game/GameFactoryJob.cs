@@ -8,8 +8,8 @@ namespace Roguelike.Entities
     {
         protected override async Task<GameAspect> Run()
         {
-            Data data = new Data();
             Assets assets = new Assets();
+            Data data = await assets.Data.Load();
 
             Entity entity = Entity.Create()
                 .Add<Game>()

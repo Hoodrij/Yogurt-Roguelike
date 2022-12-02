@@ -31,4 +31,14 @@ namespace Tools
             return result;
         } 
     }
+    
+    public class SO<Tso> : Asset where Tso : ScriptableObject
+    {
+        public SO(string path) : base(path) { }
+
+        public async Task<Tso> Load()
+        {
+            return await loader.Load(path) as Tso;
+        } 
+    }
 }
