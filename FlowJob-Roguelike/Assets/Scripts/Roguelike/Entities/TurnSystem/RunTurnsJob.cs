@@ -19,20 +19,13 @@ namespace Roguelike.Jobs
             }
         }
 
-        private async Task<bool> IsExitReached()
-        {
-            return await new CheckExitReachedJob().Run();
-        }
-        
-        private async Task<bool> IsGameOver()
-        {
-            return await new CheckGameOverJob().Run();
-        }
+        private async Task<bool> IsExitReached() => await new CheckExitReachedJob().Run();
+
+        private async Task<bool> IsGameOver() => await new CheckGameOverJob().Run();
 
         private float GetDelay()
         {
             int agentsCount = Query.Of<Agent>().Count();
-
             return 0.15f / agentsCount;
         }
     }

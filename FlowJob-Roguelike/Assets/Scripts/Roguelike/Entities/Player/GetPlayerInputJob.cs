@@ -32,10 +32,10 @@ namespace Roguelike.Jobs
                 
                 return direction != Direction.None
                        && playerCollider.CanMoveAt(collidersPlayerIsMovingAt);
+
             });
 
-            Health playerHealth = Query.Single<PlayerAspect>().AgentAspect.Health;
-            playerHealth.Value--.log();
+            await new ChangeHealthJob().Run(-1);
             
             return ReadInput();
         }
