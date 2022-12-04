@@ -12,23 +12,42 @@ namespace Roguelike
     {
         public static IEnumerable<Direction> GetDirectionsAround(Vector2Int origin, CollisionLayer layer)
         {
-            1.log();
+            foreach (Direction direction in Direction.All)
+            {
+                Vector2Int newPoint = origin + direction;
+                if (LayerAtPoint(newPoint).HasFlag(layer))
+                    yield return direction;
+            }
+        }
+        
+        public static IEnumerable<Direction> GetDirectionsAround2(Vector2Int origin, CollisionLayer layer)
+        {
             foreach (Direction direction in Direction.All)
             {
                 Vector2Int newPoint = origin + direction;
                 if (CanMoveAtPoint(newPoint, layer))
-                {
                     yield return direction;
-                    direction.log();
-                }
             }
+        }
+
+        public static CollisionLayer LayerAtPoint(Vector2Int point)
+        {
+            CollisionLayer result = CollisionLayer.Empty;
+            IEnumerable<Collider> collidersAtPoint = GetColliderAtPosition(point);
+            
+            foreach (Collider collider in collidersAtPoint)
+            {
+                result |= collider.Layer;
+            }
+
+            return result;
         }
         
         /// <param name="layer">Layer you are at</param>
         public static bool CanMoveAtPoint(Vector2Int point, CollisionLayer layer)
         {
-            IEnumerable<Collider> collidersToMoveAt = GetColliderAtPosition(point);
-            return collidersToMoveAt.All(other => layer.HasFlag(other.Layer));
+            CollisionLayer layerAtPoint = LayerAtPoint(point);
+            return !layerAtPoint.HasFlag(layer);
         }
 
         public static IEnumerable<Vector2Int> GetFreeCoords(Range range)

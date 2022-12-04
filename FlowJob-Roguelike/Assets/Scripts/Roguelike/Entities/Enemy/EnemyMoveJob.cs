@@ -15,19 +15,13 @@ namespace Roguelike.Entities
             List<Direction> destructiblesAround 
                 = Physics.GetDirectionsAround(enemyPos.Value, CollisionLayer.Destructible).ToList();
             if (!destructiblesAround.IsEmpty())
-            {
-                // "attack".log();
                 return destructiblesAround.GetRandom();
-            }
-            
-            // IEnumerable<Direction> freeDirectionsAround 
-            //     = Physics.GetDirectionsAround(enemyPos.Value, agentAspect.PhysBodyAspect.Collider.CanMoveAt);
-            // if (!freeDirectionsAround.IsEmpty())
-            // {
-            //     "move".log();
-            //     return freeDirectionsAround.GetRandom();
-            // }
-            
+
+            List<Direction> freeDirectionsAround 
+                = Physics.GetDirectionsAround2(enemyPos.Value, agentAspect.PhysBodyAspect.Collider.CanMoveAt).ToList();
+            if (!freeDirectionsAround.IsEmpty())
+                return freeDirectionsAround.GetRandom();
+
             return Direction.None;
         }
     }
