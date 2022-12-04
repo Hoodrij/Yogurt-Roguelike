@@ -47,7 +47,7 @@ namespace Roguelike
         public static bool CanMoveAtPoint(Vector2Int point, CollisionLayer layer)
         {
             CollisionLayer layerAtPoint = LayerAtPoint(point);
-            return !layerAtPoint.HasFlag(layer);
+            return layer.HasFlag(layerAtPoint);
         }
 
         public static IEnumerable<Vector2Int> GetFreeCoords(Range range)
