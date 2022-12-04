@@ -25,8 +25,8 @@ namespace Entities.TurnSystem
                 if (health.Value <= 0)
                 {
                     target.Kill();
-                    return true;
                 }
+                return false;
             }
             
             return true;
