@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardSize: {x: 6, y: 6}
   PlayerStartPosition: {x: 1, y: 1}
-  StartingPlayerHealth: 20
+  StartingPlayerHealth: 100
   EnemyHealth: 2
   FloorSprites:
   - {fileID: 21300064, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}

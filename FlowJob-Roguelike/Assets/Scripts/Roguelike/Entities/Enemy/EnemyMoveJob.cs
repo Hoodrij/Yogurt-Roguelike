@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
@@ -11,10 +12,23 @@ namespace Roguelike.Entities
         {
             Position enemyPos = agentAspect.PhysBodyAspect.Position;
 
-            IEnumerable<Direction> freeDirectionsAround = Physics.GetFreeDirectionsAround(enemyPos.Value);
-            if (freeDirectionsAround.IsEmpty())
-                return Direction.None;
-            return freeDirectionsAround.GetRandom();
+            List<Direction> destructiblesAround 
+                = Physics.GetDirectionsAround(enemyPos.Value, CollisionLayer.Destructible).ToList();
+            if (!destructiblesAround.IsEmpty())
+            {
+                // "attack".log();
+                return destructiblesAround.GetRandom();
+            }
+            
+            // IEnumerable<Direction> freeDirectionsAround 
+            //     = Physics.GetDirectionsAround(enemyPos.Value, agentAspect.PhysBodyAspect.Collider.CanMoveAt);
+            // if (!freeDirectionsAround.IsEmpty())
+            // {
+            //     "move".log();
+            //     return freeDirectionsAround.GetRandom();
+            // }
+            
+            return Direction.None;
         }
     }
 }

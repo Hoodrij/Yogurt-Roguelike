@@ -17,7 +17,7 @@ namespace Roguelike.Entities
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
                 Layer = CollisionLayer.Destructible,
-                CollisionMap = CollisionLayer.Hard | CollisionLayer.Interactable,
+                CanMoveAt = CollisionLayer.Empty | CollisionLayer.Destructible,
                 MoveJob = new EnemyMoveJob(),
                 Position = GetSpawnPosition(),
                 ViewRef = assets.Enemy,

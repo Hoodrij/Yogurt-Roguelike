@@ -10,14 +10,25 @@ namespace Roguelike
 {
     public static class Physics
     {
-        public static IEnumerable<Direction> GetFreeDirectionsAround(Vector2Int origin)
+        public static IEnumerable<Direction> GetDirectionsAround(Vector2Int origin, CollisionLayer layer)
         {
+            1.log();
             foreach (Direction direction in Direction.All)
             {
                 Vector2Int newPoint = origin + direction;
-                if (Query.Of<PhysBodyAspect>().All(body => body.Position.Value != newPoint))
+                if (CanMoveAtPoint(newPoint, layer))
+                {
                     yield return direction;
+                    direction.log();
+                }
             }
+        }
+        
+        /// <param name="layer">Layer you are at</param>
+        public static bool CanMoveAtPoint(Vector2Int point, CollisionLayer layer)
+        {
+            IEnumerable<Collider> collidersToMoveAt = GetColliderAtPosition(point);
+            return collidersToMoveAt.All(other => layer.HasFlag(other.Layer));
         }
 
         public static IEnumerable<Vector2Int> GetFreeCoords(Range range)

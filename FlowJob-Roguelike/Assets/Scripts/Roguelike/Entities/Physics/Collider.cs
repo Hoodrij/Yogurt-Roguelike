@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FlowJob;
+using UnityEngine;
 
 namespace Roguelike
 {
@@ -11,12 +12,7 @@ namespace Roguelike
         public static readonly Collider Hard = new Collider { Layer = CollisionLayer.Hard };
         
         public CollisionLayer Layer;
-        public CollisionLayer CollisionMap;
-
-        public bool CanMoveAt(IEnumerable<Collider> others)
-        {
-            return others.All(other => !CollisionMap.HasFlag(other.Layer));
-        }
+        public CollisionLayer CanMoveAt;
     }
 
     [Flags]

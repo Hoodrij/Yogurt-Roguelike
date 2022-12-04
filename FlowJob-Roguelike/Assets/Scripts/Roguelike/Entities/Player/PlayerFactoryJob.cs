@@ -18,7 +18,7 @@ namespace Roguelike.Jobs
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
                 Layer = CollisionLayer.Destructible,
-                CollisionMap = CollisionLayer.Hard,
+                CanMoveAt = CollisionLayer.Empty | CollisionLayer.Interactable | CollisionLayer.Destructible,
                 MoveJob = new PlayerMoveJob(),
                 Position = data.PlayerStartPosition,
                 ViewRef = assets.Player

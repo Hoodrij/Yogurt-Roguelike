@@ -13,7 +13,7 @@ namespace Core.Tools.ExtensionMethods
                 action(item);
             }
         }
-        
+
         public static void Set<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
         {
             if (dictionary.ContainsKey(key))
@@ -42,6 +42,11 @@ namespace Core.Tools.ExtensionMethods
         {
             int index = list.Count().RandomTo();
             return list.ElementAt(index);
+        }
+
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> list, T exception)
+        {
+            return list.Where(t => !t.Equals(exception));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Entities.TurnSystem
             public Job<Direction, AgentAspect> MoveJob;
             public Vector2Int Position;
             public CollisionLayer Layer;
-            public CollisionLayer CollisionMap;
+            public CollisionLayer CanMoveAt;
             public Asset<AgentView> ViewRef;
         }
         
@@ -26,7 +26,7 @@ namespace Entities.TurnSystem
                 .Add(new Collider
                 {
                     Layer = args.Layer,
-                    CollisionMap = args.CollisionMap
+                    CanMoveAt = args.CanMoveAt
                 })
                 .Add(new Agent
                 {
