@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Entities.Player;
+using Entities;
 using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Entities;

@@ -4,7 +4,7 @@ using Roguelike;
 using Roguelike.Entities;
 using Roguelike.Jobs;
 
-namespace Entities.Player
+namespace Entities
 {
     public class PlayerMoveJob : Job<Direction, AgentAspect>
     {
