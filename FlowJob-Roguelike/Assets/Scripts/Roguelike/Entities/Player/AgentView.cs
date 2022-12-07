@@ -16,7 +16,11 @@ namespace Roguelike.Entities
         
         public void Dispose()
         {
-            gameObject.Destroy();
+            transform.DOKill();
+            transform.DOScale(0, 0.05f).OnComplete(() =>
+            {
+                gameObject.Destroy();
+            });
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Roguelike.Entities
             
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
+                Team = Team.Enemy,
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty | CollisionLayer.Destructible,
                 MoveJob = new EnemyMoveJob(),
