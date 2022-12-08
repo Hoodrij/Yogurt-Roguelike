@@ -15,6 +15,7 @@ namespace Entities
             Direction direction = await new GetPlayerInputJob().Run(agentAspect);
             await new ChangeHealthJob().Run(-1);
             
+            await new AgentMoveJob().Run((agentAspect, direction));
             // bool shouldMoveAtPosition = true;
             
             // Vector2Int newPos = agentAspect.PhysBodyAspect.Position.Value + direction;
@@ -25,7 +26,6 @@ namespace Entities
             
             // if (shouldMoveAtPosition)
             // {
-                await new AgentMoveJob().Run((agentAspect, direction));
             // }
 
             return default;
