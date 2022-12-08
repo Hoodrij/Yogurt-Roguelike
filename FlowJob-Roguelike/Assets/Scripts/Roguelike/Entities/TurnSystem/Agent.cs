@@ -6,7 +6,7 @@ namespace Roguelike.Entities
     public class Agent : IComponent
     {
         public Team Team;
-        public Job<Direction, AgentAspect> MoveJob { get; set; }
+        public Job<Void, AgentAspect> TurnJob { get; set; }
     }
 
     public struct AgentAspect : Aspect<AgentAspect>

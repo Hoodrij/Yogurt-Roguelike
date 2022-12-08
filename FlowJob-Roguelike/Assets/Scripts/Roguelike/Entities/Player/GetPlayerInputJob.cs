@@ -8,14 +8,12 @@ using UnityEngine;
 
 namespace Roguelike.Jobs
 {
-    public class GetPlayerInputJob : Job<Direction>
+    public class GetPlayerInputJob : Job<Direction, AgentAspect>
     {
-        protected override async Task<Direction> Run()
+        protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            AgentAspect agentAspect = Query.Single<PlayerAspect>().AgentAspect;
-            PhysBodyAspect bodyAspect = agentAspect.PhysBodyAspect;
-            Collider playerCollider = bodyAspect.Collider;
-            Position playerPosition = bodyAspect.Position;
+            Collider playerCollider = agentAspect.PhysBodyAspect.Collider;
+            Position playerPosition = agentAspect.PhysBodyAspect.Position;
 
             Direction direction = default;
 

@@ -1,34 +1,34 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Tools;
-using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
-using FlowJob;
+using Roguelike;
 using Roguelike.Entities;
+using Roguelike.Jobs;
 using UnityEngine;
 
-namespace Roguelike.Jobs
+namespace Entities
 {
-    public class MoveTurnOwnerJob : Job
+    public class PlayerTurnJob : Job<Void, AgentAspect>
     {
-        protected override async Task Run()
+        protected override async Task<Void> Run(AgentAspect agentAspect)
         {
-            AgentAspect agentAspect = Query.Of<AgentAspect>().With<TurnOwner>().Single();
-            await agentAspect.Agent.TurnJob.Run(agentAspect);
+            Direction direction = await new GetPlayerInputJob().Run(agentAspect);
+            await new ChangeHealthJob().Run(-1);
             
             // bool shouldMoveAtPosition = true;
-            //
+            
             // Vector2Int newPos = agentAspect.PhysBodyAspect.Position.Value + direction;
             // foreach (Entity target in Physics.GetEntitiesAtPosition(newPos).Except(agentAspect.Entity).ToList())
             // {
             //     shouldMoveAtPosition &= await new InteractWithEntityJob().Run((agentAspect, target));
             // }
-            //
+            
             // if (shouldMoveAtPosition)
             // {
-            //     agentAspect.PhysBodyAspect.Position.Value += direction;
-            //     agentAspect.View.UpdateView(agentAspect);
+                await new AgentMoveJob().Run((agentAspect, direction));
             // }
+
+            return default;
         }
     }
 }

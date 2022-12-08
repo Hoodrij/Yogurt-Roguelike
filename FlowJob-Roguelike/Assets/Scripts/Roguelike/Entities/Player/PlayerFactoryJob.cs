@@ -20,7 +20,7 @@ namespace Roguelike.Jobs
                 Team = Team.Player,
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty | CollisionLayer.Interactable | CollisionLayer.Destructible,
-                MoveJob = new PlayerMoveJob(),
+                MoveJob = new PlayerTurnJob(),
                 Position = data.PlayerStartPosition,
                 ViewRef = assets.Player
             });

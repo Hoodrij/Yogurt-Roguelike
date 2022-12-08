@@ -14,7 +14,7 @@ namespace Entities.TurnSystem
         public struct Args
         {
             public Team Team;
-            public Job<Direction, AgentAspect> MoveJob;
+            public Job<Void, AgentAspect> MoveJob;
             public Vector2Int Position;
             public CollisionLayer Layer;
             public CollisionLayer CanMoveAt;
@@ -32,7 +32,7 @@ namespace Entities.TurnSystem
                 .Add(new Agent
                 {
                     Team = args.Team,
-                    MoveJob = args.MoveJob
+                    TurnJob = args.MoveJob
                 })
                 .Add(new Position
                 {
