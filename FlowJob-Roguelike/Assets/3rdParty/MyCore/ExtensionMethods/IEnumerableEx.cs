@@ -40,8 +40,12 @@ namespace Core.Tools.ExtensionMethods
 
         public static T GetRandom<T>(this IEnumerable<T> list)
         {
-            int index = list.Count().RandomTo();
-            return list.ElementAt(index);
+            IEnumerable<T> enumerable = list.ToList();
+            
+            if (enumerable.IsEmpty()) 
+                return default;
+            int index = enumerable.Count().RandomTo();
+            return enumerable.ElementAt(index);
         }
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> list, T exception)

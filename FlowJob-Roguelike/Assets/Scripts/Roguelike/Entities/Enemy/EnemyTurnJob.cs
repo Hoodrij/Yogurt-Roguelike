@@ -14,35 +14,41 @@ namespace Roguelike.Entities
         protected override async Task<Void> Run(AgentAspect agentAspect)
         {
             Vector2Int position = agentAspect.PhysBodyAspect.Position.Value;
-            // foreach (EntityAtDir entityAtDir in GetEntitiesAround(position))
-            // {
-            //     
-            // }
 
-            EntityAtDir dirToMoveAt = GetEntitiesAround(position)
-                .Where(entityAtDir => CanMoveAt(agentAspect, entityAtDir.Entity))
-                .GetRandom();
+            IEnumerable<EntityAtDir> entityAtDirs = GetEntitiesAround(position).ToList();
+            
+            IEnumerable<EntityAtDir> attackTargets = entityAtDirs.Where(entityAtDir => CanAttack(agentAspect, entityAtDir.Entity)).ToList();
+            IEnumerable<EntityAtDir> moveTargets = entityAtDirs.Where(entityAtDir => CanMoveAt(agentAspect, entityAtDir.Entity)).ToList();
+
+            EntityAtDir dirToMoveAt = !attackTargets.IsEmpty()
+                ? attackTargets.GetRandom()
+                : moveTargets.GetRandom();
             
             await new AgentMoveJob().Run((agentAspect, dirToMoveAt.Direction));
             
-
-            //
-            // List<Direction> destructiblesAround 
-            //     = Physics.GetDirectionsAround(enemyPos.Value, CollisionLayer.Destructible).ToList();
-            // if (!destructiblesAround.IsEmpty())
-            //     return destructiblesAround.GetRandom();
-            //
-            // List<Direction> freeDirectionsAround 
-            //     = Physics.GetDirectionsAround2(enemyPos.Value, agentAspect.PhysBodyAspect.Collider.CanMoveAt).ToList();
-            // if (!freeDirectionsAround.IsEmpty())
-            //     return freeDirectionsAround.GetRandom();
-
             return default;
+        }
+        
+        private static bool CanAttack(AgentAspect enemy, Entity other)
+        {
+            if (other.Exist) return false;
+            if (!other.TryGet(out Collider otherCollider)) return false;
+
+            CollisionLayer enemyAttackLayer = CollisionLayer.Destructible;
+            CollisionLayer otherLayer = otherCollider.Layer;
+
+            bool layerMatches = enemyAttackLayer.HasFlag(otherLayer);
+            if (!layerMatches) return false;
+
+            if (!other.TryGet(out Agent otherAgent)) return false;
+            if (otherAgent.Team == enemy.Agent.Team) return false;
+
+            return true;
         }
 
         private static bool CanMoveAt(AgentAspect enemy, Entity other)
         {
-            if (other == Entity.Null) return true;
+            if (other.Exist) return true;
             if (!other.TryGet(out Collider otherCollider)) return true;
             
             CollisionLayer enemyCanMoveAtLayer = enemy.PhysBodyAspect.Collider.CanMoveAt;
