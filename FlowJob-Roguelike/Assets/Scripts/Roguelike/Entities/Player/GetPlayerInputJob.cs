@@ -42,7 +42,8 @@ namespace Roguelike.Jobs
             bool CanMoveAtDirection()
             {
                 Vector2Int newPlayerPosition = playerPosition.Value + direction;
-                return Physics.CanMoveAtPoint(newPlayerPosition, playerCollider.CanMoveAt);
+                CollisionLayer layerAtPoint = Physics.LayerAtPoint(newPlayerPosition);
+                return playerCollider.CanMoveAt.HasFlag(layerAtPoint);
             }
         }
     }
