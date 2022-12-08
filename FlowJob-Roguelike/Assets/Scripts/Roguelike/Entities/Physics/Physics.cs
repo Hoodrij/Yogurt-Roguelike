@@ -10,25 +10,25 @@ namespace Roguelike
 {
     public static class Physics
     {
-        public static IEnumerable<Direction> GetDirectionsAround(Vector2Int origin, CollisionLayer layer)
-        {
-            foreach (Direction direction in Direction.All)
-            {
-                Vector2Int newPoint = origin + direction;
-                if (LayerAtPoint(newPoint).HasFlag(layer))
-                    yield return direction;
-            }
-        }
-        
-        public static IEnumerable<Direction> GetDirectionsAround2(Vector2Int origin, CollisionLayer layer)
-        {
-            foreach (Direction direction in Direction.All)
-            {
-                Vector2Int newPoint = origin + direction;
-                if (CanMoveAtPoint(newPoint, layer))
-                    yield return direction;
-            }
-        }
+        // public static IEnumerable<Direction> GetDirectionsAround(Vector2Int origin, CollisionLayer layer)
+        // {
+        //     foreach (Direction direction in Direction.All)
+        //     {
+        //         Vector2Int newPoint = origin + direction;
+        //         if (LayerAtPoint(newPoint).HasFlag(layer))
+        //             yield return direction;
+        //     }
+        // }
+        //
+        // public static IEnumerable<Direction> GetDirectionsAround2(Vector2Int origin, CollisionLayer layer)
+        // {
+        //     foreach (Direction direction in Direction.All)
+        //     {
+        //         Vector2Int newPoint = origin + direction;
+        //         if (CanMoveAtPoint(newPoint, layer))
+        //             yield return direction;
+        //     }
+        // }
 
         public static CollisionLayer LayerAtPoint(Vector2Int point)
         {
