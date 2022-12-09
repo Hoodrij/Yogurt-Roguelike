@@ -20,8 +20,8 @@ namespace Roguelike.Entities
                 return default;
             }
             
-            // Direction direction = await new GetEnemyMoveDirectionJob().Run(agentAspect);
-            // await new AgentMoveJob().Run((agentAspect, direction));
+            Direction direction = await new GetEnemyMoveDirectionJob().Run(agentAspect);
+            await new AgentMoveJob().Run((agentAspect, direction));
             
             return default;
         }
