@@ -14,14 +14,14 @@ namespace Entities.TurnSystem
             
             if (target.TryGet(out Food food))
             {
-                await new ChangeHealthJob().Run(food.Value);
+                await new ChangeGameHealthJob().Run(food.Value);
                 target.Kill();
                 return true;
             }
 
             if (target.Has<Player>())
             {
-                await new ChangeHealthJob().Run(-1);
+                await new ChangeGameHealthJob().Run(-1);
                 return false;
             }
             

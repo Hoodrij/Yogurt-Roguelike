@@ -13,7 +13,7 @@ namespace Entities
         protected override async Task<Void> Run(AgentAspect agentAspect)
         {
             Direction direction = await new GetPlayerInputJob().Run(agentAspect);
-            await new ChangeHealthJob().Run(-1);
+            await new ChangeGameHealthJob().Run(-1);
             
             await new AgentMoveJob().Run((agentAspect, direction));
             // bool shouldMoveAtPosition = true;

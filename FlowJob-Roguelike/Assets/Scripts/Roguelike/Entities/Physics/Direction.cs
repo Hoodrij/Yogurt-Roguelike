@@ -24,6 +24,12 @@ namespace Roguelike
         {
             value = vector.Normalized();
         }
+
+        public bool IsValid()
+        {
+            return value.x == 0 && Mathf.Abs(value.y) == 1
+                   || Mathf.Abs(value.x) == 1 && value.y == 0;
+        }
         
         public static implicit operator Vector2Int(Direction dir)
         {

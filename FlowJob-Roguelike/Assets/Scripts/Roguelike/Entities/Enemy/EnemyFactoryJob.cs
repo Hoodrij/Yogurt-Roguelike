@@ -18,7 +18,7 @@ namespace Roguelike.Entities
             {
                 Team = Team.Enemy,
                 Layer = CollisionLayer.Destructible,
-                CanMoveAt = CollisionLayer.Empty | CollisionLayer.Destructible,
+                CanMoveAt = CollisionLayer.Empty,
                 TurnJob = new EnemyTurnJob(),
                 Position = GetSpawnPosition(),
                 ViewRef = assets.Enemy,

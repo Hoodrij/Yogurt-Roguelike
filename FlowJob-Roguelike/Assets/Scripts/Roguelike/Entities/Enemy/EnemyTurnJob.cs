@@ -13,12 +13,17 @@ namespace Roguelike.Entities
     {
         protected override async Task<Void> Run(AgentAspect agentAspect)
         {
-            Direction direction = await new GetEnemyMoveDirectionJob().Run(agentAspect);
-
-            await new AgentMoveJob().Run((agentAspect, direction));
+            Entity target = await new GetClosestTargetJob().Run(agentAspect);
+            if (target.Exist)
+            {
+                await new AttackJob().Run((agentAspect, target));
+                return default;
+            }
+            
+            // Direction direction = await new GetEnemyMoveDirectionJob().Run(agentAspect);
+            // await new AgentMoveJob().Run((agentAspect, direction));
             
             return default;
         }
-        
     }
 }
