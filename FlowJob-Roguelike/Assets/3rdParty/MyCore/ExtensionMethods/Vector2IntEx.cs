@@ -4,22 +4,28 @@ namespace Core.Tools.ExtensionMethods
 {
     public static class Vector2IntEx
     {
-        public static Vector2Int Normalized(this Vector2Int i)
+        public static Vector2Int Normalized(this Vector2Int v)
         {
-            if (i == Vector2Int.zero) return Vector2Int.zero;
+            if (v == Vector2Int.zero) return Vector2Int.zero;
             
-            int absX = Mathf.Abs(i.x);
-            int absY = Mathf.Abs(i.y);
+            int absX = Mathf.Abs(v.x);
+            int absY = Mathf.Abs(v.y);
 
             if (absX > absY)
             {
-                return i.x > 0 ? Vector2Int.right : Vector2Int.left;
+                return v.x > 0 ? Vector2Int.right : Vector2Int.left;
             }
             else
             {
-                return i.y > 0 ? Vector2Int.up : Vector2Int.down;
+                return v.y > 0 ? Vector2Int.up : Vector2Int.down;
             }
         } 
+        
+        public static bool IsNormalized(this Vector2Int v)
+        {
+            return v.x == 0 && Mathf.Abs(v.y) == 1
+                   || Mathf.Abs(v.x) == 1 && v.y == 0;
+        }
         
         public static Vector3 ToV3XY(this Vector2Int v2)
         {
