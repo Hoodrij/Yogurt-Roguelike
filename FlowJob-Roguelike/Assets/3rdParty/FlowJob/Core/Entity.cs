@@ -8,7 +8,7 @@ namespace FlowJob
     [DebuggerTypeProxy(typeof(EntityEx.EntityDebugView))]
     public unsafe partial struct Entity : IComparable<Entity>, IEquatable<Entity>
     {
-        public static Entity Null = new Entity { ID = -1, Age = -1 };
+        public static readonly Entity Null = default;
         
         public int ID;
         internal int Age;

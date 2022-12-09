@@ -16,6 +16,7 @@ namespace FlowJob
         internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
         internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
         
+        // 0 index = default = Entity.Null
         private int nextEntityID = 1;
 
         private World()
