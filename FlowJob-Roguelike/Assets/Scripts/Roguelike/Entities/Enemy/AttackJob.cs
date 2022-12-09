@@ -14,10 +14,12 @@ namespace Roguelike.Entities
             if (target.Has<Player>())
             {
                 await new ChangeGameHealthJob().Run(-1);
+                return default;
             }
             if (target.TryGet(out Health health))
             {
                 health.Value--;
+                return default;
             }
 
             return default;

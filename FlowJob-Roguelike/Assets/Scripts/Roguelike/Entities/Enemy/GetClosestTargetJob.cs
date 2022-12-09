@@ -27,7 +27,7 @@ namespace Roguelike.Entities
             bool IsCloseToTarget(AgentAspect target)
             {
                 Vector2Int deltaPos = agentAspect.PhysBodyAspect.Position.Value - target.PhysBodyAspect.Position.Value;
-                return new Direction(deltaPos).IsValid();
+                return deltaPos.IsNormalized();
             }
         }
     }
