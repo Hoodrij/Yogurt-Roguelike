@@ -18,7 +18,8 @@ namespace Roguelike.Entities
         {
             foreach (AgentAspect target in Query.Of<AgentAspect>())
             {
-                if (target.Agent.Team == agentAspect.Agent.Team) continue;
+                if (target.Agent.Team == agentAspect.Agent.Team) 
+                    continue;
 
                 if (IsCloseToTarget(target))
                     yield return target.Entity;

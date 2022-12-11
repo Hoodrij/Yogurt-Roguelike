@@ -2,6 +2,7 @@
 using Core.Tools;
 using Entities.TurnSystem;
 using Roguelike;
+using Roguelike.Abilities;
 using Roguelike.Entities;
 using Roguelike.Jobs;
 using UnityEngine;
@@ -13,9 +14,13 @@ namespace Entities
         protected override async Task<Void> Run(AgentAspect agentAspect)
         {
             Direction direction = await new GetPlayerInputJob().Run(agentAspect);
+            Vector2Int newPosition = agentAspect.PhysBodyAspect.Position.Value + direction;
+            await new RunAbilitiesJob().Run((agentAspect, newPosition));
+
             await new ChangeGameHealthJob().Run(-1);
+
+            // await new AgentMoveJob().Run((agentAspect, direction));
             
-            await new AgentMoveJob().Run((agentAspect, direction));
             // bool shouldMoveAtPosition = true;
             
             // Vector2Int newPos = agentAspect.PhysBodyAspect.Position.Value + direction;

@@ -3,6 +3,7 @@ using Core.Tools;
 using Entities;
 using Entities.TurnSystem;
 using FlowJob;
+using Roguelike.Abilities;
 using Roguelike.Entities;
 
 namespace Roguelike.Jobs
@@ -18,11 +19,12 @@ namespace Roguelike.Jobs
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
                 Team = Team.Player,
+                Abilities = Ability.PlayerAbilities,
+                TurnJob = new PlayerTurnJob(),
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty | CollisionLayer.Interactable | CollisionLayer.Destructible,
-                TurnJob = new PlayerTurnJob(),
                 Position = data.PlayerStartPosition,
-                ViewRef = assets.Player
+                ViewRef = assets.Player,
             });
             
             agentAspect.Add<Player>();

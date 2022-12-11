@@ -3,11 +3,12 @@ using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using Entities.TurnSystem;
 using FlowJob;
+using Roguelike.Abilities;
 using UnityEngine;
 
 namespace Roguelike.Entities
 {
-    public class EnemyFactoryJob : Job<Entity>
+    public class ZombieFactoryJob : Job<Entity>
     {
         protected override async Task<Entity> Run()
         {
@@ -19,9 +20,10 @@ namespace Roguelike.Entities
                 Team = Team.Enemy,
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty,
-                TurnJob = new EnemyTurnJob(),
+                TurnJob = new ZombieTurnJob(),
                 Position = GetSpawnPosition(),
                 ViewRef = assets.Enemy,
+                Abilities = Ability.ZombieAbilities
             });
             agentAspect.Health.Value = data.EnemyHealth;
 

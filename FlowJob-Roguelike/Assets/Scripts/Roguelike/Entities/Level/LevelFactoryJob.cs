@@ -25,7 +25,7 @@ namespace Roguelike.Jobs
             
             for (int i = 0; i < 4.RandomTo(); i++)
             {
-                await new EnemyFactoryJob().Run();
+                await new ZombieFactoryJob().Run();
             }
         }
     }

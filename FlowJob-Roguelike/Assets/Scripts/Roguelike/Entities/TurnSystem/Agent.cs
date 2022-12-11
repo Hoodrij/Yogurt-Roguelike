@@ -1,5 +1,7 @@
-﻿using Core.Tools;
+﻿using System.Collections.Generic;
+using Core.Tools;
 using FlowJob;
+using Roguelike.Abilities;
 
 namespace Roguelike.Entities
 {
@@ -7,6 +9,7 @@ namespace Roguelike.Entities
     {
         public Team Team;
         public Job<Void, AgentAspect> TurnJob;
+        public List<Ability> Abilities = new();
     }
 
     public struct AgentAspect : Aspect<AgentAspect>

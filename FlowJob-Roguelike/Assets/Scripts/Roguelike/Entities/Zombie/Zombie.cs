@@ -2,7 +2,7 @@
 
 namespace Roguelike.Entities
 {
-    public class Enemy : IComponent
+    public class Zombie : IComponent
     {
         
     }

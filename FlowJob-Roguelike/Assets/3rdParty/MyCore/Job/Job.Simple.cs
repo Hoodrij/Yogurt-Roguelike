@@ -13,7 +13,7 @@ namespace Core.Tools
         
         public Task Run(Lifetime parentLifetime = null)
         {
-            return base.Run(Void._, parentLifetime);
+            return base.Run(default, parentLifetime);
         }
 
         protected override async Task<Void> Run(Void args)
@@ -35,7 +35,7 @@ namespace Core.Tools
         
         public Task<TResult> Run(Lifetime parentLifetime = null)
         {
-            return base.Run(Void._, parentLifetime);
+            return base.Run(default, parentLifetime);
         }
         
         protected override async Task<TResult> Run(Void args)

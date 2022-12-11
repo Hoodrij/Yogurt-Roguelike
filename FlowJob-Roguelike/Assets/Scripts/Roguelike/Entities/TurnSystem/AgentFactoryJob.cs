@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
 using Roguelike;
+using Roguelike.Abilities;
 using Roguelike.Entities;
 using Tools;
 using UnityEngine;
@@ -15,6 +17,7 @@ namespace Entities.TurnSystem
         {
             public Team Team;
             public Job<Void, AgentAspect> TurnJob;
+            public List<Ability> Abilities;
             public Vector2Int Position;
             public CollisionLayer Layer;
             public CollisionLayer CanMoveAt;
@@ -32,7 +35,8 @@ namespace Entities.TurnSystem
                 .Add(new Agent
                 {
                     Team = args.Team,
-                    TurnJob = args.TurnJob
+                    TurnJob = args.TurnJob,
+                    Abilities = args.Abilities,
                 })
                 .Add(new Position
                 {
