@@ -9,7 +9,7 @@ namespace Roguelike.Abilities
     {
         protected override async Task<AbilityOutcome> Run(Args args)
         {
-            return AbilityOutcome.ProceedingTurn;
+            return AbilityOutcome.ProceedTurn;
         }
     }
 }

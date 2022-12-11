@@ -52,9 +52,11 @@ namespace Roguelike
         
         public static IEnumerable<Entity> GetEntitiesAtPosition(Vector2Int coord)
         {
-            return Query.Of<PhysBodyAspect>()
-                .Where(body => body.Position.Value == coord)
-                .Select(body => body.Entity);
+            foreach (PhysBodyAspect body in Query.Of<PhysBodyAspect>())
+            {
+                if (body.Position.Value == coord) 
+                    yield return body.Entity;
+            }
         }
     }
 }

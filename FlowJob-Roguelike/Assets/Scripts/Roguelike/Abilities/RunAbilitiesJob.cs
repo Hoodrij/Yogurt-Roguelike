@@ -10,7 +10,7 @@ namespace Roguelike.Abilities
         protected override async Task<Void> Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
         {
             AgentAspect agentAspect = args.agentAspect;
-            Vector2Int newPosition = args.targetPosition;
+            Vector2Int newPosition = args.targetPosition; 
             
             foreach (Ability agentAbility in agentAspect.Agent.Abilities)
             {
@@ -19,7 +19,7 @@ namespace Roguelike.Abilities
                     AgentAspect = agentAspect,
                     TargetPosition = newPosition
                 });
-                if (abilityOutcome == AbilityOutcome.CompletingTurn)
+                if (abilityOutcome == AbilityOutcome.CompleteTurn)
                     break;
             }
 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
@@ -9,7 +10,17 @@ namespace Roguelike.Abilities
     {
         protected override async Task<AbilityOutcome> Run(Args args)
         {
-            return AbilityOutcome.ProceedingTurn;
+            AbilityOutcome outcome = AbilityOutcome.ProceedTurn;
+            
+            IEnumerable<Entity> targets = Physics.GetEntitiesAtPosition(args.TargetPosition);
+            foreach (Entity target in targets)
+            {
+                bool success = await new ChangeHealthJob().Run((target, -1));
+                if (success)
+                    outcome = AbilityOutcome.CompleteTurn;
+            }
+
+            return outcome;
         }
     }
 }

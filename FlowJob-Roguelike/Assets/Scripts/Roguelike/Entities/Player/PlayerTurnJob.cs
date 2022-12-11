@@ -17,21 +17,7 @@ namespace Entities
             Vector2Int newPosition = agentAspect.PhysBodyAspect.Position.Value + direction;
             await new RunAbilitiesJob().Run((agentAspect, newPosition));
 
-            await new ChangeGameHealthJob().Run(-1);
-
-            // await new AgentMoveJob().Run((agentAspect, direction));
-            
-            // bool shouldMoveAtPosition = true;
-            
-            // Vector2Int newPos = agentAspect.PhysBodyAspect.Position.Value + direction;
-            // foreach (Entity target in Physics.GetEntitiesAtPosition(newPos).Except(agentAspect.Entity).ToList())
-            // {
-            //     shouldMoveAtPosition &= await new InteractWithEntityJob().Run((agentAspect, target));
-            // }
-            
-            // if (shouldMoveAtPosition)
-            // {
-            // }
+            await new ChangeHealthJob().Run((agentAspect.Entity, -1));
 
             return default;
         }

@@ -12,7 +12,7 @@ namespace Roguelike.Abilities
             agentAspect.PhysBodyAspect.Position.Value = args.TargetPosition;
             agentAspect.View.UpdateView(agentAspect);
             
-            return AbilityOutcome.ProceedingTurn;
+            return AbilityOutcome.ProceedTurn;
         }
     }
 }

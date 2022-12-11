@@ -8,8 +8,8 @@ namespace Roguelike.Abilities
 {
     public enum AbilityOutcome
     {
-        ProceedingTurn = 1,
-        CompletingTurn = 2,
+        ProceedTurn = 1,
+        CompleteTurn = 2,
     }
     
     public abstract class Ability : Job<AbilityOutcome, Ability.Args>
