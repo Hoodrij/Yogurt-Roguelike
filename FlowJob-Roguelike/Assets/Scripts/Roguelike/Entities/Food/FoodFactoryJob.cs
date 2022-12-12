@@ -34,6 +34,10 @@ namespace Roguelike.Entities.Food
                 {
                     Layer = CollisionLayer.Interactable
                 })
+                .Add(new Interactable
+                {
+                    InteractionJob = new FoodInteractJob()
+                })
                 .Add(view);
 
             return entity;
