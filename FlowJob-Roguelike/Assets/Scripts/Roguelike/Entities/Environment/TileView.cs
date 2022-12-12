@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.Tools.ExtensionMethods;
-using DG.Tweening;
 using FlowJob;
 using UnityEngine;
 

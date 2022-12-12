@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Tools;
-using Core.Tools.ExtensionMethods;
-using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Entities;
-using UnityEngine;
 
 namespace Roguelike.Jobs
 {

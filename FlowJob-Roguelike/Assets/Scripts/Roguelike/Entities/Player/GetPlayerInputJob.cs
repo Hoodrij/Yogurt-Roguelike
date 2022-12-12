@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Tools;
-using FlowJob;
 using Roguelike.Entities;
 using UnityAsync;
 using UnityEngine;

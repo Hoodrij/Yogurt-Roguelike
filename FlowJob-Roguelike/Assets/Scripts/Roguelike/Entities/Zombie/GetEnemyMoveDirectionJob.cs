@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
-using FlowJob;
 using UnityEngine;
 
 namespace Roguelike.Entities

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Core.Tools;
-using FlowJob;
 using Roguelike.Entities;
 using UnityEngine;
 
