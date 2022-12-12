@@ -17,7 +17,7 @@ namespace Roguelike.Entities.Food
             Vector2Int spawnPosition = GetSpawnPosition();
             
             FoodData foodData = data.Foods.GetRandom();
-            TileView view = await assets.Tile.Spawn();
+            TileView view = await assets.Interactable.Spawn();
             view.SetPosition(spawnPosition);
             view.SetView(foodData.Sprite);
 

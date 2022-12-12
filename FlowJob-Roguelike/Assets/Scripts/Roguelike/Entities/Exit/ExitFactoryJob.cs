@@ -24,7 +24,7 @@ namespace Roguelike.Jobs
                     Value = data.ExitPosition
                 });
 
-            TileView view = await assets.Exit.Spawn();
+            TileView view = await assets.Interactable.Spawn();
             entity.Add(view);
             view.SetPosition(entity.Get<Position>().Value);
             
