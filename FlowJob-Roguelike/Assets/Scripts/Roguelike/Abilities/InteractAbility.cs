@@ -18,7 +18,6 @@ namespace Roguelike.Abilities
                 if (!target.TryGet(out Interactable interactable)) continue;
                 
                 await interactable.InteractionJob.Run((target, agentAspect.Entity));
-                target.Kill();
             }
 
             return AbilityOutcome.ProceedTurn;

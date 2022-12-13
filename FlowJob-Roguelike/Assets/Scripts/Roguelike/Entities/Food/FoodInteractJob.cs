@@ -14,6 +14,8 @@ namespace Roguelike.Entities.Food
             if (!agent.TryGet(out Health health)) return default;
 
             health.Value += food.Get<Food>().Value;
+            
+            food.Kill();
 
             return default;
         }

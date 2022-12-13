@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using Entities.Environment;
+using Entities.Exit;
 using FlowJob;
 using Roguelike.Entities;
+using Roguelike.Entities.Food;
 
 namespace Roguelike.Jobs
 {
@@ -22,6 +24,10 @@ namespace Roguelike.Jobs
                 .Add(new Position
                 {
                     Value = data.ExitPosition
+                })
+                .Add(new Interactable
+                {
+                    InteractionJob = new ExitInteractJob()
                 });
 
             TileView view = await assets.Interactable.Spawn();
