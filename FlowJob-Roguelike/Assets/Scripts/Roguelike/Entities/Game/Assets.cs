@@ -8,10 +8,10 @@ namespace Roguelike.Entities
     {
         public readonly SO<Data> Data = new("Data"); 
 
-        public readonly Asset<AgentView> Player = new("Player");
-        public readonly Asset<AgentView> Enemy = new("Enemy");
-        public readonly Asset<TileView> Tile = new("Tile");
-        public readonly Asset<TileView> Interactable = new("Interactable");
+        public readonly Asset<AgentView> Player = new("Entities/Player/Player");
+        public readonly Asset<AgentView> Enemy = new("Entities/Zombie/Zombie");
+        public readonly Asset<TileView> Tile = new("Entities/Tile");
+        public readonly Asset<TileView> Interactable = new("Entities/Interactable");
         
         public readonly Asset<UI> UI = new("UI");
     }
