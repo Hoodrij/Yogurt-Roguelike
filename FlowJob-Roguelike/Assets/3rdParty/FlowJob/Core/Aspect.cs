@@ -19,6 +19,7 @@
         public static bool Exist(this Aspect aspect) => aspect.Entity.Exist;
 
         public static ref TComponent Get<TComponent>(this Aspect aspect) where TComponent : IComponent => ref aspect.Entity.Get<TComponent>();
+        public static bool TryGet<TComponent>(this Aspect aspect, out TComponent component) where TComponent : IComponent => aspect.Entity.TryGet(out component);
         public static void Add<TComponent>(this Aspect aspect) where TComponent : IComponent, new() => aspect.Entity.Add<TComponent>();
         public static void Add<TComponent>(this Aspect aspect, TComponent component) where TComponent : IComponent => aspect.Entity.Set(component);
         public static void Set<TComponent>(this Aspect aspect, TComponent component) where TComponent : IComponent => aspect.Entity.Set(component);
