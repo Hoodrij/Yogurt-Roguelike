@@ -11,7 +11,7 @@ namespace Entities
         {
             if (!args.entity.TryGet(out AgentView view)) return default;
             
-            view.RunAnimation(args.animation);
+            await view.RunAnimation(args.animation);
 
             return default;
         }

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Entities;
 using FlowJob;
 using Roguelike.Entities;
-using UnityAsync;
 
 namespace Roguelike.Abilities
 {
@@ -16,7 +15,7 @@ namespace Roguelike.Abilities
             IEnumerable<Entity> targets = Physics.GetEntitiesAtPosition(args.TargetPosition);
             foreach (Entity target in targets)
             {
-                await new AnimationJob().Run((target, AgentView.Animation.Hit));
+                new AnimationJob().Run((target, AgentView.Animation.Hit));
                 
                 damageDealt = await new ChangeHealthJob().Run((target, -1));
             }
@@ -25,8 +24,6 @@ namespace Roguelike.Abilities
             {
                 await new AnimationJob().Run((args.AgentAspect.Entity, AgentView.Animation.Attack));
             }
-
-            await Wait.Seconds(0.1f);
 
             return damageDealt ? AbilityOutcome.CompleteTurn : AbilityOutcome.ProceedTurn;
         }

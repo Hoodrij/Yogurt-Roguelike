@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Core.Tools.ExtensionMethods;
 using DG.Tweening;
 using FlowJob;
+using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike.Entities
@@ -22,9 +24,10 @@ namespace Roguelike.Entities
             transform.DOMove(agentAspect.PhysBodyAspect.Position.Value.ToV3XY(), duration);
         }
 
-        public void RunAnimation(Animation animation)
+        public async Task RunAnimation(Animation animation)
         {
             animator.SetSingleTrigger(animation.ToString());
+            await this.WaitSeconds(0.1f);
         }
         
         public void Dispose()
