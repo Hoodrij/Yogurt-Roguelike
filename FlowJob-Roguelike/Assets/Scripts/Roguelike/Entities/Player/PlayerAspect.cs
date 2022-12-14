@@ -14,9 +14,4 @@ namespace Roguelike.Entities
     {
         
     }
-    
-    public class Health : IComponent
-    {
-        public int Value = 100;
-    }
 }

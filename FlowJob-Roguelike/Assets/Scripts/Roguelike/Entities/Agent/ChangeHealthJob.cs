@@ -13,11 +13,7 @@ namespace Roguelike.Entities
             
             health.Value += args.delta;
 
-            if (target.Has<Player>())
-            {
-                GameAspect gameAspect = Query.Single<GameAspect>();
-                gameAspect.Get<UI>().UpdateView(health.Value);
-            }
+            health.OnHealthChangedJob?.Run(target);
             
             if (health.Value <= 0)
             {

@@ -11,19 +11,26 @@ namespace Roguelike.Jobs
     {
         protected override async Task Run()
         {
+            Data data = Query.Single<Data>();
+            
             Entity.Create()
                 .Add<Level>();
 
             await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();
-            for (int i = 0; i < 4.RandomTo(); i++)
+            await new PlayerFactoryJob().Run();
+            
+            for (int i = 0; i < data.RocksCount.RandomTo(); i++)
+            {
+                await new RockFactoryJob().Run();
+            }
+            
+            for (int i = 0; i < data.FoodCount.RandomTo(); i++)
             {
                 await new FoodFactoryJob().Run();
             }
             
-            await new PlayerFactoryJob().Run();
-            
-            for (int i = 0; i < 4.RandomTo(); i++)
+            for (int i = 0; i < data.EnemiesCount.RandomTo(); i++)
             {
                 await new ZombieFactoryJob().Run();
             }

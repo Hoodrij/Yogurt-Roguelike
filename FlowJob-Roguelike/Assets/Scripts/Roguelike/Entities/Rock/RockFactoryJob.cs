@@ -5,9 +5,9 @@ using Entities.Environment;
 using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities.Food
+namespace Roguelike.Entities
 {
-    public class FoodFactoryJob : Job<Entity>
+    public class RockFactoryJob : Job<Entity>
     {
         protected override async Task<Entity> Run()
         {
@@ -15,30 +15,31 @@ namespace Roguelike.Entities.Food
             Assets assets = Query.Single<Assets>();
 
             Vector2Int spawnPosition = GetSpawnPosition();
+
+            RockData rockData = data.Rocks.GetRandom();
+
+            Health health = new()
+            {
+                Value = 2,
+                OnHealthChangedJob = new UpdateRockViewJob()
+            };
             
-            FoodData foodData = data.Foods.GetRandom();
             TileView view = await assets.Environment.Spawn();
             view.SetPosition(spawnPosition);
-            view.SetView(foodData.Sprite);
+            view.SetView(rockData.GetSprite(health));
 
             Entity entity = Level.Create()
-                .Add(new Food
-                {
-                    Value = foodData.Amount
-                })
+                .Add(rockData)
+                .Add(health)
+                .Add(view)
                 .Add(new Position
                 {
                     Value = spawnPosition
                 })
                 .Add(new Collider
                 {
-                    Layer = CollisionLayer.Interactable
-                })
-                .Add(new Interactable
-                {
-                    InteractionJob = new FoodInteractJob()
-                })
-                .Add(view);
+                    Layer = CollisionLayer.Destructible
+                });
 
             return entity;
             

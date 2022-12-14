@@ -31,7 +31,7 @@ namespace Roguelike.Entities
 
             Vector2Int GetSpawnPosition()
             {
-                return Physics.GetFreeCoords(data.EnemySpawnRange).GetRandom();
+                return Physics.GetFreeCoords(data.SpawnRange).GetRandom();
             }
         }
     }

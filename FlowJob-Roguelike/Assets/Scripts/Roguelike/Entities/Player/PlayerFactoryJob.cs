@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using Entities;
+using Entities.Player;
 using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Abilities;
@@ -29,6 +30,8 @@ namespace Roguelike.Jobs
             
             agentAspect.Add<Player>();
             agentAspect.Set(game.Health);
+
+            agentAspect.Get<Health>().OnHealthChangedJob = new UpdateGameUIJob();
 
             return agentAspect.Entity;
         }

@@ -2,6 +2,7 @@
 using Core.Tools;
 using FlowJob;
 using Roguelike.Entities;
+using UnityAsync;
 
 namespace Roguelike.Jobs
 {
@@ -15,6 +16,9 @@ namespace Roguelike.Jobs
             {
                 await new LevelFactoryJob().Run();
                 await new RunTurnsJob().Run();
+                
+                // small delay before restart
+                await this.WaitSeconds(0.1f);
 
                 Entity level = Query.Of<Level>().Single();
                 level.Kill();

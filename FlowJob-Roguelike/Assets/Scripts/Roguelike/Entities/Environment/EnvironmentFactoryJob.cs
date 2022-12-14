@@ -38,12 +38,11 @@ namespace Roguelike.Jobs
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
 
-            TileView tileView = await assets.Tile.Spawn();
+            TileView tileView = await assets.Background.Spawn();
             tileView.SetView(data.FloorSprites.GetRandom());
             tileView.SetPosition(coord);
             
             Entity entity = Level.Create()
-                .Add<Floor>()
                 .Add(new Position
                 {
                     Value = coord
@@ -58,12 +57,11 @@ namespace Roguelike.Jobs
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
 
-            TileView tileView = await assets.Tile.Spawn();
+            TileView tileView = await assets.Environment.Spawn();
             tileView.SetView(data.WallSprites.GetRandom());
             tileView.SetPosition(coord);
             
             Entity entity = Level.Create()
-                .Add<Wall>()
                 .Add(Collider.Hard)
                 .Add(new Position
                 {

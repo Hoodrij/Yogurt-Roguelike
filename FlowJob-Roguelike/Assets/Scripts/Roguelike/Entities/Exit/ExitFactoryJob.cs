@@ -30,7 +30,7 @@ namespace Roguelike.Jobs
                     InteractionJob = new ExitInteractJob()
                 });
 
-            TileView view = await assets.Interactable.Spawn();
+            TileView view = await assets.Environment.Spawn();
             entity.Add(view);
             view.SetPosition(entity.Get<Position>().Value);
             

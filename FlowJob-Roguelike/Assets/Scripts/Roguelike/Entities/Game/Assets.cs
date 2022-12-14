@@ -10,8 +10,8 @@ namespace Roguelike.Entities
 
         public readonly Asset<AgentView> Player = new("Entities/Player/Player");
         public readonly Asset<AgentView> Enemy = new("Entities/Zombie/Zombie");
-        public readonly Asset<TileView> Tile = new("Entities/Tile");
-        public readonly Asset<TileView> Interactable = new("Entities/Interactable");
+        public readonly Asset<TileView> Background = new("Entities/Background");
+        public readonly Asset<TileView> Environment = new("Entities/Environment");
         
         public readonly Asset<UI> UI = new("UI");
     }
