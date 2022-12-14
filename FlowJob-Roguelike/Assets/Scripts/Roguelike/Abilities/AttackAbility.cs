@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Entities;
 using FlowJob;
 using Roguelike.Entities;
+using UnityAsync;
 
 namespace Roguelike.Abilities
 {
@@ -9,17 +11,24 @@ namespace Roguelike.Abilities
     {
         protected override async Task<AbilityOutcome> Run(Args args)
         {
-            AbilityOutcome outcome = AbilityOutcome.ProceedTurn;
+            bool damageDealt = false;
             
             IEnumerable<Entity> targets = Physics.GetEntitiesAtPosition(args.TargetPosition);
             foreach (Entity target in targets)
             {
-                bool success = await new ChangeHealthJob().Run((target, -1));
-                if (success)
-                    outcome = AbilityOutcome.CompleteTurn;
+                await new AnimationJob().Run((target, AgentView.Animation.Hit));
+                
+                damageDealt = await new ChangeHealthJob().Run((target, -1));
             }
 
-            return outcome;
+            if (damageDealt)
+            {
+                await new AnimationJob().Run((args.AgentAspect.Entity, AgentView.Animation.Attack));
+            }
+
+            await Wait.Seconds(0.1f);
+
+            return damageDealt ? AbilityOutcome.CompleteTurn : AbilityOutcome.ProceedTurn;
         }
     }
 }
