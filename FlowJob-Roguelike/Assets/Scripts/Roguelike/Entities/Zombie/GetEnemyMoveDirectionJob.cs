@@ -10,17 +10,16 @@ namespace Roguelike.Entities
     {
         protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            Vector2Int origin = agentAspect.PhysBodyAspect.Position.Value;
-            return GetFreeDirections(origin)
+            return GetFreeDirections(agentAspect.PhysBodyAspect)
                 .GetRandom();
         }
         
-        private static IEnumerable<Direction> GetFreeDirections(Vector2Int origin)
+        private static IEnumerable<Direction> GetFreeDirections(PhysBodyAspect body)
         {
             foreach (Direction direction in Direction.All)
             {
-                Vector2Int newPoint = origin + direction;
-                if (Physics.GetEntitiesAtPosition(newPoint).IsEmpty())
+                Vector2Int newPoint = body.Position.Value + direction;
+                if (Physics.CanMoveAt(newPoint, body))
                 {
                     yield return direction;
                 }

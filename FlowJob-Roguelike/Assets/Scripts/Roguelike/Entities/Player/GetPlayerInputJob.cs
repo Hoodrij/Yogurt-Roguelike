@@ -10,7 +10,6 @@ namespace Roguelike.Jobs
     {
         protected override async Task<Direction> Run(AgentAspect agentAspect)
         {
-            Collider playerCollider = agentAspect.PhysBodyAspect.Collider;
             Position playerPosition = agentAspect.PhysBodyAspect.Position;
 
             Direction direction = default;
@@ -40,8 +39,7 @@ namespace Roguelike.Jobs
             bool CanMoveAtDirection()
             {
                 Vector2Int newPlayerPosition = playerPosition.Value + direction;
-                CollisionLayer layerAtPoint = Physics.LayerAtPoint(newPlayerPosition);
-                return playerCollider.CanMoveAt.HasFlag(layerAtPoint);
+                return Physics.CanMoveAt(newPlayerPosition, agentAspect.PhysBodyAspect);
             }
         }
     }

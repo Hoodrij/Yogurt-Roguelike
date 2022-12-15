@@ -10,10 +10,16 @@ namespace Roguelike
 {
     public static class Physics
     {
+        public static bool CanMoveAt(Vector2Int point, PhysBodyAspect body)
+        {
+            CollisionLayer layerAtPoint = Physics.LayerAtPoint(point);
+            return body.Collider.CanMoveAt.HasFlag(layerAtPoint);
+        }
+        
         public static CollisionLayer LayerAtPoint(Vector2Int point)
         {
             CollisionLayer result = CollisionLayer.Empty;
-            IEnumerable<Collider> collidersAtPoint = GetColliderAtPosition(point);
+            IEnumerable<Collider> collidersAtPoint = GetCollidersAtPosition(point);
             
             foreach (Collider collider in collidersAtPoint)
             {
@@ -41,7 +47,7 @@ namespace Roguelike
             }
         }
 
-        public static IEnumerable<Collider> GetColliderAtPosition(Vector2Int coord)
+        public static IEnumerable<Collider> GetCollidersAtPosition(Vector2Int coord)
         {
             foreach (PhysBodyAspect body in Query.Of<PhysBodyAspect>())
             {
