@@ -12,8 +12,6 @@ namespace Roguelike.Entities
             Data data = await assets.Data.Load();
 
             Entity entity = Entity.Create()
-                .Add<Game>()
-                .Add<Life>()
                 .Add(assets)
                 .Add(data);
 

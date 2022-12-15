@@ -6,8 +6,6 @@ namespace Roguelike.Entities
     {
         public Entity Entity { get; set; }
 
-        public Game Game => this.Get<Game>();
-        public Life Life => this.Get<Life>();
         public Data Data => this.Get<Data>();
         public Assets Assets => this.Get<Assets>();
 
