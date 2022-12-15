@@ -10,20 +10,20 @@ namespace Roguelike.Entities
         {
             Assets assets = new Assets();
             Data data = await assets.Data.Load();
-
-            Entity entity = Entity.Create()
-                .Add(assets)
-                .Add(data);
-
+            
             Health health = new Health
             {
                 Value = data.StartingPlayerHealth
             };
-            entity.Add(health);
 
             UI ui = await assets.UI.Spawn();
             ui.UpdateView(health.Value);
-            entity.Add(ui);
+            
+            Entity entity = Entity.Create()
+                .Add(assets)
+                .Add(data)
+                .Add(health)
+                .Add(ui);
 
             return entity.ToAspect<GameAspect>();
         }
