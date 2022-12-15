@@ -20,8 +20,9 @@ namespace Roguelike.Jobs
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    if (x == 0 || x == xSize - 1 
-                        || y == 0 || y == ySize - 1)
+                    bool isFramePosition = x == 0 || x == xSize - 1 
+                                        || y == 0 || y == ySize - 1;
+                    if (isFramePosition)
                     {
                         await SpawnWall(new Vector2Int(x, y));
                     }
