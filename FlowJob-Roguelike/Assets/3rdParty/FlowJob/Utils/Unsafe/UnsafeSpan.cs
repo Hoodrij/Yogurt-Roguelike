@@ -8,13 +8,13 @@ namespace FlowJob
     {
         private int elementSize;
         private int length;
-        private void* memoryPointer;
+        private IntPtr memoryPointer;
 
         public UnsafeSpan(int length)
         {
             this.length = length < 4 ? 4 : length;
             elementSize = sizeof(T);
-            memoryPointer = Marshal.AllocHGlobal(this.length * elementSize).ToPointer();
+            memoryPointer = Marshal.AllocHGlobal(this.length * elementSize);
 
             for (int i = 0; i < length; i++)
             {
@@ -41,14 +41,14 @@ namespace FlowJob
             if (index >= length)
             {
                 length <<= 1;
-                memoryPointer = Marshal.ReAllocHGlobal((IntPtr)memoryPointer, (IntPtr)(length * elementSize)).ToPointer();
+                memoryPointer = Marshal.ReAllocHGlobal(memoryPointer, (IntPtr)(length * elementSize));
                 
                 for (int i = length >> 1; i < length; i++)
                 {
                     Get(i)->Initialize();
                 }
             }
-            return (T*) ((byte*) memoryPointer + index * elementSize);
+            return (T*) (memoryPointer + index * elementSize);
         }
 
         public void Dispose()
@@ -58,8 +58,8 @@ namespace FlowJob
                 Get(i)->Dispose();
             }
             
-            Marshal.FreeHGlobal((IntPtr)memoryPointer);
-            memoryPointer = null;
+            Marshal.FreeHGlobal(memoryPointer);
+            memoryPointer = IntPtr.Zero;
             length = 0;
         }
     }
