@@ -4,7 +4,7 @@ using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class GetEnemyMoveDirectionJob : Job<Direction, AgentAspect>
     {

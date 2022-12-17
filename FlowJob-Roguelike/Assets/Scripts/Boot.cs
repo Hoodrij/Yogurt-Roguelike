@@ -1,5 +1,4 @@
-﻿using Roguelike.Jobs;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Roguelike
 {

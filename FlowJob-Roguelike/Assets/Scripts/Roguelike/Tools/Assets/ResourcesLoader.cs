@@ -2,7 +2,7 @@
 using UnityAsync;
 using UnityEngine;
 
-namespace Tools
+namespace Roguelike.Tools
 {
     public class ResourcesLoader : IAssetLoader
     {

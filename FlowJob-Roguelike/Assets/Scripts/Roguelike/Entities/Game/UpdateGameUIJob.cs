@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike.Entities;
 
-namespace Entities.Player
+namespace Roguelike
 {
     public class UpdateGameUIJob : Job<Void, Entity>
     {

@@ -1,7 +1,7 @@
 ﻿using Core.Tools;
 using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class Health : IComponent
     {

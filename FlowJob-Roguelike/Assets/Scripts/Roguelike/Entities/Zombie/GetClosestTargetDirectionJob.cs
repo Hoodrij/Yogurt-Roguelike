@@ -5,7 +5,7 @@ using Core.Tools.ExtensionMethods;
 using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class GetClosestTargetDirectionJob : Job<Direction, AgentAspect>
     {

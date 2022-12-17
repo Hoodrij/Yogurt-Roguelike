@@ -1,13 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Entities;
-using Entities.Player;
-using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Abilities;
-using Roguelike.Entities;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class PlayerFactoryJob : Job<Entity>
     {

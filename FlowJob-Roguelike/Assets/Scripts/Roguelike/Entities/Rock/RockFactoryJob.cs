@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
-using Entities.Environment;
 using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class RockFactoryJob : Job<Entity>
     {

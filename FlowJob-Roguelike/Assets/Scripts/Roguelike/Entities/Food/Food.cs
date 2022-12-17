@@ -1,6 +1,6 @@
 ﻿using FlowJob;
 
-namespace Roguelike.Entities.Food
+namespace Roguelike
 {
     public class Food : IComponent
     {

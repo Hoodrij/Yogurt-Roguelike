@@ -1,7 +1,7 @@
 ﻿using Core.Tools;
 using FlowJob;
 
-namespace Roguelike.Entities.Food
+namespace Roguelike
 {
     public class Interactable : IComponent
     {

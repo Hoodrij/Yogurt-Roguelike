@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Entities.Environment;
 using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class UpdateRockViewJob : Job<Void, Entity>
     {

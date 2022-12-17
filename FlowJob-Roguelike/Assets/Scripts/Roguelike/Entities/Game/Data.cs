@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     [CreateAssetMenu]
     public class Data : ScriptableObject, IComponent

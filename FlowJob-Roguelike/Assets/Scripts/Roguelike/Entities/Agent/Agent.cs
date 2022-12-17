@@ -3,7 +3,7 @@ using Core.Tools;
 using FlowJob;
 using Roguelike.Abilities;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class Agent : IComponent
     {

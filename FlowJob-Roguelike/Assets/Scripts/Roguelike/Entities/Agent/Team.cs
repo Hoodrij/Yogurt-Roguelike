@@ -1,4 +1,4 @@
-﻿namespace Roguelike.Entities
+﻿namespace Roguelike
 {
     public enum Team
     {

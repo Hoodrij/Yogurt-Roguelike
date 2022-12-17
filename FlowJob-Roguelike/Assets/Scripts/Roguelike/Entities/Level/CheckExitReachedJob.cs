@@ -3,10 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike.Entities;
 using UnityEngine;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class CheckExitReachedJob : Job<bool>
     {

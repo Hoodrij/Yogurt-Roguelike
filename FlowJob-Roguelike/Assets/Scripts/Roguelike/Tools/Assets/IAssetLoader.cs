@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Tools
+namespace Roguelike.Tools
 {
     public interface IAssetLoader
     {

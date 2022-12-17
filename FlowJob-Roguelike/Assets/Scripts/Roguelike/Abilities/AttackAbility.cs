@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Entities;
 using FlowJob;
-using Roguelike.Entities;
 
 namespace Roguelike.Abilities
 {

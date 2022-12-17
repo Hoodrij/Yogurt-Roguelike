@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike.Entities;
 
-namespace Entities
+namespace Roguelike
 {
     public class AnimationJob : Job<Void, (Entity entity, AgentView.Animation animation)>
     {

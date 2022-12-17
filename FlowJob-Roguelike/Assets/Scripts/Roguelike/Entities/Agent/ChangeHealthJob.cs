@@ -2,7 +2,7 @@
 using Core.Tools;
 using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class ChangeHealthJob : Job<bool, (Entity target, int delta)>
     {

@@ -1,8 +1,7 @@
-﻿using Entities.Environment;
-using FlowJob;
-using Tools;
+﻿using FlowJob;
+using Roguelike.Tools;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class Assets : IComponent
     {

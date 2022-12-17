@@ -2,7 +2,7 @@
 using Core.Tools;
 using FlowJob;
 
-namespace Entities.Exit
+namespace Roguelike
 {
     public class ExitInteractJob : Job<Void, (Entity exit, Entity agent)>
     {

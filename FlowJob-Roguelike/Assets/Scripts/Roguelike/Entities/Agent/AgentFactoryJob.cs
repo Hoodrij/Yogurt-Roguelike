@@ -2,14 +2,11 @@
 using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike;
 using Roguelike.Abilities;
-using Roguelike.Entities;
-using Tools;
+using Roguelike.Tools;
 using UnityEngine;
-using Collider = Roguelike.Collider;
 
-namespace Entities.TurnSystem
+namespace Roguelike
 {
     public class AgentFactoryJob : Job<AgentAspect, AgentFactoryJob.Args> 
     {

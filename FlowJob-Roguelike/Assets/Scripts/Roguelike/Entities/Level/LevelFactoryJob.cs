@@ -2,10 +2,8 @@
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
-using Roguelike.Entities;
-using Roguelike.Entities.Food;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class LevelFactoryJob : Job
     {

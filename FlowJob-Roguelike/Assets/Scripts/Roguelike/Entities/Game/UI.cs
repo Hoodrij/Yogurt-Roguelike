@@ -4,7 +4,7 @@ using FlowJob;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class UI : MonoBehaviour, IComponent, IDisposable
     {

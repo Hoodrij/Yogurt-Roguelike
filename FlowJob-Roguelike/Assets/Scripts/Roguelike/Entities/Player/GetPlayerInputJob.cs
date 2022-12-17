@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Roguelike.Entities;
 using UnityAsync;
 using UnityEngine;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class GetPlayerInputJob : Job<Direction, AgentAspect>
     {

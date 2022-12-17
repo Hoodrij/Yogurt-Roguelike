@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
-using Roguelike.Entities;
 using UnityEngine;
 
 namespace Roguelike

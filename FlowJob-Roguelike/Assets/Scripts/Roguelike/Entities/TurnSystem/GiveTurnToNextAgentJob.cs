@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike.Entities;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class GiveTurnToNextAgentJob : Job
     {

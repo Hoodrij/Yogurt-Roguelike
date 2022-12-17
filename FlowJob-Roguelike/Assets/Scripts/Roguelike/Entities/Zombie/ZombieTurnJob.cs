@@ -3,7 +3,7 @@ using Core.Tools;
 using Roguelike.Abilities;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class ZombieTurnJob : Job<Void, AgentAspect>
     {

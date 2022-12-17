@@ -6,7 +6,7 @@ using FlowJob;
 using UnityAsync;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class AgentView : MonoBehaviour, IComponent, IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public struct GameAspect : Aspect<GameAspect>
     {

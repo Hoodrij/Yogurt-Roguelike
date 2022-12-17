@@ -3,7 +3,7 @@ using Core.Tools.ExtensionMethods;
 using FlowJob;
 using UnityEngine;
 
-namespace Entities.Environment
+namespace Roguelike
 {
     public class TileView : MonoBehaviour, IComponent, IDisposable
     {

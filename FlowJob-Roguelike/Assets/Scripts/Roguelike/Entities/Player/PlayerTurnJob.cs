@@ -1,12 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Roguelike;
 using Roguelike.Abilities;
-using Roguelike.Entities;
-using Roguelike.Jobs;
 using UnityEngine;
 
-namespace Entities
+namespace Roguelike
 {
     public class PlayerTurnJob : Job<Void, AgentAspect>
     {

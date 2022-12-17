@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using Roguelike.Entities;
 using UnityAsync;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class RunTurnsJob : Job
     {

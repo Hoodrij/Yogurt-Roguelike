@@ -1,6 +1,6 @@
 ﻿using FlowJob;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class TurnOwner : IComponent { }
 }

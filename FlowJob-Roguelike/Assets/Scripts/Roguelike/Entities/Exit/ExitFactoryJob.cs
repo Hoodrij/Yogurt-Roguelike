@@ -1,12 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Entities.Environment;
-using Entities.Exit;
 using FlowJob;
-using Roguelike.Entities;
-using Roguelike.Entities.Food;
 
-namespace Roguelike.Jobs
+namespace Roguelike
 {
     public class ExitFactoryJob : Job<Entity>
     {

@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using FlowJob;
-using Roguelike.Entities;
-using Roguelike.Entities.Food;
 using UnityEngine;
 
 namespace Roguelike.Abilities

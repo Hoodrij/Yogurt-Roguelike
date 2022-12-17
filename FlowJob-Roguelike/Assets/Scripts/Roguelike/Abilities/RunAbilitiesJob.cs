@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using Roguelike.Entities;
 using UnityEngine;
 
 namespace Roguelike.Abilities

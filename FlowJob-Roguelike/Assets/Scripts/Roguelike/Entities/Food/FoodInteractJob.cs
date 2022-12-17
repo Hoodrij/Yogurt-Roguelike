@@ -2,7 +2,7 @@
 using Core.Tools;
 using FlowJob;
 
-namespace Roguelike.Entities.Food
+namespace Roguelike
 {
     public class FoodInteractJob : Job<Void, (Entity food, Entity agent)>
     {

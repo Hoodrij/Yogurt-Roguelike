@@ -2,7 +2,7 @@
 using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     [Serializable]
     public class RockData : IComponent

@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
 using Core.Tools.ExtensionMethods;
-using Entities.TurnSystem;
 using FlowJob;
 using Roguelike.Abilities;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class ZombieFactoryJob : Job<Entity>
     {

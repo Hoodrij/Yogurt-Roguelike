@@ -1,7 +1,7 @@
 ﻿using FlowJob;
 using UnityEngine;
 
-namespace Roguelike.Entities
+namespace Roguelike
 {
     public class Position : IComponent
     {
