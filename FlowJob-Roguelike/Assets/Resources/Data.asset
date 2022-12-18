@@ -18,7 +18,7 @@ MonoBehaviour:
   EnemiesCount: 4
   RocksCount: 6
   StartingPlayerHealth: 100
-  EnemyHealth: 2
+  ZombieHealth: 2
   FloorSprites:
   - {fileID: 21300064, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   - {fileID: 21300064, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}

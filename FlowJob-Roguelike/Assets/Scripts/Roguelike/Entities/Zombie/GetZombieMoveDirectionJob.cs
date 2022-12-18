@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetEnemyMoveDirectionJob : Job<Direction, AgentAspect>
+    public class GetZombieMoveDirectionJob : Job<Direction, AgentAspect>
     {
         public override async Task<Direction> Run(AgentAspect agentAspect)
         {

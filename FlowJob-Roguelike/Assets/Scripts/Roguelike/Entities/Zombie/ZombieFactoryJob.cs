@@ -16,15 +16,15 @@ namespace Roguelike
             
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
-                Team = Team.Enemy,
+                Team = Team.Zombie,
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty,
                 TurnJob = new ZombieTurnJob(),
                 Position = GetSpawnPosition(),
-                ViewRef = assets.Enemy,
+                ViewRef = assets.Zombie,
                 Abilities = Ability.ZombieAbilities
             });
-            agentAspect.Health.Value = data.EnemyHealth;
+            agentAspect.Health.Value = data.ZombieHealth;
 
             return agentAspect.Entity;
 

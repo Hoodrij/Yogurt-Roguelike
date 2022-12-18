@@ -6,9 +6,9 @@ namespace Roguelike
 {
     public class GetPlayerInputJob : Job<Direction, AgentAspect>
     {
-        public override async Task<Direction> Run(AgentAspect agentAspect)
+        public override async Task<Direction> Run(AgentAspect player)
         {
-            Position playerPosition = agentAspect.PhysBodyAspect.Position;
+            Position playerPosition = player.PhysBodyAspect.Position;
 
             Direction direction;
 
@@ -39,7 +39,7 @@ namespace Roguelike
             bool CanMoveAtDirection()
             {
                 Vector2Int newPlayerPosition = playerPosition.Value + direction;
-                return Physics.CanMoveAt(newPlayerPosition, agentAspect.PhysBodyAspect);
+                return Physics.CanMoveAt(newPlayerPosition, player.PhysBodyAspect);
             }
         }
     }

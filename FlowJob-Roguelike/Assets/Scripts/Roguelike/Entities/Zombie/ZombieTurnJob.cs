@@ -12,7 +12,7 @@ namespace Roguelike
             Direction direction = await new GetClosestTargetDirectionJob().Run(agentAspect);
             if (direction == Direction.None)
             {
-                direction = await new GetEnemyMoveDirectionJob().Run(agentAspect);
+                direction = await new GetZombieMoveDirectionJob().Run(agentAspect);
             }
 
             Vector2Int newPosition = agentAspect.PhysBodyAspect.Position.Value + direction;
