@@ -14,7 +14,7 @@ namespace Roguelike
             {
                 await this.WaitSecondsRealtime(GetDelay());
                 await new GiveTurnToNextAgentJob().Run();
-                await new MoveTurnOwnerJob().Run();
+                await new MakeTurnJob().Run();
             }
         }
 
