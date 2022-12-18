@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class UpdateRockViewJob : Job<Void, Entity>
     {
-        protected override async Task<Void> Run(Entity entity)
+        public override async Task<Void> Run(Entity entity)
         {
             TileView tileView = entity.Get<TileView>();
             Health health = entity.Get<Health>();

@@ -21,7 +21,7 @@ namespace Roguelike
 
         public void Dispose()
         {
-            gameObject.Destroy();
+            Destroy(gameObject);
         }
     }
 }

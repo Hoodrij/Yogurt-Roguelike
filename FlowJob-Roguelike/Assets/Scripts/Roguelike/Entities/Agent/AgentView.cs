@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Core.Tools.ExtensionMethods;
 using DG.Tweening;
 using FlowJob;
-using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike
@@ -27,7 +26,7 @@ namespace Roguelike
         public async Task RunAnimation(Animation animation)
         {
             animator.SetSingleTrigger(animation.ToString());
-            await this.WaitSeconds(0.1f);
+            await Task.Delay(TimeSpan.FromSeconds(0.1f)); 
         }
         
         public void Dispose()
@@ -35,7 +34,7 @@ namespace Roguelike
             transform.DOKill();
             transform.DOScale(0, 0.05f).OnComplete(() =>
             {
-                gameObject.Destroy();
+                Destroy(gameObject);
             });
         }
     }

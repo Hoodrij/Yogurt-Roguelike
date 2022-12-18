@@ -9,7 +9,7 @@ namespace Roguelike
 {
     public class CheckExitReachedJob : Job<bool>
     {
-        protected override async Task<bool> Run()
+        public override async Task<bool> Run()
         {
             if (!Query.Single<PlayerAspect>().Exist())
                 return false;

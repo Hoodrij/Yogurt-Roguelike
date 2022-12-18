@@ -6,7 +6,7 @@ namespace Roguelike.Abilities
 {
     public class InteractAbility : Ability
     {
-        protected override async Task<AbilityOutcome> Run(Args args)
+        public override async Task<AbilityOutcome> Run(Args args)
         {
             AgentAspect agentAspect = args.AgentAspect;
             Vector2Int targetPosition = args.TargetPosition;

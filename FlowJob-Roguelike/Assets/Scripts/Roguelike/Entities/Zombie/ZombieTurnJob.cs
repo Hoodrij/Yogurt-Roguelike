@@ -7,7 +7,7 @@ namespace Roguelike
 {
     public class ZombieTurnJob : Job<Void, AgentAspect>
     {
-        protected override async Task<Void> Run(AgentAspect agentAspect)
+        public override async Task<Void> Run(AgentAspect agentAspect)
         {
             Direction direction = await new GetClosestTargetDirectionJob().Run(agentAspect);
             if (direction == Direction.None)

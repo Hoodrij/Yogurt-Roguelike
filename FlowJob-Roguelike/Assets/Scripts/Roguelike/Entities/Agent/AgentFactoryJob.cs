@@ -21,7 +21,7 @@ namespace Roguelike
             public Asset<AgentView> ViewRef;
         }
         
-        protected override async Task<AgentAspect> Run(Args args)
+        public override async Task<AgentAspect> Run(Args args)
         {
             Entity agentEntity = Level.Create()
                 .Add(new Collider

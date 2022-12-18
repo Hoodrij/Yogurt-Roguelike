@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using UnityAsync;
 
 namespace Roguelike
 {
     public class RunGameJob : Job
     {
-        protected override async Task Run()
+        public override async Task Run()
         {
             await new GameFactoryJob().Run(); 
 
@@ -17,7 +17,7 @@ namespace Roguelike
                 await new RunTurnsJob().Run();
                 
                 // small delay before restart
-                await this.WaitSeconds(0.1f);
+                await Task.Delay(TimeSpan.FromSeconds(0.1f));
 
                 Entity level = Query.Of<Level>().Single();
                 level.Kill();

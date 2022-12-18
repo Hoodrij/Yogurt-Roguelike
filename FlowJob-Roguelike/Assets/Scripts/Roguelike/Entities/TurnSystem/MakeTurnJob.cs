@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class MakeTurnJob : Job
     {
-        protected override async Task Run()
+        public override async Task Run()
         {
             AgentAspect agentAspect = Query.Of<AgentAspect>().With<TurnOwner>().Single();
             await agentAspect.Agent.TurnJob.Run(agentAspect);

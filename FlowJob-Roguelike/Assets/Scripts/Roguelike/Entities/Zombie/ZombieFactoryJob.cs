@@ -9,7 +9,7 @@ namespace Roguelike
 {
     public class ZombieFactoryJob : Job<Entity>
     {
-        protected override async Task<Entity> Run()
+        public override async Task<Entity> Run()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();

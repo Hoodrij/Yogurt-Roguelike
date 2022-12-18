@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class AnimationJob : Job<Void, (Entity entity, AgentView.Animation animation)>
     {
-        protected override async Task<Void> Run((Entity entity, AgentView.Animation animation) args)
+        public override async Task<Void> Run((Entity entity, AgentView.Animation animation) args)
         {
             if (!args.entity.TryGet(out AgentView view)) return default;
             

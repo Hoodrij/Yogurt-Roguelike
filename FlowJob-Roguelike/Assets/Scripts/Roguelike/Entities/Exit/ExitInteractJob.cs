@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class ExitInteractJob : Job<Void, (Entity exit, Entity agent)>
     {
-        protected override async Task<Void> Run((Entity exit, Entity agent) args)
+        public override async Task<Void> Run((Entity exit, Entity agent) args)
         {
             Entity exit = args.exit;
             Entity agent = args.agent;

@@ -7,7 +7,7 @@ namespace Roguelike
 {
     public class LevelFactoryJob : Job
     {
-        protected override async Task Run()
+        public override async Task Run()
         {
             Data data = Query.Single<Data>();
             

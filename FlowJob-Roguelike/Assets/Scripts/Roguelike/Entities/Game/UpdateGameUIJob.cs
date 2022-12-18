@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class UpdateGameUIJob : Job<Void, Entity>
     {
-        protected override async Task<Void> Run(Entity entity)
+        public override async Task<Void> Run(Entity entity)
         {
             GameAspect gameAspect = Query.Single<GameAspect>();
             Health health = entity.Get<Health>();

@@ -8,7 +8,7 @@ namespace Roguelike
 {
     public class GetEnemyMoveDirectionJob : Job<Direction, AgentAspect>
     {
-        protected override async Task<Direction> Run(AgentAspect agentAspect)
+        public override async Task<Direction> Run(AgentAspect agentAspect)
         {
             return GetFreeDirections(agentAspect.PhysBodyAspect)
                 .GetRandom();

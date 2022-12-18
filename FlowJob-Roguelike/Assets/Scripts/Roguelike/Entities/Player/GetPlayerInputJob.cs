@@ -1,23 +1,24 @@
 ﻿using System.Threading.Tasks;
 using Core.Tools;
-using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike
 {
     public class GetPlayerInputJob : Job<Direction, AgentAspect>
     {
-        protected override async Task<Direction> Run(AgentAspect agentAspect)
+        public override async Task<Direction> Run(AgentAspect agentAspect)
         {
             Position playerPosition = agentAspect.PhysBodyAspect.Position;
 
-            Direction direction = default;
+            Direction direction;
 
-            await this.WaitUntil(() =>
+            bool isInputValid;
+            do
             {
                 direction = ReadInput();
-                return DirectionIsValid() && CanMoveAtDirection();
-            });
+                isInputValid = DirectionIsValid() && CanMoveAtDirection();
+                await Task.Yield();
+            } while (!isInputValid);
 
             return direction;
             

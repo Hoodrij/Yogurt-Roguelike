@@ -4,7 +4,7 @@ namespace Roguelike.Abilities
 {
     public class MoveAbility : Ability
     {
-        protected override async Task<AbilityOutcome> Run(Args args)
+        public override async Task<AbilityOutcome> Run(Args args)
         {
             AgentAspect agentAspect = args.AgentAspect;
             

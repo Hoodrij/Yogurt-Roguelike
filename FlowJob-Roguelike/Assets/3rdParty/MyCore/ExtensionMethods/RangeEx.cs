@@ -9,10 +9,5 @@ namespace Core.Tools.ExtensionMethods
         {
             return range.End.Value.RandomTo() + range.Start.Value;
         }
-
-        public static Vector2Int GetRandomVector2Int(this Range range)
-        {
-            return new Vector2Int(range.RandomTo(), range.RandomTo());
-        }
     }
 }

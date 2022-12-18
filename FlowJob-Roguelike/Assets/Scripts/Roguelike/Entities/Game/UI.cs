@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Tools.ExtensionMethods;
 using FlowJob;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +16,7 @@ namespace Roguelike
 
         public void Dispose()
         {
-            gameObject.Destroy();
+            Destroy(gameObject);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class GameFactoryJob : Job<GameAspect>
     {
-        protected override async Task<GameAspect> Run()
+        public override async Task<GameAspect> Run()
         {
             Assets assets = new Assets();
             Data data = await assets.Data.Load();

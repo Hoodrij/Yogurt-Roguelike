@@ -6,7 +6,7 @@ namespace Roguelike.Abilities
 {
     public class AttackAbility : Ability
     {
-        protected override async Task<AbilityOutcome> Run(Args args)
+        public override async Task<AbilityOutcome> Run(Args args)
         {
             bool damageDealt = false;
             

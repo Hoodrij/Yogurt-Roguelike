@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using UnityAsync;
 using UnityEngine;
 
 namespace Roguelike.Tools
@@ -10,13 +9,18 @@ namespace Roguelike.Tools
         
         public async Task<Object> Load(string path)
         {
-            return await Resources.LoadAsync(path);
+            ResourceRequest resourceRequest = Resources.LoadAsync(path);
+            while (!resourceRequest.isDone)
+            {
+                await Task.Yield();
+            }
+            return resourceRequest.asset;
         }
 
         public async Task<TComponent> Load<TComponent>(string path) where TComponent : Component
         {
-            Object loaded = await Resources.LoadAsync<GameObject>(path);
-            return ((GameObject) loaded).GetComponent<TComponent>();
+            GameObject loaded = (GameObject) await Load(path);
+            return loaded.GetComponent<TComponent>();
         }
     }
 }

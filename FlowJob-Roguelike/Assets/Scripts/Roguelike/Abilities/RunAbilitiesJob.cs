@@ -6,7 +6,7 @@ namespace Roguelike.Abilities
 {
     public class RunAbilitiesJob : Job<Void, (AgentAspect agentAspect, Vector2Int targetPosition)>
     {
-        protected override async Task<Void> Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
+        public override async Task<Void> Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
         {
             AgentAspect agentAspect = args.agentAspect;
             Vector2Int newPosition = args.targetPosition; 

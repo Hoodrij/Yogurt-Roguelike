@@ -1,18 +1,18 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Core.Tools;
 using FlowJob;
-using UnityAsync;
 
 namespace Roguelike
 {
     public class RunTurnsJob : Job
     {
-        protected override async Task Run()
+        public override async Task Run()
         {
             while (!await IsExitReached() && !await IsGameOver())
             {
-                await this.WaitSecondsRealtime(GetDelay());
+                await Task.Delay(TimeSpan.FromSeconds(GetDelay()));
                 await new GiveTurnToNextAgentJob().Run();
                 await new MakeTurnJob().Run();
             }
