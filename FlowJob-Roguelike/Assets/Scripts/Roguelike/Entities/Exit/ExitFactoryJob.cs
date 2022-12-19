@@ -20,10 +20,6 @@ namespace Roguelike
                 .Add(new Position
                 {
                     Value = data.ExitPosition
-                })
-                .Add(new Interactable
-                {
-                    InteractionJob = new ExitInteractJob()
                 });
 
             TileView view = await assets.Environment.Spawn();
