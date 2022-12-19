@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Roguelike.Abilities
 {
-    public class RunAbilitiesJob : Job<Void, (AgentAspect agentAspect, Vector2Int targetPosition)>
+    public class RunAbilitiesJob : Job<Task, (AgentAspect agentAspect, Vector2Int targetPosition)>
     {
-        public override async Task<Void> Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
+        public override async Task Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
         {
             AgentAspect agentAspect = args.agentAspect;
             Vector2Int newPosition = args.targetPosition; 
@@ -21,8 +21,6 @@ namespace Roguelike.Abilities
                 if (abilityOutcome == AbilityOutcome.CompleteTurn)
                     break;
             }
-
-            return default;
         }
     }
 }

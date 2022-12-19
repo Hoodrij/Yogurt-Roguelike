@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieFactoryJob : Job<Entity>
+    public class ZombieFactoryJob : Job<Task<Entity>>
     {
         public override async Task<Entity> Run()
         {

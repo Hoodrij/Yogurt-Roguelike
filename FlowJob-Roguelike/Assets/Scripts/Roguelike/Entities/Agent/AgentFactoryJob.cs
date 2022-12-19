@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class AgentFactoryJob : Job<AgentAspect, AgentFactoryJob.Args> 
+    public class AgentFactoryJob : Job<Task<AgentAspect>, AgentFactoryJob.Args> 
     {
         public struct Args
         {
             public Team Team;
-            public Job<Void, AgentAspect> TurnJob;
+            public Job<Task, AgentAspect> TurnJob;
             public List<Ability> Abilities;
             public Vector2Int Position;
             public CollisionLayer Layer;

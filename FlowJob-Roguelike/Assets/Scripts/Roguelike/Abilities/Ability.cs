@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Core.Tools;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Roguelike.Abilities
         CompleteTurn = 2,
     }
     
-    public abstract class Ability : Job<AbilityOutcome, Ability.Args>
+    public abstract class Ability : Job<Task<AbilityOutcome>, Ability.Args>
     {
         public struct Args
         {

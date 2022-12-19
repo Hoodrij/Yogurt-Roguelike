@@ -5,7 +5,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class LevelFactoryJob : Job
+    public class LevelFactoryJob : Job<Task>
     {
         public override async Task Run()
         {

@@ -28,7 +28,7 @@ namespace Roguelike
         public int RocksCount;
 
         public int StartingPlayerHealth;
-        public int ZombieHealth;
+        public int  ZombieHealth;
 
         public List<Sprite> FloorSprites;
         public List<Sprite> WallSprites;

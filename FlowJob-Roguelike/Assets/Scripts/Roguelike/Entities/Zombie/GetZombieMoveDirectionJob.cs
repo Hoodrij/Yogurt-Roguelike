@@ -8,7 +8,7 @@ namespace Roguelike
 {
     public class GetZombieMoveDirectionJob : Job<Direction, AgentAspect>
     {
-        public override async Task<Direction> Run(AgentAspect agentAspect)
+        public override Direction Run(AgentAspect agentAspect)
         {
             return GetFreeDirections(agentAspect.PhysBodyAspect)
                 .GetRandom();

@@ -6,7 +6,7 @@ namespace Roguelike
 {
     public class CheckGameOverJob : Job<bool>
     {
-        public override async Task<bool> Run()
+        public override bool Run()
         {
             return Query.Single<GameAspect>().Health.Value <= 0;
         }

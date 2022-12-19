@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class GameFactoryJob : Job<GameAspect>
+    public class GameFactoryJob : Job<Task<GameAspect>>
     {
         public override async Task<GameAspect> Run()
         {

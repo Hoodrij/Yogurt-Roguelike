@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class ExitFactoryJob : Job<Entity>
+    public class ExitFactoryJob : Job<Task<Entity>>
     {
         public override async Task<Entity> Run()
         {

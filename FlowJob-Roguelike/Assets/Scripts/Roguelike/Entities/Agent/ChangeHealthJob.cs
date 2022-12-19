@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class ChangeHealthJob : Job<bool, (Entity target, int delta)>
+    public class ChangeHealthJob : Job<Task<bool>, (Entity target, int delta)>
     {
         public override async Task<bool> Run((Entity target, int delta) args)
         {

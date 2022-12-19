@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class EnvironmentFactoryJob : Job
+    public class EnvironmentFactoryJob : Job<Task>
     {
         public override async Task Run()
         {

@@ -5,20 +5,18 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieTurnJob : Job<Void, AgentAspect>
+    public class ZombieTurnJob : Job<Task, AgentAspect>
     {
-        public override async Task<Void> Run(AgentAspect agentAspect)
+        public override async Task Run(AgentAspect agentAspect)
         {
-            Direction direction = await new GetClosestTargetDirectionJob().Run(agentAspect);
+            Direction direction = new GetClosestTargetDirectionJob().Run(agentAspect);
             if (direction == Direction.None)
             {
-                direction = await new GetZombieMoveDirectionJob().Run(agentAspect);
+                direction = new GetZombieMoveDirectionJob().Run(agentAspect);
             }
 
             Vector2Int newPosition = agentAspect.PhysBodyAspect.Position.Value + direction;
             await new RunAbilitiesJob().Run((agentAspect, newPosition));
-            
-            return default;
         }
     }
 }

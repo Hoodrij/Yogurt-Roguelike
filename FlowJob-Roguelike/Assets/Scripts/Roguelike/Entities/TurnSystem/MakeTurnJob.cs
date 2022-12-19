@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class MakeTurnJob : Job
+    public class MakeTurnJob : Job<Task>
     {
         public override async Task Run()
         {

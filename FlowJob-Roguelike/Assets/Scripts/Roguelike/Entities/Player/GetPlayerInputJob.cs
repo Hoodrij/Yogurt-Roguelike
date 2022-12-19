@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetPlayerInputJob : Job<Direction, AgentAspect>
+    public class GetPlayerInputJob : Job<Task<Direction>, AgentAspect>
     {
         public override async Task<Direction> Run(AgentAspect player)
         {

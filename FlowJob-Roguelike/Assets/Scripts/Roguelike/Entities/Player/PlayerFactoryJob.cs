@@ -5,7 +5,7 @@ using Roguelike.Abilities;
 
 namespace Roguelike
 {
-    public class PlayerFactoryJob : Job<Entity>
+    public class PlayerFactoryJob : Job<Task<Entity>>
     {
         public override async Task<Entity> Run()
         {

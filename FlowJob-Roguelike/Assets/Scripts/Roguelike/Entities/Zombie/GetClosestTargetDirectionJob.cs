@@ -9,7 +9,7 @@ namespace Roguelike
 {
     public class GetClosestTargetDirectionJob : Job<Direction, AgentAspect>
     {
-        public override async Task<Direction> Run(AgentAspect agentAspect)
+        public override Direction Run(AgentAspect agentAspect)
         {
             Direction direction = GetTargetsAround(agentAspect).GetRandom();
             return direction;

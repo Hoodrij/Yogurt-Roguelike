@@ -6,21 +6,21 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class RunTurnsJob : Job
+    public class RunTurnsJob : Job<Task>
     {
         public override async Task Run()
         {
-            while (!await IsExitReached() && !await IsGameOver())
+            while (!IsExitReached() && !IsGameOver())
             {
                 await Task.Delay(TimeSpan.FromSeconds(GetDelay()));
-                await new GiveTurnToNextAgentJob().Run();
+                new GiveTurnToNextAgentJob().Run();
                 await new MakeTurnJob().Run();
             }
         }
 
-        private async Task<bool> IsExitReached() => await new CheckExitReachedJob().Run();
+        private bool IsExitReached() => new CheckExitReachedJob().Run();
 
-        private async Task<bool> IsGameOver() => await new CheckGameOverJob().Run();
+        private bool IsGameOver() => new CheckGameOverJob().Run();
 
         private float GetDelay()
         {

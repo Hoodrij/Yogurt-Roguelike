@@ -7,11 +7,11 @@ namespace Roguelike
 {
     public class RunGameJob : Job
     {
-        public override async Task Run()
+        public override async void Run()
         {
             await new GameFactoryJob().Run(); 
 
-            while (!await IsGameOver())
+            while (!IsGameOver())
             {
                 await new LevelFactoryJob().Run();
                 await new RunTurnsJob().Run();
@@ -24,6 +24,6 @@ namespace Roguelike
             }
         }
 
-        private static async Task<bool> IsGameOver() => await new CheckGameOverJob().Run();
+        private static bool IsGameOver() => new CheckGameOverJob().Run();
     }
 }

@@ -4,15 +4,13 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class AnimationJob : Job<Void, (Entity entity, AgentView.Animation animation)>
+    public class AnimationJob : Job<Task, (Entity entity, AgentView.Animation animation)>
     {
-        public override async Task<Void> Run((Entity entity, AgentView.Animation animation) args)
+        public override async Task Run((Entity entity, AgentView.Animation animation) args)
         {
-            if (!args.entity.TryGet(out AgentView view)) return default;
+            if (!args.entity.TryGet(out AgentView view)) return;
             
             await view.RunAnimation(args.animation);
-
-            return default;
         }
     }
 }
