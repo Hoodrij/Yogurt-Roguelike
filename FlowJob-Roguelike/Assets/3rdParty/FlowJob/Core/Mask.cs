@@ -46,7 +46,7 @@ namespace FlowJob
             value = 0;
         }
 
-        public Mask And(Mask other)
+        public readonly Mask And(Mask other)
         {
             Mask result = default;
             result.value = value | other.value;

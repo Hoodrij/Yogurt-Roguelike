@@ -28,7 +28,7 @@ namespace FlowJob
         {
             List<IComponent> result = new();
             EntityMeta* meta = entity.Meta;
-            foreach (byte componentId in meta->ComponentsMask.GetBytes())
+            foreach (ComponentID componentId in meta->ComponentsMask.GetBytes())
             {
                 Storage storage = Storage.All[componentId];
                 result.Add(storage.ComponentsArray[entity]);
