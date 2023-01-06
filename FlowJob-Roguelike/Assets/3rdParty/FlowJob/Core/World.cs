@@ -42,6 +42,7 @@ namespace FlowJob
                 entity = new()
                 {
                     ID = instance.nextEntityID++,
+                    Age = 0
                 };
             }
 
@@ -67,11 +68,11 @@ namespace FlowJob
             ReleasedEntities.Clear();
             PostProcessor.Clear();
 
-            Group.Cache.Clear();
             foreach (Group group in Group.Cache.Values)
             {
                 group.Dispose();
             }
+            Group.Cache.Clear();
             
             EntitiesMetas.Dispose();
             EntitiesManaged.Clear();
