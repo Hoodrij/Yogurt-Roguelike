@@ -8,6 +8,7 @@ namespace Roguelike
     [CreateAssetMenu]
     public class Data : ScriptableObject, IComponent
     {
+        public float TurnDelay;
         public Vector2Int BoardSize;
         public Vector2Int PlayerStartPosition;
         public Vector2Int ExitPosition => BoardSize - Vector2Int.one - Vector2Int.one;

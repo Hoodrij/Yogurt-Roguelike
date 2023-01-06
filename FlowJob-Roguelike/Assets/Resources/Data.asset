@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ab8fd8e76a4c6487c531d20db7d78e, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
+  TurnDelay: 0.1
   BoardSize: {x: 7, y: 7}
   PlayerStartPosition: {x: 1, y: 1}
   FoodCount: 4
