@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
 using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class LevelFactoryJob : Job<Task>
+    public class LevelFactoryJob : Job<UniTask>
     {
-        public override async Task Run()
+        public override async UniTask Run()
         {
             Data data = Query.Single<Data>();
             

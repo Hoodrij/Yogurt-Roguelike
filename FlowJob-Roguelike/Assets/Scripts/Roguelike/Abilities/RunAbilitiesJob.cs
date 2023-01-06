@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike.Abilities
 {
-    public class RunAbilitiesJob : Job<Task, (AgentAspect agentAspect, Vector2Int targetPosition)>
+    public class RunAbilitiesJob : Job<UniTask, (AgentAspect agentAspect, Vector2Int targetPosition)>
     {
-        public override async Task Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
+        public override async UniTask Run((AgentAspect agentAspect, Vector2Int targetPosition) args)
         {
             AgentAspect agentAspect = args.agentAspect;
             Vector2Int newPosition = args.targetPosition; 

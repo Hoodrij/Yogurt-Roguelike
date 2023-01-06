@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
@@ -17,7 +17,7 @@ namespace Roguelike
                 await new RunTurnsJob().Run();
                 
                 // small delay before restart
-                await Task.Delay(TimeSpan.FromSeconds(0.1f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
 
                 Entity level = Query.Of<Level>().Single();
                 level.Kill();

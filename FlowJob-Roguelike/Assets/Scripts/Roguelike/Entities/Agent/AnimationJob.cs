@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class AnimationJob : Job<Task, (Entity entity, AgentView.Animation animation)>
+    public class AnimationJob : Job<UniTask, (Entity entity, AgentView.Animation animation)>
     {
-        public override async Task Run((Entity entity, AgentView.Animation animation) args)
+        public override async UniTask Run((Entity entity, AgentView.Animation animation) args)
         {
             if (!args.entity.TryGet(out AgentView view)) return;
             

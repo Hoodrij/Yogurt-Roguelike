@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike.Tools
 {
     public interface IAssetLoader
     {
-        Task<Object> Load(string path);
-        Task<TComponent> Load<TComponent>(string path) where TComponent : Component;
+        UniTask<Object> Load(string path);
+        UniTask<TComponent> Load<TComponent>(string path) where TComponent : Component;
     }
 }

@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
 using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class EnvironmentFactoryJob : Job<Task>
+    public class EnvironmentFactoryJob : Job<UniTask>
     {
-        public override async Task Run()
+        public override async UniTask Run()
         {
             Data data = Query.Single<Data>();
             int xSize = data.BoardSize.x;
@@ -32,7 +32,7 @@ namespace Roguelike
             }
         }
 
-        private async Task<Entity> SpawnFloor(Vector2Int coord)
+        private async UniTask<Entity> SpawnFloor(Vector2Int coord)
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();
@@ -51,7 +51,7 @@ namespace Roguelike
             return entity;
         }
 
-        private async Task<Entity> SpawnWall(Vector2Int coord)
+        private async UniTask<Entity> SpawnWall(Vector2Int coord)
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();

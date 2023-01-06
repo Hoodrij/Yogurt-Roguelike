@@ -1,15 +1,15 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
 using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieFactoryJob : Job<Task<Entity>>
+    public class ZombieFactoryJob : Job<UniTask<Entity>>
     {
-        public override async Task<Entity> Run()
+        public override async UniTask<Entity> Run()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();

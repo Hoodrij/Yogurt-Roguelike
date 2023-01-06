@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FlowJob;
 using UnityEngine;
@@ -23,10 +23,10 @@ namespace Roguelike
             transform.DOMove(agentAspect.PhysBodyAspect.Position.Value.ToV3XY(), duration);
         }
 
-        public async Task RunAnimation(Animation animation)
+        public async UniTask RunAnimation(Animation animation)
         {
             animator.SetSingleTrigger(animation.ToString());
-            await Task.Delay(TimeSpan.FromSeconds(0.1f)); 
+            await UniTask.Delay(TimeSpan.FromSeconds(0.1f)); 
         }
         
         public void Dispose()

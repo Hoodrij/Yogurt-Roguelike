@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike.Tools
@@ -7,17 +7,12 @@ namespace Roguelike.Tools
     {
         public static IAssetLoader Instance { get; } = new ResourcesLoader();
         
-        public async Task<Object> Load(string path)
+        public async UniTask<Object> Load(string path)
         {
-            ResourceRequest resourceRequest = Resources.LoadAsync(path);
-            while (!resourceRequest.isDone)
-            {
-                await Task.Yield();
-            }
-            return resourceRequest.asset;
+            return await Resources.LoadAsync(path);
         }
 
-        public async Task<TComponent> Load<TComponent>(string path) where TComponent : Component
+        public async UniTask<TComponent> Load<TComponent>(string path) where TComponent : Component
         {
             GameObject loaded = (GameObject) await Load(path);
             return loaded.GetComponent<TComponent>();

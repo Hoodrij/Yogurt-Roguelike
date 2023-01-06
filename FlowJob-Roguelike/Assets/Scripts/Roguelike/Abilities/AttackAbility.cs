@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike.Abilities
 {
     public class AttackAbility : Ability
     {
-        public override async Task<AbilityOutcome> Run(Args args)
+        public override async UniTask<AbilityOutcome> Run(Args args)
         {
             bool damageDealt = false;
             

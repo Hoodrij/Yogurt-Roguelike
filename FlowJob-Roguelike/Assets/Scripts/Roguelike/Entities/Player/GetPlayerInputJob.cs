@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetPlayerInputJob : Job<Task<Direction>, AgentAspect>
+    public class GetPlayerInputJob : Job<UniTask<Direction>, AgentAspect>
     {
-        public override async Task<Direction> Run(AgentAspect player)
+        public override async UniTask<Direction> Run(AgentAspect player)
         {
             Position playerPosition = player.PhysBodyAspect.Position;
 
@@ -17,7 +17,7 @@ namespace Roguelike
             {
                 direction = ReadInput();
                 isInputValid = DirectionIsValid() && CanMoveAtDirection();
-                await Task.Yield();
+                await UniTask.Yield();
             } while (!isInputValid);
 
             return direction;

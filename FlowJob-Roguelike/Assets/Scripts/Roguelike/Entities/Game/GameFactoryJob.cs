@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class GameFactoryJob : Job<Task<GameAspect>>
+    public class GameFactoryJob : Job<UniTask<GameAspect>>
     {
-        public override async Task<GameAspect> Run()
+        public override async UniTask<GameAspect> Run()
         {
             Assets assets = new Assets();
             Data data = await assets.Data.Load();

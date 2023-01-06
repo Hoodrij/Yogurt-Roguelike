@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike.Tools
@@ -13,7 +13,7 @@ namespace Roguelike.Tools
             this.path = path;
         }
 
-        public async Task<GameObject> Spawn()
+        public async UniTask<GameObject> Spawn()
         {
             Object asset = await loader.Load(path);
             return (GameObject)Object.Instantiate(asset);
@@ -24,7 +24,7 @@ namespace Roguelike.Tools
     {
         public Asset(string path) : base(path) { }
 
-        public async Task<TComponent> Spawn()
+        public async UniTask<TComponent> Spawn()
         {
             TComponent prefab = await loader.Load<TComponent>(path);
             TComponent result = Object.Instantiate(prefab);
@@ -36,7 +36,7 @@ namespace Roguelike.Tools
     {
         public SO(string path) : base(path) { }
 
-        public async Task<Tso> Load()
+        public async UniTask<Tso> Load()
         {
             return await loader.Load(path) as Tso;
         } 

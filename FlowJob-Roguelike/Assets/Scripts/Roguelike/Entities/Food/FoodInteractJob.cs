@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class FoodInteractJob : Job<Task, (Entity food, Entity agent)>
+    public class FoodInteractJob : Job<UniTask, (Entity food, Entity agent)>
     {
-        public override async Task Run((Entity food, Entity agent) args)
+        public override async UniTask Run((Entity food, Entity agent) args)
         {
             Entity food = args.food;
             Entity agent = args.agent;

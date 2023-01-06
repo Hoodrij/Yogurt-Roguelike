@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class ExitFactoryJob : Job<Task<Entity>>
+    public class ExitFactoryJob : Job<UniTask<Entity>>
     {
-        public override async Task<Entity> Run()
+        public override async UniTask<Entity> Run()
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();

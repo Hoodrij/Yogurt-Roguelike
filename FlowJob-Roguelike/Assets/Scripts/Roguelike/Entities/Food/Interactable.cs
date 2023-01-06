@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
     public class Interactable : IComponent
     {
-        public Job<Task, (Entity interactable, Entity agent)> InteractionJob;
+        public Job<UniTask, (Entity interactable, Entity agent)> InteractionJob;
     }
 }

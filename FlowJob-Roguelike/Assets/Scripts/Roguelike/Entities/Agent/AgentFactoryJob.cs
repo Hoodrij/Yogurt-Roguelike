@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Tools;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
 using Roguelike.Tools;
@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class AgentFactoryJob : Job<Task<AgentAspect>, AgentFactoryJob.Args> 
+    public class AgentFactoryJob : Job<UniTask<AgentAspect>, AgentFactoryJob.Args> 
     {
         public struct Args
         {
             public Team Team;
-            public Job<Task, AgentAspect> TurnJob;
+            public Job<UniTask, AgentAspect> TurnJob;
             public List<Ability> Abilities;
             public Vector2Int Position;
             public CollisionLayer Layer;
@@ -21,7 +21,7 @@ namespace Roguelike
             public Asset<AgentView> ViewRef;
         }
         
-        public override async Task<AgentAspect> Run(Args args)
+        public override async UniTask<AgentAspect> Run(Args args)
         {
             Entity agentEntity = Level.Create()
                 .Add(new Collider

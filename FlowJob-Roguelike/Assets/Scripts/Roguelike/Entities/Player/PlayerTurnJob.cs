@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using Core.Tools;
+﻿using Core.Tools;
+using Cysharp.Threading.Tasks;
 using Roguelike.Abilities;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class PlayerTurnJob : Job<Task, AgentAspect>
+    public class PlayerTurnJob : Job<UniTask, AgentAspect>
     {
-        public override async Task Run(AgentAspect player)
+        public override async UniTask Run(AgentAspect player)
         {
             Direction direction = await new GetPlayerInputJob().Run(player);
             Vector2Int newPosition = player.PhysBodyAspect.Position.Value + direction;

@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using FlowJob;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace Roguelike.Abilities
 {
     public class InteractAbility : Ability
     {
-        public override async Task<AbilityOutcome> Run(Args args)
+        public override async UniTask<AbilityOutcome> Run(Args args)
         {
             AgentAspect agentAspect = args.AgentAspect;
             Vector2Int targetPosition = args.TargetPosition;
