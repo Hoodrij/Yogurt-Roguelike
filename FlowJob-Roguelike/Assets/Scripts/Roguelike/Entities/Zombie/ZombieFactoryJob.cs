@@ -17,7 +17,7 @@ namespace Roguelike
             {
                 Team = Team.Zombie,
                 Layer = CollisionLayer.Destructible,
-                CanMoveAt = CollisionLayer.Empty,
+                CanMoveAt = CollisionLayer.Destructible,
                 TurnJob = new ZombieTurnJob(),
                 Position = GetSpawnPosition(),
                 ViewRef = assets.Zombie,

@@ -18,7 +18,7 @@ namespace Roguelike
                 Abilities = IAbility.PlayerAbilities,
                 TurnJob = new PlayerTurnJob(),
                 Layer = CollisionLayer.Destructible,
-                CanMoveAt = CollisionLayer.Empty | CollisionLayer.Interactable | CollisionLayer.Destructible,
+                CanMoveAt = CollisionLayer.Interactable | CollisionLayer.Destructible,
                 Position = data.PlayerStartPosition,
                 ViewRef = assets.Player,
             });

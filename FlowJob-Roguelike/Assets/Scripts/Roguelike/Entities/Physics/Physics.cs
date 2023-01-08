@@ -17,7 +17,7 @@ namespace Roguelike
         
         public static CollisionLayer LayerAtPoint(Vector2Int point)
         {
-            CollisionLayer result = CollisionLayer.Empty;
+            CollisionLayer result = 0;
             IEnumerable<Collider> collidersAtPoint = GetCollidersAtPosition(point);
             
             foreach (Collider collider in collidersAtPoint)
