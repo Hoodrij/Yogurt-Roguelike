@@ -1,13 +1,12 @@
 ﻿using System;
-using Core.Tools;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class RunGameJob : Job
+    public class RunGameJob
     {
-        public override async void Run()
+        public async void Run()
         {
             await new GameFactoryJob().Run(); 
 

@@ -1,14 +1,13 @@
-﻿using Core.Tools;
-using Core.Tools.ExtensionMethods;
+﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class EnvironmentFactoryJob : Job<UniTask>
+    public class EnvironmentFactoryJob
     {
-        public override async UniTask Run()
+        public async UniTask Run()
         {
             Data data = Query.Single<Data>();
             int xSize = data.BoardSize.x;

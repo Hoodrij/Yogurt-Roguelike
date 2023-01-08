@@ -1,5 +1,4 @@
-﻿using Core.Tools;
-using Core.Tools.ExtensionMethods;
+﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
@@ -7,9 +6,9 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieFactoryJob : Job<UniTask<Entity>>
+    public class ZombieFactoryJob
     {
-        public override async UniTask<Entity> Run()
+        public async UniTask<Entity> Run()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
@@ -22,7 +21,7 @@ namespace Roguelike
                 TurnJob = new ZombieTurnJob(),
                 Position = GetSpawnPosition(),
                 ViewRef = assets.Zombie,
-                Abilities = Ability.ZombieAbilities
+                Abilities = IAbility.ZombieAbilities
             });
             agentAspect.Health.Value = data.ZombieHealth;
 

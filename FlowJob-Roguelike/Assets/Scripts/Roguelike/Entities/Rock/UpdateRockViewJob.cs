@@ -1,19 +1,16 @@
-﻿using Core.Tools;
-using FlowJob;
+﻿using FlowJob;
 
 namespace Roguelike
 {
-    public class UpdateRockViewJob : Job<Void, Entity>
+    public class UpdateRockViewJob : Health.IHealthChangedJob
     {
-        public override Void Run(Entity entity)
+        public void Run(Entity entity)
         {
             TileView tileView = entity.Get<TileView>();
             Health health = entity.Get<Health>();
             RockData rockData = entity.Get<RockData>();
 
             tileView.SetView(rockData.GetSprite(health));
-            
-            return default;
         }
     }
 }

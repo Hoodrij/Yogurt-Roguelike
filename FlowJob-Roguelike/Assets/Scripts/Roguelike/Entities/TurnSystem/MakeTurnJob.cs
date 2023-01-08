@@ -1,12 +1,11 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class MakeTurnJob : Job<UniTask>
+    public class MakeTurnJob
     {
-        public override async UniTask Run()
+        public async UniTask Run()
         {
             AgentAspect agentAspect = Query.Of<AgentAspect>().With<TurnOwner>().Single();
             await agentAspect.Agent.TurnJob.Run(agentAspect);

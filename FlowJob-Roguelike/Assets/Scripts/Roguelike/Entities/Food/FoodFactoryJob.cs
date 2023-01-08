@@ -1,14 +1,13 @@
-﻿using Core.Tools;
-using Core.Tools.ExtensionMethods;
+﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class FoodFactoryJob : Job<UniTask<Entity>>
+    public class FoodFactoryJob
     {
-        public override async UniTask<Entity> Run()
+        public async UniTask<Entity> Run()
         {
             Data data = Query.Single<Data>();
             Assets assets = Query.Single<Assets>();

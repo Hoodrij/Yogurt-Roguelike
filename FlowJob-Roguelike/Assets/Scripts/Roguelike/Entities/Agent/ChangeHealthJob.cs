@@ -1,12 +1,11 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class ChangeHealthJob : Job<UniTask<bool>, (Entity target, int delta)>
+    public class ChangeHealthJob
     {
-        public override async UniTask<bool> Run((Entity target, int delta) args)
+        public async UniTask<bool> Run((Entity target, int delta) args)
         {
             Entity target = args.target;
             if (!target.TryGet(out Health health)) return false;

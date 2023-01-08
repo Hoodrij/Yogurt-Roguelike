@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Core.Tools;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
 {
-    public class RunTurnsJob : Job<UniTask>
+    public class RunTurnsJob
     {
-        public override async UniTask Run()
+        public async UniTask Run()
         {
             while (!IsExitReached() && !IsGameOver())
             {

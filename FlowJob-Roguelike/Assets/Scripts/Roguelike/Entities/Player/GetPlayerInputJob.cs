@@ -1,12 +1,11 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetPlayerInputJob : Job<UniTask<Direction>, AgentAspect>
+    public class GetPlayerInputJob
     {
-        public override async UniTask<Direction> Run(AgentAspect player)
+        public async UniTask<Direction> Run(AgentAspect player)
         {
             Position playerPosition = player.PhysBodyAspect.Position;
 

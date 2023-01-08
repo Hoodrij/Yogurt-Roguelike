@@ -2,9 +2,9 @@
 
 namespace Roguelike.Abilities
 {
-    public class MoveAbility : Ability
+    public class MoveAbility : IAbility
     {
-        public override async UniTask<AbilityOutcome> Run(Args args)
+        public async UniTask<AbilityOutcome> Run(IAbility.Args args)
         {
             AgentAspect agentAspect = args.AgentAspect;
             

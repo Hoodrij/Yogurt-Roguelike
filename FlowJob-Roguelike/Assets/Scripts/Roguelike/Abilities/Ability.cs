@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Core.Tools;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -11,22 +10,24 @@ namespace Roguelike.Abilities
         CompleteTurn = 2,
     }
     
-    public abstract class Ability : Job<UniTask<AbilityOutcome>, Ability.Args>
+    public interface IAbility
     {
+        UniTask<AbilityOutcome> Run(Args args);
+        
         public struct Args
         {
             public AgentAspect AgentAspect;
             public Vector2Int TargetPosition;
         }
         
-        public static readonly List<Ability> PlayerAbilities = new()
+        public static readonly List<IAbility> PlayerAbilities = new()
         {
             new AttackAbility(),
             new InteractAbility(),
             new MoveAbility(),
         };
 
-        public static readonly List<Ability> ZombieAbilities = new()
+        public static readonly List<IAbility> ZombieAbilities = new()
         {
             new AttackAbility(),
             new MoveAbility(),

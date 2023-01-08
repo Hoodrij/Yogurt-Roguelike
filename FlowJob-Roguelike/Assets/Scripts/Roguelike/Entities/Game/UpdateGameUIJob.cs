@@ -1,17 +1,14 @@
-﻿using Core.Tools;
-using FlowJob;
+﻿using FlowJob;
 
 namespace Roguelike
 {
-    public class UpdateGameUIJob : Job<Void, Entity>
+    public class UpdateGameUIJob : Health.IHealthChangedJob
     {
-        public override Void Run(Entity entity)
+        public void Run(Entity entity)
         {
             GameAspect gameAspect = Query.Single<GameAspect>();
             Health health = entity.Get<Health>();
             gameAspect.Get<UI>().UpdateView(health.Value);
-
-            return default;
         }
     }
 }

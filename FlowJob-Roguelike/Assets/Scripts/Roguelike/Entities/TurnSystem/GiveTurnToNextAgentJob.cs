@@ -1,11 +1,10 @@
-﻿using Core.Tools;
-using FlowJob;
+﻿using FlowJob;
 
 namespace Roguelike
 {
-    public class GiveTurnToNextAgentJob : Job
+    public class GiveTurnToNextAgentJob
     {
-        public override void Run()
+        public void Run()
         {
             bool currentAgentFound = false;
             

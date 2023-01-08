@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using FlowJob;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetClosestTargetDirectionJob : Job<Direction, AgentAspect>
+    public class GetClosestTargetDirectionJob
     {
-        public override Direction Run(AgentAspect agentAspect)
+        public Direction Run(AgentAspect agentAspect)
         {
             Direction direction = GetTargetsAround(agentAspect).GetRandom();
             return direction;

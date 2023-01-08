@@ -1,13 +1,12 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Roguelike.Abilities;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieTurnJob : Job<UniTask, AgentAspect>
+    public class ZombieTurnJob : Agent.ITurnJob
     {
-        public override async UniTask Run(AgentAspect agentAspect)
+        public async UniTask Run(AgentAspect agentAspect)
         {
             Direction direction = new GetClosestTargetDirectionJob().Run(agentAspect);
             if (direction == Direction.None)

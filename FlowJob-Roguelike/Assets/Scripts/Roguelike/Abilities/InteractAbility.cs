@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Roguelike.Abilities
 {
-    public class InteractAbility : Ability
+    public class InteractAbility : IAbility
     {
-        public override async UniTask<AbilityOutcome> Run(Args args)
+        public async UniTask<AbilityOutcome> Run(IAbility.Args args)
         {
             AgentAspect agentAspect = args.AgentAspect;
             Vector2Int targetPosition = args.TargetPosition;

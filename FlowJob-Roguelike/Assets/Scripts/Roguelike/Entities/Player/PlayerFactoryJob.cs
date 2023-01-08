@@ -1,13 +1,12 @@
-﻿using Core.Tools;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
 
 namespace Roguelike
 {
-    public class PlayerFactoryJob : Job<UniTask<Entity>>
+    public class PlayerFactoryJob
     {
-        public override async UniTask<Entity> Run()
+        public async UniTask<Entity> Run()
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
@@ -16,7 +15,7 @@ namespace Roguelike
             AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
                 Team = Team.Player,
-                Abilities = Ability.PlayerAbilities,
+                Abilities = IAbility.PlayerAbilities,
                 TurnJob = new PlayerTurnJob(),
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = CollisionLayer.Empty | CollisionLayer.Interactable | CollisionLayer.Destructible,

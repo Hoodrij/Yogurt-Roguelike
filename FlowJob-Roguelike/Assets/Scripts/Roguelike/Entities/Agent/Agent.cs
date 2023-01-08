@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Core.Tools;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
@@ -9,8 +8,13 @@ namespace Roguelike
     public class Agent : IComponent
     {
         public Team Team;
-        public Job<UniTask, AgentAspect> TurnJob;
-        public List<Ability> Abilities = new();
+        public ITurnJob TurnJob;
+        public List<IAbility> Abilities = new();
+        
+        public interface ITurnJob
+        {
+            UniTask Run(AgentAspect agentAspect);
+        }
     }
 
     public struct AgentAspect : Aspect<AgentAspect>

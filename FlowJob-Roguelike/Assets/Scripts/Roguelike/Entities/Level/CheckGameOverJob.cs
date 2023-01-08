@@ -1,11 +1,10 @@
-﻿using Core.Tools;
-using FlowJob;
+﻿using FlowJob;
 
 namespace Roguelike
 {
-    public class CheckGameOverJob : Job<bool>
+    public class CheckGameOverJob
     {
-        public override bool Run()
+        public bool Run()
         {
             return Query.Single<GameAspect>().Health.Value <= 0;
         }

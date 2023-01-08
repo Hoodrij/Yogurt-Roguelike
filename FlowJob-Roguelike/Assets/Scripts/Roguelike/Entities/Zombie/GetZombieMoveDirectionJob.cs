@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using Core.Tools;
 using Core.Tools.ExtensionMethods;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class GetZombieMoveDirectionJob : Job<Direction, AgentAspect>
+    public class GetZombieMoveDirectionJob
     {
-        public override Direction Run(AgentAspect agentAspect)
+        public Direction Run(AgentAspect agentAspect)
         {
             return GetFreeDirections(agentAspect.PhysBodyAspect)
                 .GetRandom();

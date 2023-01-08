@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Core.Tools;
 using FlowJob;
 using UnityEngine;
 
 namespace Roguelike
 {
-    public class CheckExitReachedJob : Job<bool>
+    public class CheckExitReachedJob
     {
-        public override bool Run()
+        public bool Run()
         {
             if (!Query.Single<PlayerAspect>().Exist())
                 return false;
