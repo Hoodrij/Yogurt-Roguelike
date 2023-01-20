@@ -9,7 +9,7 @@ namespace FlowJob
     {
         internal static Dictionary<HashCode, Group> Cache = new();
 
-        private HashSet<Entity> entities = new(Consts.SIZE_ENTITIES);
+        private HashSet<Entity> entities = new(Consts.INITIAL_ENTITIES_COUNT);
         private readonly Composition composition;
 
         public static Group GetGroup(Composition composition)

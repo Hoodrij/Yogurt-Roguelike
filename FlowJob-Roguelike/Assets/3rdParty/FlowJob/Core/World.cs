@@ -11,10 +11,10 @@ namespace FlowJob
         }
 
         internal PostProcessor PostProcessor = new();
-        internal UnsafeSpan<EntityMeta> EntitiesMetas = new(Consts.SIZE_ENTITIES);
-        internal ManagedMetasList EntitiesManaged = new(Consts.SIZE_ENTITIES);
-        internal HashSet<Entity> Entities = new(Consts.SIZE_ENTITIES);
-        internal Queue<Entity> ReleasedEntities = new(Consts.SIZE_ENTITIES);
+        internal UnsafeSpan<EntityMeta> EntitiesMetas = new(Consts.INITIAL_ENTITIES_COUNT);
+        internal ManagedMetasList EntitiesManaged = new(Consts.INITIAL_ENTITIES_COUNT);
+        internal HashSet<Entity> Entities = new(Consts.INITIAL_ENTITIES_COUNT);
+        internal Queue<Entity> ReleasedEntities = new(Consts.INITIAL_ENTITIES_COUNT);
         
         // because 0 index = default = Entity.Null
         private int nextEntityID = 1;

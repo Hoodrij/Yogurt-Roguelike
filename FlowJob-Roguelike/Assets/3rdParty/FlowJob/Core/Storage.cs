@@ -14,7 +14,7 @@ namespace FlowJob
 
         internal static void Initialize()
         {
-            All = new Storage[Consts.SIZE_COMPONENTS];
+            All = new Storage[Consts.INITIAL_COMPONENTS_COUNT];
             
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -32,7 +32,7 @@ namespace FlowJob
     {
         internal static Storage<T> Instance;
 
-        private T[] Components = new T[Consts.SIZE_ENTITIES / 2];
+        private T[] Components = new T[Consts.INITIAL_ENTITIES_COUNT / 2];
         internal override IComponent[] ComponentsArray => Components as IComponent[];
 
         public Storage()

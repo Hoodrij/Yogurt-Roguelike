@@ -2,7 +2,7 @@ namespace FlowJob
 {
     public static class Consts
     {
-        public const int SIZE_ENTITIES = 64;
-        public const int SIZE_COMPONENTS = 256;
+        public const int INITIAL_ENTITIES_COUNT = 64;
+        public const int INITIAL_COMPONENTS_COUNT = 256;
     }
 }
