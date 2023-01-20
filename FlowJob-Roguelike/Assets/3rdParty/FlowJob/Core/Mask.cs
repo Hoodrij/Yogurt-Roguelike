@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using BigMath;
 
 namespace FlowJob
 {
     [DebuggerDisplay("{Name}")]
-    public struct Mask : IComparable<Int256>, IEquatable<Int256>
+    public struct Mask : IComparable<Mask>, IEquatable<Mask>
     {
         public bool IsEmpty => value == 0;
         
-        private Int256 value;
+        private UInt256 value;
 
         public void Set(byte other)
         {
-            Int256 otherMask = Int256.One << other;
+            UInt256 otherMask = UInt256.One << other;
             value |= otherMask;
         }
         
         public void UnSet(byte other)
         {
-            Int256 otherMask = Int256.One << other;
+            UInt256 otherMask = UInt256.One << other;
             value &= ~otherMask;
         }
         
         public bool Has(byte other)
         {
-            Int256 otherMask = Int256.One << other;
+            UInt256 otherMask = UInt256.One << other;
             return (value & otherMask) == otherMask;
         }
 
@@ -86,14 +85,14 @@ namespace FlowJob
             return value.ToString();
         }
         
-        public int CompareTo(Int256 other)
+        public int CompareTo(Mask other)
         {
-            return value.CompareTo(other);
+            return value.CompareTo(other.value);
         }
 
-        public bool Equals(Int256 other)
+        public bool Equals(Mask other)
         {
-            return value.Equals(other);
+            return value.Equals(other.value);
         }
 
         public override int GetHashCode()
