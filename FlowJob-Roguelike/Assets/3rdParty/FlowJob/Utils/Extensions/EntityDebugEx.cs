@@ -59,47 +59,47 @@ namespace FlowJob
             return false;
         }
 
-        [Conditional(Consts.UNITY_EDITOR)]
-        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static void DebugCheckAlive(this Entity entity)
         {
+#if UNITY_EDITOR && FLOWJOB_DEBUG
             if (DebugCheckNull(entity)) return;
             if (!entity.Exist)
             {
                 Debug.LogError($"{entity} does not Exist");
             }
+#endif
         }
 
-        [Conditional(Consts.UNITY_EDITOR)]
-        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static unsafe void DebugNoComponent<T>(this Entity entity) where T : IComponent
         {
+#if UNITY_EDITOR && FLOWJOB_DEBUG
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
             if (!entityHasComponent)
             {
                 Debug.LogError($"{entity} does not have [{typeof(T).Name}]");
             }
+#endif
         }
 
-        [Conditional(Consts.UNITY_EDITOR)]
-        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static unsafe void DebugAlreadyHave<T>(this Entity entity) where T : IComponent
         {
+#if UNITY_EDITOR && FLOWJOB_DEBUG
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
             if (entityHasComponent)
             {
                 Debug.LogError($"{entity} already have [{typeof(T).Name}]");
             }
+#endif
         }
         
-        [Conditional(Consts.UNITY_EDITOR)]
-        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static void DebugParentToSelf(this Entity entity, Entity parent)
         {
+#if UNITY_EDITOR && FLOWJOB_DEBUG
             if (entity == parent)
             {
                 Debug.LogError($"{entity} trying parent self");
             }
+#endif
         }
     }
 }
