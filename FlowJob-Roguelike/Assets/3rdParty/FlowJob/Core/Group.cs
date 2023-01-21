@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FlowJob
 {
-    public class Group : IEnumerable<Entity>, IEquatable<Group>, IComparable<Group>
+    public class Group : IEquatable<Group>, IComparable<Group>
     {
         internal static Dictionary<HashCode, Group> Cache = new();
 
@@ -84,8 +83,6 @@ namespace FlowJob
             return entities.Remove(entity);
         }
 
-        #region EQUALS
-
         public bool Equals(Group other)
         {
             return GetHashCode() == other?.GetHashCode();
@@ -111,22 +108,13 @@ namespace FlowJob
             return composition.Hash;
         }
 
-        #endregion
-
-        #region ENUMERATOR
-
-        public IEnumerator<Entity> GetEnumerator()
+        public HashSet<Entity>.Enumerator GetEnumerator()
         {
             WorldAccessor.UpdateWorld();
             return entities.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
+        public int Count => entities.Count;
 
         public int CompareTo(Group other)
         {

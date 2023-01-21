@@ -34,7 +34,7 @@ namespace FlowJob
         }
     }
 
-    public struct QueryOfEntity : Query, IEnumerable<Entity>
+    public struct QueryOfEntity : Query, IEnumerable
     {
         internal Mask Included;
         internal Mask Excluded;
@@ -59,9 +59,15 @@ namespace FlowJob
             Group group = Group.GetGroup(composition);
             return group;
         }
-
-        public IEnumerator<Entity> GetEnumerator() => GetGroup().GetEnumerator();
+        
+        public HashSet<Entity>.Enumerator GetEnumerator()
+        {
+            return GetGroup().GetEnumerator();
+        }
+        
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        
+        public int Count => GetGroup().Count;
     }
     
     public struct QueryOfAspect<TAspect> : Query, IEnumerable<TAspect> where TAspect : struct, Aspect<TAspect>
@@ -98,5 +104,7 @@ namespace FlowJob
             }
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        
+        public int Count => GetGroup().Count;
     }
 }
