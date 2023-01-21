@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 namespace FlowJob
 {
-    public struct HashCode
+    public struct HashCode : IComparable<HashCode>, IEquatable<HashCode>
     {
         public readonly int value;
 
@@ -64,6 +65,21 @@ namespace FlowJob
             }
 
             return temp;
+        }
+
+        public int CompareTo(HashCode other)
+        {
+            return value.CompareTo(other.value);
+        }
+
+        public bool Equals(HashCode other)
+        {
+            return value.Equals(other.value);
+        }
+
+        public override int GetHashCode()
+        {
+            return value;
         }
     }
 }
