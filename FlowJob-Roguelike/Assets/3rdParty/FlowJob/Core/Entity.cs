@@ -5,7 +5,7 @@ using System.Linq;
 namespace FlowJob
 {
     [DebuggerDisplay("{Name}")]
-    [DebuggerTypeProxy(typeof(EntityEx.EntityDebugView))]
+    [DebuggerTypeProxy(typeof(EntityDebugEx.EntityDebugView))]
     public unsafe partial struct Entity : IComparable<Entity>, IEquatable<Entity>
     {
         public static readonly Entity Null = default;

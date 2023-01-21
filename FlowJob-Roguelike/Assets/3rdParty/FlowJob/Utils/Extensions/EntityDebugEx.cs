@@ -5,7 +5,7 @@ using Debug = UnityEngine.Debug;
 
 namespace FlowJob
 {
-    public static class EntityEx
+    public static class EntityDebugEx
     {
         internal class EntityDebugView
         {
@@ -46,21 +46,21 @@ namespace FlowJob
         {
             return aspect.Entity;
         }
-        
-        internal static bool DebugCheckNull(this Entity entity)
+
+        private static bool DebugCheckNull(this Entity entity)
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR && FLOWJOB_DEBUG
             if (entity == Entity.Null)
             {
                 Debug.LogError($"Entity is Null");
                 return true;
             }
-
 #endif
             return false;
         }
 
-        [Conditional("UNITY_EDITOR")]
+        [Conditional(Consts.UNITY_EDITOR)]
+        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static void DebugCheckAlive(this Entity entity)
         {
             if (DebugCheckNull(entity)) return;
@@ -70,7 +70,8 @@ namespace FlowJob
             }
         }
 
-        [Conditional("UNITY_EDITOR")]
+        [Conditional(Consts.UNITY_EDITOR)]
+        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static unsafe void DebugNoComponent<T>(this Entity entity) where T : IComponent
         {
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
@@ -80,7 +81,8 @@ namespace FlowJob
             }
         }
 
-        [Conditional("UNITY_EDITOR")]
+        [Conditional(Consts.UNITY_EDITOR)]
+        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static unsafe void DebugAlreadyHave<T>(this Entity entity) where T : IComponent
         {
             bool entityHasComponent = entity.Meta->ComponentsMask.Has(ComponentID.Of<T>());
@@ -90,7 +92,8 @@ namespace FlowJob
             }
         }
         
-        [Conditional("UNITY_EDITOR")]
+        [Conditional(Consts.UNITY_EDITOR)]
+        [Conditional(Consts.FLOWJOB_DEBUG)]
         internal static void DebugParentToSelf(this Entity entity, Entity parent)
         {
             if (entity == parent)
