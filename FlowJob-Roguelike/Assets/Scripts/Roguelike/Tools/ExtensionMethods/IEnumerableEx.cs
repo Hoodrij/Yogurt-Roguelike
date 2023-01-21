@@ -5,19 +5,19 @@ namespace Core.Tools.ExtensionMethods
 {
     public static class IEnumerableEx
     {
-        public static bool IsEmpty<T>(this IEnumerable<T> list)
+        public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
         {
-            return !list.Any();
+            return !enumerable.Any();
         }
 
-        public static T GetRandom<T>(this IEnumerable<T> list)
+        public static T GetRandom<T>(this IEnumerable<T> enumerable)
         {
-            IEnumerable<T> enumerable = list.ToList();
+            List<T> list = enumerable.ToList();
             
-            if (enumerable.IsEmpty()) 
+            if (list.IsEmpty()) 
                 return default;
-            int index = enumerable.Count().RandomTo();
-            return enumerable.ElementAt(index);
+            int index = list.Count().RandomTo();
+            return list.ElementAt(index);
         }
     }
 }
