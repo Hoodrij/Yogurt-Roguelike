@@ -4,12 +4,6 @@ namespace FlowJob
 {
     internal unsafe class World
     {
-        private static World instance;
-        internal interface Accessor
-        {
-            internal World World => instance;
-        }
-
         internal PostProcessor PostProcessor = new();
         internal UnsafeSpan<EntityMeta> EntitiesMetas = new(Consts.INITIAL_ENTITIES_COUNT);
         internal ManagedMetasList EntitiesManaged = new(Consts.INITIAL_ENTITIES_COUNT);
@@ -30,36 +24,36 @@ namespace FlowJob
 
         internal static Entity CreateEntity()
         {
-            instance ??= new World();
+            World world = WorldAccessor.World ??= new World();
             
             Entity entity;
-            if (instance.ReleasedEntities.Count > 0)
+            if (world.ReleasedEntities.Count > 0)
             {
-                entity = instance.ReleasedEntities.Dequeue();
+                entity = world.ReleasedEntities.Dequeue();
             }
             else
             {
                 entity = new()
                 {
-                    ID = instance.nextEntityID++,
+                    ID = world.nextEntityID++,
                     Age = 0
                 };
             }
 
-            EntityMeta* meta = instance.EntitiesMetas.Get(entity.ID);
+            EntityMeta* meta = world.EntitiesMetas.Get(entity.ID);
             meta->Age = entity.Age;
             meta->IsAlive = true;
             meta->ComponentsMask.Clear();
             meta->GroupsAmount = 0;
 
-            instance.Entities.Add(entity);
+            world.Entities.Add(entity);
 
             return entity;
         }
 
         private void Dispose()
         {
-            instance = null;
+            WorldAccessor.World = null;
 #if UNITY_2018_1_OR_NEWER
             UnityEngine.Application.quitting -= Dispose;
 #endif

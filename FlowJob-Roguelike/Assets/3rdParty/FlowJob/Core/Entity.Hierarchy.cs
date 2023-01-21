@@ -4,8 +4,8 @@ namespace FlowJob
 {
     public unsafe partial struct Entity
     {
-        internal ref EntityManagedMeta Managed => ref this.GetManagedMeta(ID);
-        
+        internal ref EntityManagedMeta Managed => ref WorldAccessor.GetManagedMeta(ID);
+
         public void SetParent(Entity parentEntity)
         {
             this.DebugParentToSelf(parentEntity);

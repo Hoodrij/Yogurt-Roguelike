@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace FlowJob
 {
-    public unsafe partial struct Entity : World.Accessor
+    public unsafe partial struct Entity
     {
-        internal EntityMeta* Meta => this.GetMeta(ID);
+        internal EntityMeta* Meta => WorldAccessor.GetMeta(ID);
 
         public Entity Add<T>() where T : IComponent, new()
         {
@@ -31,7 +31,7 @@ namespace FlowJob
             
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
-            this.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
+            WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
             Storage<T>.Instance.Add(component, ID);
 
             return this;
@@ -70,13 +70,13 @@ namespace FlowJob
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
-            this.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
+            WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
         }
 
         public void Kill()
         {
             this.DebugCheckAlive();
-            this.Enqueue(PostProcessor.Action.Kill, this);
+            WorldAccessor.Enqueue(PostProcessor.Action.Kill, this);
 
             foreach (IComponent component in this.GetComponents())
             {

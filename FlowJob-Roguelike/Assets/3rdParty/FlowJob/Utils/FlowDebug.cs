@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace FlowJob
 {
-    public class FlowDebug : World.Accessor
+    public class FlowDebug
     {
-        public List<Entity> Entities => this.GetEntities().ToList();
+        public List<Entity> Entities => WorldAccessor.GetEntities().ToList();
     }
 }

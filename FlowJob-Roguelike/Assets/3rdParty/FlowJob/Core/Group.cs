@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FlowJob
 {
-    public class Group : World.Accessor, IEnumerable<Entity>, IEquatable<Group>, IComparable<Group>
+    public class Group : IEnumerable<Entity>, IEquatable<Group>, IComparable<Group>
     {
         internal static Dictionary<HashCode, Group> Cache = new();
 
@@ -32,7 +32,7 @@ namespace FlowJob
                 Storage.All[componentID].Groups.Push(this);
             }
             
-            foreach (Entity entity in this.GetEntities())
+            foreach (Entity entity in WorldAccessor.GetEntities())
             {
                 ProcessEntity(entity);
             }
@@ -45,7 +45,7 @@ namespace FlowJob
         
         public Entity Single()
         {
-            this.ExecuteOperations();
+            WorldAccessor.UpdateWorld();
             if (entities.Count > 0)
             {
                 return entities.First();
@@ -117,7 +117,7 @@ namespace FlowJob
 
         public IEnumerator<Entity> GetEnumerator()
         {
-            this.ExecuteOperations();
+            WorldAccessor.UpdateWorld();
             return entities.GetEnumerator();
         }
 
