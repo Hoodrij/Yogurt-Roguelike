@@ -9,26 +9,24 @@ namespace FlowJob
 
         public Entity Add<T>() where T : IComponent, new()
         {
-            this.DebugCheckAlive();
-            this.DebugAlreadyHave<T>();
-            
-            if (Has<T>()) return this;
-            
-            Set(new T());
+            Add(new T());
             return this;
         }
         
         public Entity Add<T>(T component) where T : IComponent
         {
-            Set(component);
+            this.DebugCheckAlive();
+            this.DebugAlreadyHave<T>();
+            
+            Set(component, false);
             return this;
         }
 
-        public Entity Set<T>(T component) where T : IComponent
+        public Entity Set<T>(T component, bool shouldRewrite = true) where T : IComponent
         {
             this.DebugCheckAlive();
             
-            if (Has<T>())
+            if (shouldRewrite && Has<T>())
                 Remove<T>();
             
             ComponentID componentID = ComponentID.Of<T>();
@@ -68,7 +66,7 @@ namespace FlowJob
 
         public void Remove<T>() where T : IComponent
         {
-            if (!Has<T>()) return;
+            this.DebugNoComponent<T>();
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
