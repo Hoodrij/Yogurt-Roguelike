@@ -22,18 +22,7 @@ namespace FlowJob
             }
         }
 
-        public T* this[int index]
-        {
-            get => Get(index);
-            set
-            {
-                // Span<T> span = new Span<T>(memoryPointer, length);
-                // span[index] = value;
-                
-                // T* t = Get(index);
-                // *t = value;
-            }
-        }
+        public T* this[int index] => Get(index);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T* Get(int index)
