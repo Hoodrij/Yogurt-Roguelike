@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 namespace FlowJob
 {
     [StructLayout(LayoutKind.Explicit)]
-    public readonly struct UInt256 : IComparable<UInt256>
+    internal readonly struct Mask256 : IComparable<Mask256>
     {
-        public static readonly UInt256 Zero = 0ul;
-        public static readonly UInt256 One = 1ul;
-        public static readonly UInt256 MinValue = Zero;
-        public static readonly UInt256 MaxValue = ~Zero;
-        public static readonly UInt256 UInt128MaxValue = new(ulong.MaxValue, ulong.MaxValue);
+        public static readonly Mask256 Zero = 0ul;
+        public static readonly Mask256 One = 1ul;
+        public static readonly Mask256 MinValue = Zero;
+        public static readonly Mask256 MaxValue = ~Zero;
+        public static readonly Mask256 UInt128MaxValue = new(ulong.MaxValue, ulong.MaxValue);
 
         /* in little endian order so u3 is the most significant ulong */
         [FieldOffset(0)] private readonly ulong u0;
@@ -19,7 +19,7 @@ namespace FlowJob
         [FieldOffset(16)] private readonly ulong u2;
         [FieldOffset(24)] private readonly ulong u3;
 
-        private UInt256(ulong u0 = 0, ulong u1 = 0, ulong u2 = 0, ulong u3 = 0)
+        private Mask256(ulong u0 = 0, ulong u1 = 0, ulong u2 = 0, ulong u3 = 0)
         {
             this.u0 = u0;
             this.u1 = u1;
@@ -44,7 +44,7 @@ namespace FlowJob
             return (a >> n1) >> n2;
         }
 
-        private static void Lsh(in UInt256 x, int n, out UInt256 res)
+        private static void Lsh(in Mask256 x, int n, out Mask256 res)
         {
             if ((n % 64) == 0)
             {
@@ -116,21 +116,21 @@ namespace FlowJob
             sh192:
             z3 = Lsh(res.u3, n) | a;
 
-            res = new UInt256(z0, z1, z2, z3);
+            res = new Mask256(z0, z1, z2, z3);
         }
 
-        public void LeftShift(int n, out UInt256 res)
+        public void LeftShift(int n, out Mask256 res)
         {
             Lsh(this, n, out res);
         }
 
-        public static UInt256 operator <<(in UInt256 a, int n)
+        public static Mask256 operator <<(in Mask256 a, int n)
         {
-            a.LeftShift(n, out UInt256 res);
+            a.LeftShift(n, out Mask256 res);
             return res;
         }
 
-        public static void Rsh(in UInt256 x, int n, out UInt256 res)
+        public static void Rsh(in Mask256 x, int n, out Mask256 res)
         {
             // n % 64 == 0
             if ((n & 0x3f) == 0)
@@ -219,118 +219,118 @@ namespace FlowJob
             sh192:
             z0 = Rsh(res.u0, n) | a;
 
-            res = new UInt256(z0, z1, z2, z3);
+            res = new Mask256(z0, z1, z2, z3);
         }
 
-        public void RightShift(int n, out UInt256 res) => Rsh(this, n, out res);
+        public void RightShift(int n, out Mask256 res) => Rsh(this, n, out res);
 
-        public static UInt256 operator >>(in UInt256 a, int n)
+        public static Mask256 operator >>(in Mask256 a, int n)
         {
-            a.RightShift(n, out UInt256 res);
+            a.RightShift(n, out Mask256 res);
             return res;
         }
 
-        internal void Lsh64(out UInt256 res)
+        internal void Lsh64(out Mask256 res)
         {
-            res = new UInt256(0, u0, u1, u2);
+            res = new Mask256(0, u0, u1, u2);
         }
 
-        internal void Lsh128(out UInt256 res)
+        internal void Lsh128(out Mask256 res)
         {
-            res = new UInt256(0, 0, u0, u1);
+            res = new Mask256(0, 0, u0, u1);
         }
 
-        internal void Lsh192(out UInt256 res)
+        internal void Lsh192(out Mask256 res)
         {
-            res = new UInt256(0, 0, 0, u0);
+            res = new Mask256(0, 0, 0, u0);
         }
 
-        internal void Rsh64(out UInt256 res)
+        internal void Rsh64(out Mask256 res)
         {
-            res = new UInt256(u1, u2, u3);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void Rsh128(out UInt256 res)
-        {
-            res = new UInt256(u2, u3);
+            res = new Mask256(u1, u2, u3);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void Rsh192(out UInt256 res)
+        private void Rsh128(out Mask256 res)
         {
-            res = new UInt256(u3);
+            res = new Mask256(u2, u3);
         }
 
-        public static void Not(in UInt256 a, out UInt256 res)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void Rsh192(out Mask256 res)
+        {
+            res = new Mask256(u3);
+        }
+
+        public static void Not(in Mask256 a, out Mask256 res)
         {
             {
                 ulong u0 = ~a.u0;
                 ulong u1 = ~a.u1;
                 ulong u2 = ~a.u2;
                 ulong u3 = ~a.u3;
-                res = new UInt256(u0, u1, u2, u3);
+                res = new Mask256(u0, u1, u2, u3);
             }
         }
         
-        public static void Or(in UInt256 a, in UInt256 b, out UInt256 res)
+        public static void Or(in Mask256 a, in Mask256 b, out Mask256 res)
         {
             {
-                res = new UInt256(a.u0 | b.u0, a.u1 | b.u1, a.u2 | b.u2, a.u3 | b.u3);
+                res = new Mask256(a.u0 | b.u0, a.u1 | b.u1, a.u2 | b.u2, a.u3 | b.u3);
             }
         }
 
-        public static UInt256 operator |(in UInt256 a, in UInt256 b)
+        public static Mask256 operator |(in Mask256 a, in Mask256 b)
         {
-            Or(a, b, out UInt256 res);
+            Or(a, b, out Mask256 res);
             return res;
         }
 
-        public static void And(in UInt256 a, in UInt256 b, out UInt256 res)
+        public static void And(in Mask256 a, in Mask256 b, out Mask256 res)
         {
             {
-                res = new UInt256(a.u0 & b.u0, a.u1 & b.u1, a.u2 & b.u2, a.u3 & b.u3);
+                res = new Mask256(a.u0 & b.u0, a.u1 & b.u1, a.u2 & b.u2, a.u3 & b.u3);
             }
         }
 
-        public static UInt256 operator &(in UInt256 a, in UInt256 b)
+        public static Mask256 operator &(in Mask256 a, in Mask256 b)
         {
-            And(a, b, out UInt256 res);
+            And(a, b, out Mask256 res);
             return res;
         }
 
-        public static void Xor(in UInt256 a, in UInt256 b, out UInt256 res)
+        public static void Xor(in Mask256 a, in Mask256 b, out Mask256 res)
         {
             {
-                res = new UInt256(a.u0 ^ b.u0, a.u1 ^ b.u1, a.u2 ^ b.u2, a.u3 ^ b.u3);
+                res = new Mask256(a.u0 ^ b.u0, a.u1 ^ b.u1, a.u2 ^ b.u2, a.u3 ^ b.u3);
             }
         }
 
-        public static UInt256 operator ^(in UInt256 a, in UInt256 b)
+        public static Mask256 operator ^(in Mask256 a, in Mask256 b)
         {
-            Xor(a, b, out UInt256 res);
+            Xor(a, b, out Mask256 res);
             return res;
         }
 
-        public static UInt256 operator ~(in UInt256 a)
+        public static Mask256 operator ~(in Mask256 a)
         {
-            Not(in a, out UInt256 res);
+            Not(in a, out Mask256 res);
             return res;
         }
 
-        public static bool operator ==(in UInt256 a, in UInt256 b) => a.Equals(b);
+        public static bool operator ==(in Mask256 a, in Mask256 b) => a.Equals(b);
 
-        public static bool operator !=(in UInt256 a, in UInt256 b) => !(a == b);
+        public static bool operator !=(in Mask256 a, in Mask256 b) => !(a == b);
 
-        public static implicit operator UInt256(ulong value) => new UInt256(value, 0ul, 0ul, 0ul);
+        public static implicit operator Mask256(ulong value) => new Mask256(value, 0ul, 0ul, 0ul);
 
-        public static bool operator <(in UInt256 a, in UInt256 b) => LessThan(in a, in b);
-        public static bool operator <=(in UInt256 a, in UInt256 b) => !LessThan(in b, in a);
-        public static bool operator >(in UInt256 a, in UInt256 b) => LessThan(in b, in a);
-        public static bool operator >=(in UInt256 a, in UInt256 b) => !LessThan(in a, in b);
+        public static bool operator <(in Mask256 a, in Mask256 b) => LessThan(in a, in b);
+        public static bool operator <=(in Mask256 a, in Mask256 b) => !LessThan(in b, in a);
+        public static bool operator >(in Mask256 a, in Mask256 b) => LessThan(in b, in a);
+        public static bool operator >=(in Mask256 a, in Mask256 b) => !LessThan(in a, in b);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool LessThan(in UInt256 a, in UInt256 b)
+        private static bool LessThan(in Mask256 a, in Mask256 b)
         {
             if (a.u3 != b.u3)
                 return a.u3 < b.u3;
@@ -341,18 +341,18 @@ namespace FlowJob
             return a.u0 < b.u0;
         }
 
-        public int CompareTo(UInt256 b) => this < b ? -1 : Equals(b) ? 0 : 1;
+        public int CompareTo(Mask256 b) => this < b ? -1 : Equals(b) ? 0 : 1;
         
         public override int GetHashCode() => System.HashCode.Combine(u0, u1, u2, u3);
 
-        public bool Equals(UInt256 other)
+        public bool Equals(Mask256 other)
         {
             return u0 == other.u0 && u1 == other.u1 && u2 == other.u2 && u3 == other.u3;
         }
 
         public override bool Equals(object obj)
         {
-            return obj is UInt256 other && Equals(other);
+            return obj is Mask256 other && Equals(other);
         }
     }
 }

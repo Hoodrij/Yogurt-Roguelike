@@ -10,23 +10,23 @@ namespace FlowJob
     {
         public bool IsEmpty => value == 0;
         
-        private UInt256 value;
+        private Mask256 value;
 
         public void Set(byte other)
         {
-            UInt256 otherMask = UInt256.One << other;
+            Mask256 otherMask = Mask256.One << other;
             value |= otherMask;
         }
         
         public void UnSet(byte other)
         {
-            UInt256 otherMask = UInt256.One << other;
+            Mask256 otherMask = Mask256.One << other;
             value &= ~otherMask;
         }
         
         public bool Has(byte other)
         {
-            UInt256 otherMask = UInt256.One << other;
+            Mask256 otherMask = Mask256.One << other;
             return (value & otherMask) == otherMask;
         }
 
