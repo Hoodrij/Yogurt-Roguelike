@@ -108,13 +108,11 @@ namespace FlowJob
             return composition.Hash;
         }
 
-        public HashSet<Entity>.Enumerator GetEnumerator()
+        public IEnumerator<Entity> GetEnumerator()
         {
             WorldAccessor.UpdateWorld();
             return entities.GetEnumerator();
         }
-
-        public int Count => entities.Count;
 
         public int CompareTo(Group other)
         {

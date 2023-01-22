@@ -24,7 +24,7 @@ namespace Roguelike
         private float GetDelay()
         {
             float delay = Query.Single<Data>().TurnDelay;
-            int agentsCount = Query.Of<Agent>().Count;
+            int agentsCount = Query.Of<Agent>().Count();
             return delay / agentsCount;
         }
     }

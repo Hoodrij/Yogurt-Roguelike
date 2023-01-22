@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FlowJob
 {
@@ -34,7 +35,7 @@ namespace FlowJob
         }
     }
 
-    public struct QueryOfEntity : Query, IEnumerable
+    public struct QueryOfEntity : Query, IEnumerable<Entity>
     {
         internal Mask Included;
         internal Mask Excluded;
@@ -50,8 +51,6 @@ namespace FlowJob
             Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
-        
-        public Entity Single() => GetGroup().Single();
 
         private Group GetGroup()
         {
@@ -60,14 +59,9 @@ namespace FlowJob
             return group;
         }
         
-        public HashSet<Entity>.Enumerator GetEnumerator()
-        {
-            return GetGroup().GetEnumerator();
-        }
-        
+        public IEnumerator<Entity> GetEnumerator() => GetGroup().GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        
-        public int Count => GetGroup().Count;
+        public Entity Single() => GetGroup().Single();
     }
     
     public struct QueryOfAspect<TAspect> : Query, IEnumerable<TAspect> where TAspect : struct, Aspect<TAspect>
@@ -86,9 +80,7 @@ namespace FlowJob
             Excluded.Set(ComponentID.Of<TComponent>());
             return this;
         }
-
-        public TAspect Single() => GetGroup().Single().ToAspect<TAspect>();
-
+        
         internal Group GetGroup()
         {
             Composition composition = new Composition(Included, Excluded);
@@ -103,8 +95,8 @@ namespace FlowJob
                 yield return entity.ToAspect<TAspect>();
             }
         }
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         
-        public int Count => GetGroup().Count;
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public TAspect Single() => GetGroup().Single().ToAspect<TAspect>();
     }
 }
