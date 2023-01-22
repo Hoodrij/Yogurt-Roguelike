@@ -70,7 +70,11 @@ namespace FlowJob
 
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.UnSet(componentID);
-            WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
+
+            if (Meta->ComponentsMask.IsEmpty)
+                Kill();
+            else
+                WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
         }
 
         public void Kill()

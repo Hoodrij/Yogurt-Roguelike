@@ -31,20 +31,10 @@ namespace FlowJob
                 {
                     case Action.ComponentsChanged:
                         {
-                            if (meta->ComponentsMask.IsEmpty)
-                            {
-                                entity.Kill();
-                            }
-                            
                             Stack<Group> groups = Storage.All[operation.componentId].Groups;
                             foreach (Group group in groups)
                             {
                                 group.ProcessEntity(entity, meta);
-                            }
-
-                            if (meta->ComponentsMask.IsEmpty)
-                            {
-                                entity.Kill();
                             }
                         }
                         break;
