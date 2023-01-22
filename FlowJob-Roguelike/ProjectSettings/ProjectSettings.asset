@@ -585,7 +585,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: FLOWJOB_DEBUG
+    Standalone: 
   additionalCompilerArguments:
     Standalone: []
   platformArchitecture: {}
