@@ -33,7 +33,10 @@ namespace FlowJob
             
             foreach (Entity entity in WorldAccessor.GetEntities())
             {
-                ProcessEntity(entity);
+                unsafe
+                {
+                    ProcessEntity(entity, entity.Meta);
+                }
             }
         }
         
@@ -53,11 +56,9 @@ namespace FlowJob
             return Entity.Null;
         }
 
-        internal unsafe void ProcessEntity(in Entity entity)
+        internal unsafe void ProcessEntity(in Entity entity, EntityMeta* meta)
         {
-            EntityMeta* meta = entity.Meta;
-            
-            if (composition.Fits(entity))
+            if (composition.Fits(meta))
             {
                 if (TryAdd(entity))
                 {

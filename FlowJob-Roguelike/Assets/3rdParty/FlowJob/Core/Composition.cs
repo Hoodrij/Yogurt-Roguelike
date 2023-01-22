@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FlowJob
 {
-    public struct Composition : IEquatable<Composition>
+    public readonly struct Composition : IEquatable<Composition>
     {
         private readonly Mask included;
         private readonly Mask excluded;
@@ -16,10 +16,10 @@ namespace FlowJob
             Hash = HashCode.Of(included).And(17).And(31).And(excluded);
         }
         
-        internal readonly unsafe bool Fits(Entity entity)
+        internal unsafe bool Fits(EntityMeta* meta)
         {
-            return entity.Meta->ComponentsMask.HasAll(included)
-                   && !entity.Meta->ComponentsMask.HasAny(excluded);
+            return meta->ComponentsMask.HasAll(included)
+                   && !meta->ComponentsMask.HasAny(excluded);
         }
         
         public IEnumerable<ComponentID> GetIds()

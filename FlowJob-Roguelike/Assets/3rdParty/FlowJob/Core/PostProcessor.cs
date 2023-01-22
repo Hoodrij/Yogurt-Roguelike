@@ -39,7 +39,7 @@ namespace FlowJob
                             Stack<Group> groups = Storage.All[operation.componentId].Groups;
                             foreach (Group group in groups)
                             {
-                                group.ProcessEntity(entity);
+                                group.ProcessEntity(entity, meta);
                             }
 
                             if (meta->ComponentsMask.IsEmpty)
