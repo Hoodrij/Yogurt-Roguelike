@@ -11,7 +11,6 @@ namespace FlowJob
         public static readonly Mask256 One = 1ul;
         public static readonly Mask256 MinValue = Zero;
         public static readonly Mask256 MaxValue = ~Zero;
-        public static readonly Mask256 UInt128MaxValue = new(ulong.MaxValue, ulong.MaxValue);
 
         /* in little endian order so u3 is the most significant ulong */
         [FieldOffset(0)] private readonly ulong u0;
@@ -168,7 +167,6 @@ namespace FlowJob
                 }
 
                 x.Rsh192(out res);
-                z0 = res.u0;
                 z1 = res.u1;
                 z2 = res.u2;
                 z3 = res.u3;
@@ -178,8 +176,6 @@ namespace FlowJob
             else if (n > 128)
             {
                 x.Rsh128(out res);
-                z0 = res.u0;
-                z1 = res.u1;
                 z2 = res.u2;
                 z3 = res.u3;
                 n -= 128;
@@ -188,9 +184,6 @@ namespace FlowJob
             else if (n > 64)
             {
                 x.Rsh64(out res);
-                z0 = res.u0;
-                z1 = res.u1;
-                z2 = res.u2;
                 z3 = res.u3;
                 n -= 64;
                 goto sh64;
@@ -198,10 +191,6 @@ namespace FlowJob
             else
             {
                 res = x;
-                z0 = res.u0;
-                z1 = res.u1;
-                z2 = res.u2;
-                z3 = res.u3;
             }
 
             // remaining shifts
@@ -319,10 +308,12 @@ namespace FlowJob
         }
 
         public static bool operator ==(in Mask256 a, in Mask256 b) => a.Equals(b);
+        public static bool operator ==(in Mask256 a, in uint b) => a.Equals(b);
 
         public static bool operator !=(in Mask256 a, in Mask256 b) => !(a == b);
+        public static bool operator !=(in Mask256 a, in uint b) => !(a == b);
 
-        public static implicit operator Mask256(ulong value) => new Mask256(value, 0ul, 0ul, 0ul);
+        public static implicit operator Mask256(ulong value) => new Mask256(value);
 
         public static bool operator <(in Mask256 a, in Mask256 b) => LessThan(in a, in b);
         public static bool operator <=(in Mask256 a, in Mask256 b) => !LessThan(in b, in a);
@@ -348,6 +339,10 @@ namespace FlowJob
         public bool Equals(Mask256 other)
         {
             return u0 == other.u0 && u1 == other.u1 && u2 == other.u2 && u3 == other.u3;
+        }
+        public bool Equals(uint other)
+        {
+            return u0 == other && u1 == 0 && u2 == 0 && u3 == 0;
         }
 
         public override bool Equals(object obj)

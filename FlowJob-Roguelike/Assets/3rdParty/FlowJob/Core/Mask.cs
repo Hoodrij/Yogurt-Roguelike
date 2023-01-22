@@ -8,7 +8,7 @@ namespace FlowJob
     [DebuggerDisplay("{Name}")]
     public struct Mask : IComparable<Mask>, IEquatable<Mask>
     {
-        public bool IsEmpty => value == 0;
+        public bool IsEmpty => value == Mask256.Zero;
         
         private Mask256 value;
 
@@ -32,7 +32,7 @@ namespace FlowJob
 
         public readonly bool HasAny(Mask other)
         {
-            return (value & other.value) != 0;
+            return (value & other.value) != Mask256.Zero;
         }
 
         public readonly bool HasAll(Mask other)
@@ -42,7 +42,7 @@ namespace FlowJob
 
         public void Clear()
         {
-            value = 0;
+            value = Mask256.Zero;
         }
 
         public readonly Mask And(Mask other)
