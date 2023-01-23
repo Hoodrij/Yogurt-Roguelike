@@ -29,7 +29,7 @@ namespace Roguelike
             Entity entity = Level.Create()
                 .Add(rockData)
                 .Add(health)
-                .Add(view)
+                .AddForLife(view)
                 .Add(new Position
                 {
                     Value = spawnPosition

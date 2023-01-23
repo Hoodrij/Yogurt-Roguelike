@@ -6,15 +6,17 @@ namespace Roguelike
 {
     public class BootProfiler : MonoBehaviour
     {
-        private TurnOwner turnOwner;
+        public int SamplesCount; 
+        // private TurnOwner turnOwner;
         
         private void Update()
         {
             Profiler.BeginSample("---Create");
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < SamplesCount; i++)
             {
                 Entity.Create()
-                    .Add(turnOwner);
+                    .Add<TurnOwner>();
+                // .Add(turnOwner);
             }
             Profiler.EndSample();
             

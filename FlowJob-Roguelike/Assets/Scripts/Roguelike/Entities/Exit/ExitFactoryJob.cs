@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Core.Tools.ExtensionMethods;
+using Cysharp.Threading.Tasks;
 using FlowJob;
 
 namespace Roguelike
@@ -22,7 +23,7 @@ namespace Roguelike
                 });
 
             TileView view = await assets.Environment.Spawn();
-            entity.Add(view);
+            entity.AddForLife(view);
             view.SetPosition(entity.Get<Position>().Value);
             
             return entity;

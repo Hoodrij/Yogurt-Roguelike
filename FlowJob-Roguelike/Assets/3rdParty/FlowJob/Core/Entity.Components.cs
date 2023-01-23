@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace FlowJob
 {
@@ -32,7 +31,7 @@ namespace FlowJob
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
             WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
-            Storage<T>.Instance.Add(component, ID);
+            Storage<T>.Instance.Set(component, ID);
 
             return this;
         }
@@ -81,14 +80,6 @@ namespace FlowJob
         {
             this.DebugCheckAlive();
             WorldAccessor.Enqueue(PostProcessor.Action.Kill, this);
-
-            foreach (IComponent component in this.GetComponents())
-            {
-                if (component is IDisposable disposable)
-                {
-                    disposable.Dispose();
-                }
-            }
 
             Meta->IsAlive = false;
             while (Managed.Childs.Count > 0)

@@ -23,8 +23,7 @@ namespace FlowJob
 
         public static unsafe EntityMeta* GetMeta(Entity entity)
         {
-            EntityMeta* entityMeta = World.EntitiesMetas.Get(entity);
-            return entityMeta;
+            return World.EntitiesMetas.Get(entity);;
         }
         
         public static ref EntityManagedMeta GetManagedMeta(Entity entity)

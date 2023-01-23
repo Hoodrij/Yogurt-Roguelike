@@ -36,7 +36,7 @@ namespace Roguelike
                 {
                     InteractionJob = new FoodInteractJob()
                 })
-                .Add(view);
+                .AddForLife(view);
 
             return entity;
             

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using FlowJob;
 using Roguelike.Abilities;
@@ -41,7 +42,7 @@ namespace Roguelike
                 .Add(new Health());
             
             AgentView view = await args.ViewRef.Spawn();
-            agentEntity.Add(view);
+            agentEntity.AddForLife(view);
             view.UpdateView(agentEntity.ToAspect<AgentAspect>(), 0);
             
             return agentEntity.ToAspect<AgentAspect>();

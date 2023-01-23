@@ -45,7 +45,7 @@ namespace Roguelike
                 {
                     Value = coord
                 })
-                .Add(tileView); 
+                .AddForLife(tileView); 
 
             return entity;
         }
@@ -65,7 +65,7 @@ namespace Roguelike
                 {
                     Value = coord
                 })
-                .Add(tileView);
+                .AddForLife(tileView);
 
             return entity;
         }

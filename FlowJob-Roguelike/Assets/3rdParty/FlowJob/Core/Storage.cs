@@ -42,7 +42,7 @@ namespace FlowJob
             All[id] = this;
         }
 
-        public void Add(T component, int index)
+        public void Set(T component, int index)
         {
             if (index >= Components.Length)
             {
