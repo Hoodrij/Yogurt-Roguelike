@@ -20,7 +20,8 @@ namespace FlowJob
             {
                 foreach (Type type in assembly.GetTypes())
                 {
-                    if (!type.GetInterfaces().Contains(typeof(IComponent))) continue;
+                    if (!type.GetInterfaces().Contains(typeof(IComponent))
+                        || type.IsGenericType) continue;
                     Type genericStorage = typeof(Storage<>).MakeGenericType(type);
                     Activator.CreateInstance(genericStorage);
                 }
