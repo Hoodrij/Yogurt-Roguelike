@@ -3,7 +3,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class GameFactoryJob
+    public struct GameFactoryJob
     {
         public async UniTask<GameAspect> Run()
         {

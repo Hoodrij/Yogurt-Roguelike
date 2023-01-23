@@ -2,7 +2,7 @@
 
 namespace Roguelike
 {
-    public class UpdateRockViewJob : Health.IHealthChangedJob
+    public struct UpdateRockViewJob : Health.IHealthChangedJob
     {
         public void Run(Entity entity)
         {

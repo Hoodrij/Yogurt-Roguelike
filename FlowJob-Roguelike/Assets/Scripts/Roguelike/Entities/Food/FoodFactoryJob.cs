@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class FoodFactoryJob
+    public struct FoodFactoryJob
     {
         public async UniTask<Entity> Run()
         {

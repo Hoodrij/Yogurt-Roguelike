@@ -3,7 +3,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class FoodInteractJob : Interactable.IInteractJob
+    public struct FoodInteractJob : Interactable.IInteractJob
     {
         public async UniTask Run((Entity interactable, Entity agent) args)
         {

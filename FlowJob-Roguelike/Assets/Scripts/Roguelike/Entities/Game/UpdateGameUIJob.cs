@@ -2,7 +2,7 @@
 
 namespace Roguelike
 {
-    public class UpdateGameUIJob : Health.IHealthChangedJob
+    public struct UpdateGameUIJob : Health.IHealthChangedJob
     {
         public void Run(Entity entity)
         {

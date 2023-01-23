@@ -2,7 +2,7 @@
 
 namespace Roguelike
 {
-    public class GiveTurnToNextAgentJob
+    public struct GiveTurnToNextAgentJob
     {
         public void Run()
         {

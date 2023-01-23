@@ -2,7 +2,7 @@
 
 namespace Roguelike
 {
-    public class CheckGameOverJob
+    public struct CheckGameOverJob
     {
         public bool Run()
         {

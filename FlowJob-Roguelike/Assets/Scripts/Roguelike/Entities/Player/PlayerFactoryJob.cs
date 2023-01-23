@@ -4,7 +4,7 @@ using Roguelike.Abilities;
 
 namespace Roguelike
 {
-    public class PlayerFactoryJob
+    public struct PlayerFactoryJob
     {
         public async UniTask<Entity> Run()
         {

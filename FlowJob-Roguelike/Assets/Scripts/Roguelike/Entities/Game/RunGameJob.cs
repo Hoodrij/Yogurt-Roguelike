@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class RunGameJob
+    public struct RunGameJob
     {
         public async void Run()
         {

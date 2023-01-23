@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class CheckExitReachedJob
+    public struct CheckExitReachedJob
     {
         public bool Run()
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class ZombieFactoryJob
+    public struct ZombieFactoryJob
     {
         public async UniTask<Entity> Run()
         {

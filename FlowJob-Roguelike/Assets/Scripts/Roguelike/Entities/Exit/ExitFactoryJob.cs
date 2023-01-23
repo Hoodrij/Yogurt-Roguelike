@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class ExitFactoryJob
+    public struct ExitFactoryJob
     {
         public async UniTask<Entity> Run()
         {

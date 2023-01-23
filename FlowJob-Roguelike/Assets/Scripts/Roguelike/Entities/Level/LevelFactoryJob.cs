@@ -4,7 +4,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class LevelFactoryJob
+    public struct LevelFactoryJob
     {
         public async UniTask Run()
         {

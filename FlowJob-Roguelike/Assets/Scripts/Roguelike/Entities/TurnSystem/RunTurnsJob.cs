@@ -5,7 +5,7 @@ using FlowJob;
 
 namespace Roguelike
 {
-    public class RunTurnsJob
+    public struct RunTurnsJob
     {
         public async UniTask Run()
         {

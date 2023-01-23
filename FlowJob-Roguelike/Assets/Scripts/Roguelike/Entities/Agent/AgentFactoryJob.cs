@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Roguelike
 {
-    public class AgentFactoryJob
+    public struct AgentFactoryJob
     {
         public struct Args
         {
