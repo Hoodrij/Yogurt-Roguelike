@@ -14,8 +14,8 @@ namespace Roguelike
     [Flags]
     public enum CollisionLayer
     {
-        Destructible = 1 << 1,
-        Hard = 1 << 2,
+        Hard = 1 << 1,
+        Destructible = 1 << 2,
         Interactable = 1 << 3,
     }
 }
