@@ -1,57 +1,41 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace FlowJob
 {
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct EntityMeta : IInitialize, IDisposable
+    public unsafe struct EntityMeta : IUnmanaged<EntityMeta>
     {
         internal bool IsAlive;
+        internal int Id;
         internal int Age;
         internal Mask ComponentsMask;
 
-        internal byte GroupsAmount;
         internal UnsafeSpan<GroupId> Groups;
+        
+        internal UnsafeSpan<Entity> Childs;
+        public Entity Parent;
 
         public void Initialize()
         {
-            GroupsAmount = 0;
+            Parent = default;
+            ComponentsMask.Clear();
             Groups = new(4);
+            Childs = new(4);
         }
 
         public void Dispose()
         {
+            Parent = default;
+            ComponentsMask.Clear();
             Groups.Dispose();
-        }
-
-        public void AddGroup(int groupID)
-        {
-            Groups[GroupsAmount++]->Id = groupID;
+            Childs.Dispose();
         }
         
-        public void RemoveGroup(int groupID)
+        public bool Equals(EntityMeta other)
         {
-            for (int i = 0; i <= GroupsAmount; i++)
-            {
-                if (Groups[i]->Id == groupID)
-                {
-                    for (int j = i; j < GroupsAmount; ++j)
-                    {
-                        Groups[j]->Id = Groups[j + 1]->Id;
-                    }
-        
-                    GroupsAmount--;
-                    break;
-                }
-            }
-        }
-
-        public struct GroupId : IInitialize, IDisposable
-        {
-            public int Id;
-            
-            public void Initialize() { }
-            public void Dispose() { }
+            return IsAlive == other.IsAlive 
+                   && Age == other.Age 
+                   && Id == other.Id;
         }
     }
 }

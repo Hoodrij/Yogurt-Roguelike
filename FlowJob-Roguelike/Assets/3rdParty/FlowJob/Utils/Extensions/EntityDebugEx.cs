@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace FlowJob
 {
@@ -10,15 +9,20 @@ namespace FlowJob
             public int ID => entity.ID;
             public unsafe bool Alive => entity.Meta->IsAlive;
             public int Age => entity.Age;
-            public List<IComponent> Components => entity == Entity.Null ? new(): entity.GetComponents();
-            public Entity Parent => entity.Managed.Parent;
-            public List<Entity> Childs => entity == Entity.Null ? new() : entity.Managed.Childs.ToList();
+            public List<IComponent> Components => entity == Entity.Null ? new() : entity.GetComponents();
+            public unsafe Entity Parent => entity == Entity.Null ? Entity.Null : entity.Meta->Parent;
+            public unsafe List<Entity> Childs => entity == Entity.Null ? new() : GetChilds();
 
             private Entity entity;
             
             public EntityDebugView(Entity entity)
             {
                 this.entity = entity;
+            }
+
+            public unsafe List<Entity> GetChilds()
+            {
+                return new UnsafeSpanDebugView<Entity>(entity.Meta->Childs).Items;
             }
         }
 
@@ -34,6 +38,18 @@ namespace FlowJob
 
             return result;
         }
+
+        // internal static unsafe List<Entity> GetChilds(this Entity entity)
+        // {
+        //     UnsafeSpan<Entity> unsafeSpan = entity.Meta->Childs;
+        //     for (int i = 0; i < unsafeSpan.Count; i++)
+        //     {
+        //         Entity* child = unsafeSpan.Get(i);
+        //         if (!child->Exist) continue;
+        //
+        //         // yield return child;
+        //     }
+        // }
 
         public static TAspect ToAspect<TAspect>(this Entity entity) where TAspect : struct, Aspect<TAspect>
         {

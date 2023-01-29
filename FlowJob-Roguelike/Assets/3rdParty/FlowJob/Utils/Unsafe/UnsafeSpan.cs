@@ -1,59 +1,107 @@
 using System;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace FlowJob
 {
-    public unsafe struct UnsafeSpan<T> where T : unmanaged, IInitialize, IDisposable
+    [DebuggerTypeProxy(typeof(UnsafeSpanDebugView<>))]
+    public unsafe struct UnsafeSpan<T> where T : unmanaged, IUnmanaged<T>
     {
+        public int Count { get; private set; }
+
         private int elementSize;
-        private int length;
+        private int capacity;
         private IntPtr memoryPointer;
 
-        public UnsafeSpan(int length)
+        public UnsafeSpan(int capacity)
         {
-            this.length = length < 4 ? 4 : length;
+            this.capacity = capacity < 4 ? 4 : capacity;
             elementSize = sizeof(T);
-            memoryPointer = Marshal.AllocHGlobal(this.length * elementSize);
+            memoryPointer = Marshal.AllocHGlobal(this.capacity * elementSize);
+            Count = 0;
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < capacity; i++)
             {
-                Get(i)->Initialize();
+                GetUnsafe(i)->Initialize();
             }
         }
 
         public T* this[int index] => Get(index);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public T* Get(int index)
         {
-            if (index >= length)
+            if (index >= capacity)
             {
-                length <<= 1;
-                memoryPointer = Marshal.ReAllocHGlobal(memoryPointer, (IntPtr)(length * elementSize));
+                capacity <<= 1;
+                memoryPointer = Marshal.ReAllocHGlobal(memoryPointer, (IntPtr)(capacity * elementSize));
                 
-                for (int i = length >> 1; i < length; i++)
+                for (int i = capacity >> 1; i < capacity; i++)
                 {
-                    Get(i)->Initialize();
+                    GetUnsafe(i)->Initialize();
                 }
             }
+            if (index + 1 > Count)
+            {
+                Count = index + 1;
+            }
+
+            return GetUnsafe(index);
+        }
+        
+        private T* GetUnsafe(int index)
+        {
             return (T*) (memoryPointer + index * elementSize);
+        }
+
+        public void Set(int index, T value)
+        {
+            T* t = Get(index);
+            *t = value;
+        }
+
+        public void Add(T value)
+        {
+            Set(Count, value);
+        }
+
+        public void Remove(T value)
+        {
+            // for (int i = Count - 1; i >= 0; i--)
+            // {
+                
+            // }
+            for (int i = Count - 1; i >= 0; i--)
+            {
+                if (Get(i)->Equals(value))
+                {
+                    for (int j = i; j < Count; ++j)
+                    {
+                        T* next = GetUnsafe(j+1);
+                        Set(j, *next);
+                    }
+        
+                    Count--;
+                    break;
+                }
+            }
         }
 
         public void Dispose()
         {
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < capacity; i++)
             {
-                Get(i)->Dispose();
+                GetUnsafe(i)->Dispose();
             }
             
             Marshal.FreeHGlobal(memoryPointer);
             memoryPointer = IntPtr.Zero;
-            length = 0;
+            capacity = 0;
+            Count = 0;
         }
+        
     }
 
-    public interface IInitialize
+    public interface IUnmanaged<T> : IDisposable, IEquatable<T> where T : unmanaged
     {
         void Initialize();
     }

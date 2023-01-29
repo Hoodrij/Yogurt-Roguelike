@@ -25,11 +25,6 @@ namespace FlowJob
         {
             return World.EntitiesMetas.Get(entity);;
         }
-        
-        public static ref EntityManagedMeta GetManagedMeta(Entity entity)
-        {
-            return ref World.EntitiesManaged.Get(entity);
-        }
 
         public static void RemoveEntity(Entity entity)
         {

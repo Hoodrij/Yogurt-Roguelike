@@ -1,10 +1,10 @@
-﻿using System.Linq;
+﻿using UnityEngine;
 
 namespace FlowJob
 {
     public unsafe partial struct Entity
     {
-        internal EntityMeta* Meta => WorldAccessor.GetMeta(ID);
+        public EntityMeta* Meta => WorldAccessor.GetMeta(ID);
 
         public Entity Add<T>() where T : IComponent, new()
         {
@@ -80,11 +80,12 @@ namespace FlowJob
         {
             this.DebugCheckAlive();
             WorldAccessor.Enqueue(PostProcessor.Action.Kill, this);
-
-            Meta->IsAlive = false;
-            while (Managed.Childs.Count > 0)
+            
+            EntityMeta* meta = Meta;
+            meta->IsAlive = false;
+            while (meta->Childs.Count > 0)
             {
-                Managed.Childs.First().Kill();
+                meta->Childs.Get(meta->Childs.Count - 1)->Kill();
             }
 
             UnParent();

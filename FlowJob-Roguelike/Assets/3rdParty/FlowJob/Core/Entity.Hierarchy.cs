@@ -1,36 +1,28 @@
-﻿using System.Collections.Generic;
-
-namespace FlowJob
+﻿namespace FlowJob
 {
-    public unsafe partial struct Entity
+    public unsafe partial struct Entity : IUnmanaged<Entity>
     {
-        internal ref EntityManagedMeta Managed => ref WorldAccessor.GetManagedMeta(ID);
-
         public void SetParent(Entity parentEntity)
         {
             this.DebugParentToSelf(parentEntity);
             
-            Managed.Parent = parentEntity;
-            parentEntity.Managed.Childs.Add(this);
+            Meta->Parent = parentEntity;
+            parentEntity.Meta->Childs.Add(this);
         }
 
         public void UnParent()
         {
-            if (Managed.Parent == Null) return;
-            Managed.Parent.Managed.Childs.Remove(this);
-            Managed.Parent = default;
+            EntityMeta* meta = Meta;
+            if (meta->Parent == Null) return;
+            
+            meta->Parent.Meta->Childs.Remove(this);
+            meta->Parent = Null;
         }
-    }
-    
-    public struct EntityManagedMeta
-    {
-        internal HashSet<Entity> Childs;
-        internal Entity Parent;
 
         public void Initialize()
         {
-            Childs = new();
-            Parent = Entity.Null;
+            this = default;
         }
+        public void Dispose() { }
     }
 }

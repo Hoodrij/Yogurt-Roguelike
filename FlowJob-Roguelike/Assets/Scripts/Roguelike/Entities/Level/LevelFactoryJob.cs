@@ -6,11 +6,11 @@ namespace Roguelike
 {
     public struct LevelFactoryJob
     {
-        public async UniTask Run()
+        public async UniTask<Entity> Run()
         {
             Data data = Query.Single<Data>();
             
-            Entity.Create()
+            Entity entity = Entity.Create()
                 .Add<Level>();
 
             await new EnvironmentFactoryJob().Run();
@@ -31,6 +31,8 @@ namespace Roguelike
             {
                 await new ZombieFactoryJob().Run();
             }
+            
+            return entity;
         }
     }
 }

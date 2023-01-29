@@ -7,31 +7,32 @@ namespace Roguelike
     public class BootProfiler : MonoBehaviour
     {
         public int SamplesCount; 
-        // private TurnOwner turnOwner;
+        private TurnOwner turnOwner;
         
         private void Update()
         {
+            
+            Entity parent = Entity.Create();
+            
             Profiler.BeginSample("---Create");
             for (int i = 0; i < SamplesCount; i++)
             {
                 Entity.Create()
-                    .Add<TurnOwner>();
-                // .Add(turnOwner);
+                    // .Add<TurnOwner>()
+                    .Add(turnOwner)
+                    .SetParent(parent);
             }
             Profiler.EndSample();
             
             Profiler.BeginSample("---Iterate");
             foreach (Entity entity in Query.Of<TurnOwner>())
             {
-                TurnOwner turnOwner = entity.Get<TurnOwner>();
+                entity.Get<TurnOwner>();
             }
             Profiler.EndSample();
             
             Profiler.BeginSample("---Kill");
-            foreach (Entity entity in Query.Of<TurnOwner>())
-            {
-                entity.Kill();
-            }
+            parent.Kill();
             Profiler.EndSample();
         }
     }
