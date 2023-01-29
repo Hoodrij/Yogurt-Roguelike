@@ -84,7 +84,7 @@ namespace FlowJob
             Meta->IsAlive = false;
             while (Managed.Childs.Count > 0)
             {
-                Managed.Childs.First().Kill();
+                Managed.Childs[0].Kill();
             }
 
             UnParent();

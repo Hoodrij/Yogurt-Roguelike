@@ -24,7 +24,7 @@ namespace FlowJob
     
     public struct EntityManagedMeta
     {
-        internal HashSet<Entity> Childs;
+        internal List<Entity> Childs;
         internal Entity Parent;
 
         public void Initialize()
