@@ -66,13 +66,9 @@ namespace FlowJob
 
         public void Remove(T value)
         {
-            // for (int i = Count - 1; i >= 0; i--)
-            // {
-                
-            // }
             for (int i = Count - 1; i >= 0; i--)
             {
-                if (Get(i)->Equals(value))
+                if (GetUnsafe(i)->Equals(value))
                 {
                     for (int j = i; j < Count; ++j)
                     {
@@ -84,6 +80,11 @@ namespace FlowJob
                     break;
                 }
             }
+        }
+
+        public void Clear()
+        {
+            Count = 0;
         }
 
         public void Dispose()

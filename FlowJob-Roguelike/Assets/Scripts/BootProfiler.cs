@@ -12,7 +12,7 @@ namespace Roguelike
         private void Update()
         {
             
-            Entity parent = Entity.Create();
+            // Entity parent = Entity.Create();
             
             Profiler.BeginSample("---Create");
             for (int i = 0; i < SamplesCount; i++)
@@ -20,7 +20,8 @@ namespace Roguelike
                 Entity.Create()
                     // .Add<TurnOwner>()
                     .Add(turnOwner)
-                    .SetParent(parent);
+                    // .SetParent(parent)
+                    ;
             }
             Profiler.EndSample();
             
@@ -32,7 +33,11 @@ namespace Roguelike
             Profiler.EndSample();
             
             Profiler.BeginSample("---Kill");
-            parent.Kill();
+            // parent.Kill();
+            foreach (Entity entity in Query.Of<TurnOwner>())
+            {
+                entity.Kill();
+            }
             Profiler.EndSample();
         }
     }

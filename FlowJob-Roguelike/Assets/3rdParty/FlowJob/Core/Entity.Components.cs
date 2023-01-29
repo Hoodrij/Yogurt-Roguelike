@@ -1,10 +1,8 @@
-﻿using UnityEngine;
-
-namespace FlowJob
+﻿namespace FlowJob
 {
     public unsafe partial struct Entity
     {
-        public EntityMeta* Meta => WorldAccessor.GetMeta(ID);
+        internal EntityMeta* Meta => WorldAccessor.GetMeta(ID);
 
         public Entity Add<T>() where T : IComponent, new()
         {
@@ -88,7 +86,7 @@ namespace FlowJob
                 meta->Childs.Get(meta->Childs.Count - 1)->Kill();
             }
 
-            UnParent();
+            UnParent(meta);
         }
     }
 }

@@ -12,7 +12,11 @@
 
         public void UnParent()
         {
-            EntityMeta* meta = Meta;
+            UnParent(Meta);
+        }
+
+        internal void UnParent(EntityMeta* meta)
+        {
             if (meta->Parent == Null) return;
             
             meta->Parent.Meta->Childs.Remove(this);

@@ -45,9 +45,8 @@ namespace FlowJob
                                 Group.Cache.TryGetValue(meta->Groups[i]->Id, out Group group);
                                 group?.TryRemove(entity);
                             }
-                            
-                            meta->Dispose();
-                            meta->Initialize();
+
+                            meta->Clear();
                             entity.Age += 1;
                             entity.Age %= int.MaxValue;
                             WorldAccessor.RemoveEntity(entity);

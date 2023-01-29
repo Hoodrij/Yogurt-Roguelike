@@ -25,7 +25,7 @@ namespace Roguelike
         // private int i;
         private UnsafeSpan<Test> span;
             
-        private unsafe void Awake()
+        private void Awake()
         {
             // span = new(8);
             // span.Set(5, new Test {i = 10});

@@ -3,7 +3,7 @@
 namespace FlowJob
 {
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct EntityMeta : IUnmanaged<EntityMeta>
+    internal unsafe struct EntityMeta : IUnmanaged<EntityMeta>
     {
         internal bool IsAlive;
         internal int Id;
@@ -13,22 +13,28 @@ namespace FlowJob
         internal UnsafeSpan<GroupId> Groups;
         
         internal UnsafeSpan<Entity> Childs;
-        public Entity Parent;
+        internal Entity Parent;
 
         public void Initialize()
         {
-            Parent = default;
-            ComponentsMask.Clear();
+            Clear();
             Groups = new(4);
             Childs = new(4);
         }
 
         public void Dispose()
         {
-            Parent = default;
-            ComponentsMask.Clear();
+            Clear();
             Groups.Dispose();
             Childs.Dispose();
+        }
+
+        public void Clear()
+        {
+            Parent = default;
+            ComponentsMask.Clear();
+            Groups.Clear();
+            Childs.Clear();
         }
         
         public bool Equals(EntityMeta other)
