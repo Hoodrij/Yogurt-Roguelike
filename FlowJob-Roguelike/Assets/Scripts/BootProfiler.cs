@@ -16,22 +16,26 @@ namespace Roguelike
             for (int i = 0; i < SamplesCount; i++)
             {
                 Entity.Create()
+                    // .Add<TurnOwner>()
                     .Add(turnOwner)
-                    .SetParent(parent);
-                // .Add<TurnOwner>()
-
+                    // .SetParent(parent)
+                    ;
             }
             Profiler.EndSample();
             
             Profiler.BeginSample("---Iterate");
             foreach (Entity entity in Query.Of<TurnOwner>())
             {
-                TurnOwner turnOwner = entity.Get<TurnOwner>();
+                entity.Get<TurnOwner>();
             }
             Profiler.EndSample();
             
             Profiler.BeginSample("---Kill");
-            parent.Kill();
+            // parent.Kill();
+            foreach (Entity entity in Query.Of<TurnOwner>())
+            {
+                entity.Kill();
+            }
             Profiler.EndSample();
         }
     }

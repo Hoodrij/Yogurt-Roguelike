@@ -12,13 +12,12 @@ namespace Roguelike
 
             while (!IsGameOver())
             {
-                await new LevelFactoryJob().Run();
+                Entity level = await new LevelFactoryJob().Run();
                 await new RunTurnsJob().Run();
                 
                 // small delay before restart
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
 
-                Entity level = Query.Of<Level>().Single();
                 level.Kill();
             }
         }
