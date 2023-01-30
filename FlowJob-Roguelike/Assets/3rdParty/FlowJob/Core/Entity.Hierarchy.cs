@@ -2,35 +2,33 @@
 
 namespace FlowJob
 {
-    public unsafe partial struct Entity
+    public unsafe partial struct Entity : IUnmanaged<Entity>
     {
-        internal ref EntityManagedMeta Managed => ref WorldAccessor.GetManagedMeta(ID);
-
         public void SetParent(Entity parentEntity)
         {
             this.DebugParentToSelf(parentEntity);
             
-            Managed.Parent = parentEntity;
-            parentEntity.Managed.Childs.Add(this);
+            Meta->Parent = parentEntity;
+            parentEntity.Meta->Childs.Add(this);
         }
 
         public void UnParent()
         {
-            if (Managed.Parent == Null) return;
-            Managed.Parent.Managed.Childs.Remove(this);
-            Managed.Parent = default;
+            UnParent(Meta);
         }
-    }
-    
-    public struct EntityManagedMeta
-    {
-        internal List<Entity> Childs;
-        internal Entity Parent;
+
+        internal void UnParent(EntityMeta* meta)
+        {
+            if (meta->Parent == Null) return;
+            
+            meta->Parent.Meta->Childs.Remove(this);
+            meta->Parent = Null;
+        }
 
         public void Initialize()
         {
-            Childs = new();
-            Parent = Entity.Null;
+            this = default;
         }
+        public void Dispose() { }
     }
 }

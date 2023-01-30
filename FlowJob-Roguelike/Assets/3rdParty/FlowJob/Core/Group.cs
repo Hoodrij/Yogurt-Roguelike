@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FlowJob
 {
-    public class Group : IEquatable<Group>, IComparable<Group>
+    internal class Group : IEquatable<Group>, IComparable<Group>
     {
         internal static Dictionary<HashCode, Group> Cache = new();
 
@@ -62,14 +62,14 @@ namespace FlowJob
             {
                 if (TryAdd(entity))
                 {
-                    meta->AddGroup(GetHashCode());
+                    meta->Groups.Add(this);
                 }
             }
             else
             {
                 if (TryRemove(entity))
                 {
-                    meta->RemoveGroup(GetHashCode());
+                    meta->Groups.Remove(this);
                 }
             }
         }
@@ -120,6 +120,24 @@ namespace FlowJob
             if (ReferenceEquals(this, other)) return 0;
             if (ReferenceEquals(null, other)) return 1;
             return GetHashCode().CompareTo(other.GetHashCode());
+        }
+    }
+    
+    internal struct GroupId : IUnmanaged<GroupId>
+    {
+        public int Id;
+            
+        public void Initialize() { }
+        public void Dispose() { }
+
+        public bool Equals(GroupId other)
+        {
+            return Id == other.Id;
+        }
+        
+        public static implicit operator GroupId(Group group)
+        {
+            return new GroupId { Id = group.GetHashCode() };
         }
     }
 }

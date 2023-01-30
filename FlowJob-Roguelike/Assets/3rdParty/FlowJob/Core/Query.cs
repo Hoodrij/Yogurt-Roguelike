@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace FlowJob
 {
     /// <summary>
-    /// QueryOfEntity query = Query.Of<Player>();
-    /// Entity entity = Query.Of<Player>().Single();
-    /// Player player = Query.Single<Player>();
+    /// QueryOfEntity query = Query.Of Player>();
+    /// Entity entity = Query.Of Player>().Single();
+    /// Player player = Query.Single Player>();
     ///
-    /// PlayerAspect playerAspect = Query.Single<PlayerAspect>();
-    /// PlayerAspect playerAspect1 = Query.Of<PlayerAspect>().Single();
+    /// PlayerAspect playerAspect = Query.Single PlayerAspect>();
+    /// PlayerAspect playerAspect1 = Query.Of PlayerAspect>().Single();
     /// </summary>
     public interface Query
     {

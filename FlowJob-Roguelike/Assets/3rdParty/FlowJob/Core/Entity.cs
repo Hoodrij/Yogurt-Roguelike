@@ -13,7 +13,15 @@ namespace FlowJob
         public int ID;
         internal int Age;
 
-        public bool Exist => ID > 0 && Meta->IsAlive && Meta->Age == Age;
+        public bool Exist
+        {
+            get
+            {
+                if (this == Null) return false;
+                EntityMeta* meta = Meta;
+                return meta->IsAlive && meta->Age == Age;
+            }
+        }
 
         public static Entity Create()
         {

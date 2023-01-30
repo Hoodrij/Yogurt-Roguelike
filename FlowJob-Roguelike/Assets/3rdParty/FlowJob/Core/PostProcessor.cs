@@ -40,17 +40,16 @@ namespace FlowJob
                         break;
                     case Action.Kill:
                         {
-                            for (int i = 0; i < meta->GroupsAmount; i++)
+                            for (int i = 0; i < meta->Groups.Count; i++)
                             {
                                 Group.Cache.TryGetValue(meta->Groups[i]->Id, out Group group);
                                 group?.TryRemove(entity);
                             }
-                            
-                            WorldAccessor.RemoveEntity(entity);
-                            meta->GroupsAmount = 0;
-                            meta->ComponentsMask.Clear();
+
+                            meta->Clear();
                             entity.Age += 1;
                             entity.Age %= int.MaxValue;
+                            WorldAccessor.RemoveEntity(entity);
                         }
                         break;
                 }

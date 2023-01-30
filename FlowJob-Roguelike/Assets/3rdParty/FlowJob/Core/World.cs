@@ -6,7 +6,6 @@ namespace FlowJob
     {
         internal PostProcessor PostProcessor = new();
         internal UnsafeSpan<EntityMeta> EntitiesMetas = new(Consts.INITIAL_ENTITIES_COUNT);
-        internal ManagedMetasList EntitiesManaged = new(Consts.INITIAL_ENTITIES_COUNT);
         internal HashSet<Entity> Entities = new(Consts.INITIAL_ENTITIES_COUNT);
         internal Queue<Entity> ReleasedEntities = new(Consts.INITIAL_ENTITIES_COUNT);
         
@@ -41,10 +40,10 @@ namespace FlowJob
             }
 
             EntityMeta* meta = world.EntitiesMetas.Get(entity.ID);
+            meta->Id = entity.ID;
             meta->Age = entity.Age;
             meta->IsAlive = true;
             meta->ComponentsMask.Clear();
-            meta->GroupsAmount = 0;
 
             world.Entities.Add(entity);
 
@@ -69,7 +68,6 @@ namespace FlowJob
             Group.Cache.Clear();
             
             EntitiesMetas.Dispose();
-            EntitiesManaged.Clear();
             AspectCache.Clear();
         }
     }

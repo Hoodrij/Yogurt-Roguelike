@@ -80,14 +80,15 @@ namespace FlowJob
         {
             this.DebugCheckAlive();
             WorldAccessor.Enqueue(PostProcessor.Action.Kill, this);
-
-            Meta->IsAlive = false;
-            while (Managed.Childs.Count > 0)
+            
+            EntityMeta* meta = Meta;
+            meta->IsAlive = false;
+            while (meta->Childs.Count > 0)
             {
-                Managed.Childs[0].Kill();
+                meta->Childs.Get(meta->Childs.Count - 1)->Kill();
             }
 
-            UnParent();
+            UnParent(meta);
         }
     }
 }
