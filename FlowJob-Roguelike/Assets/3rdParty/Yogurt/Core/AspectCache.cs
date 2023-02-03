@@ -28,15 +28,15 @@ namespace Yogurt
             Mask mask = default;
             foreach (PropertyInfo field in aspectType.GetProperties())
             {
-                Type propertyType = field.PropertyType;
-                if (propertyType.GetInterface(nameof(IComponent)) != null)
+                Type componentType = field.PropertyType;
+                if (componentType.GetInterface(nameof(IComponent)) != null)
                 {
-                    mask.Set(ComponentID.Of(propertyType));
+                    mask.Set(ComponentID.Of(componentType));
                 }
                     
-                if (propertyType.GetInterface(nameof(Aspect)) != null)
+                if (componentType.GetInterface(nameof(Aspect)) != null)
                 {
-                    mask |= GenerateMask(propertyType);
+                    mask |= GenerateMask(componentType);
                 }
             }
 

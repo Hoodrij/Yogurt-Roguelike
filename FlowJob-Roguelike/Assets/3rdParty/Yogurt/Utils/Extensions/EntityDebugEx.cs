@@ -4,28 +4,6 @@ namespace Yogurt
 {
     public static class EntityDebugEx
     {
-        internal class EntityDebugView
-        {
-            public int ID => entity.ID;
-            public unsafe bool Alive => entity.Meta->IsAlive;
-            public int Age => entity.Age;
-            public List<IComponent> Components => entity == Entity.Null ? new() : entity.GetComponents();
-            public unsafe Entity Parent => entity == Entity.Null ? Entity.Null : entity.Meta->Parent;
-            public List<Entity> Childs => entity == Entity.Null ? new() : GetChilds();
-
-            private Entity entity;
-            
-            public EntityDebugView(Entity entity)
-            {
-                this.entity = entity;
-            }
-
-            private unsafe List<Entity> GetChilds()
-            {
-                return new UnsafeSpanDebugView<Entity>(entity.Meta->Childs).Items;
-            }
-        }
-
         internal static unsafe List<IComponent> GetComponents(this Entity entity)
         {
             List<IComponent> result = new();
