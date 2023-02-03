@@ -5,6 +5,6 @@ namespace Yogurt
 {
     public class Debug
     {
-        public static List<Entity> Entities => WorldAccessor.GetEntities().ToList();
+        public static List<Entity> Entities => WorldBridge.GetEntities().ToList();
     }
 }

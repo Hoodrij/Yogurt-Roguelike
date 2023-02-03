@@ -23,7 +23,7 @@ namespace Yogurt
 
         internal static Entity CreateEntity()
         {
-            World world = WorldAccessor.World ??= new World();
+            World world = WorldBridge.World ??= new World();
             
             Entity entity;
             if (world.ReleasedEntities.Count > 0)
@@ -52,7 +52,7 @@ namespace Yogurt
 
         private void Dispose()
         {
-            WorldAccessor.World = null;
+            WorldBridge.World = null;
 #if UNITY_64
             UnityEngine.Application.quitting -= Dispose;
 #endif

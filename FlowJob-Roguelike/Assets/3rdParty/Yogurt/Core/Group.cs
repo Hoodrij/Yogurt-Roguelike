@@ -31,7 +31,7 @@ namespace Yogurt
                 Storage.All[componentID].Groups.Push(this);
             }
             
-            foreach (Entity entity in WorldAccessor.GetEntities())
+            foreach (Entity entity in WorldBridge.GetEntities())
             {
                 unsafe
                 {
@@ -47,7 +47,7 @@ namespace Yogurt
         
         public Entity Single()
         {
-            WorldAccessor.UpdateWorld();
+            WorldBridge.UpdateWorld();
             if (entities.Count > 0)
             {
                 return entities.First();
@@ -111,7 +111,7 @@ namespace Yogurt
 
         public IEnumerator<Entity> GetEnumerator()
         {
-            WorldAccessor.UpdateWorld();
+            WorldBridge.UpdateWorld();
             return entities.GetEnumerator();
         }
 

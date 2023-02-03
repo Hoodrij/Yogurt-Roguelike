@@ -49,7 +49,7 @@ namespace Yogurt
                             meta->Clear();
                             entity.Age += 1;
                             entity.Age %= int.MaxValue;
-                            WorldAccessor.RemoveEntity(entity);
+                            WorldBridge.RemoveEntity(entity);
                         }
                         break;
                 }

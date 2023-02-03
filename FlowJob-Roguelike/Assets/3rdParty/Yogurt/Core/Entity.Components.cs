@@ -4,7 +4,7 @@ namespace Yogurt
 {
     public unsafe partial struct Entity
     {
-        internal EntityMeta* Meta => WorldAccessor.GetMeta(ID);
+        internal EntityMeta* Meta => WorldBridge.GetMeta(ID);
 
         public Entity Add<T>() where T : IComponent, new()
         {
@@ -30,7 +30,7 @@ namespace Yogurt
             
             ComponentID componentID = ComponentID.Of<T>();
             Meta->ComponentsMask.Set(componentID);
-            WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
+            WorldBridge.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
             Storage<T>.Instance.Set(component, ID);
 
             return this;
@@ -73,13 +73,13 @@ namespace Yogurt
             if (Meta->ComponentsMask.IsEmpty)
                 Kill();
             else
-                WorldAccessor.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
+                WorldBridge.Enqueue(PostProcessor.Action.ComponentsChanged, this, componentID);
         }
 
         public void Kill()
         {
             this.DebugCheckAlive();
-            WorldAccessor.Enqueue(PostProcessor.Action.Kill, this);
+            WorldBridge.Enqueue(PostProcessor.Action.Kill, this);
             
             EntityMeta* meta = Meta;
             meta->IsAlive = false;

@@ -2,7 +2,7 @@
 
 namespace Yogurt
 {
-    internal static class WorldAccessor
+    internal static class WorldBridge
     {
         internal static World World { get; set; }
         
