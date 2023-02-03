@@ -8,31 +8,31 @@ namespace Yogurt
     [DebuggerDisplay("{Name}")]
     public struct Mask : IComparable<Mask>, IEquatable<Mask>
     {
-        public bool IsEmpty => value == Mask256.Zero;
+        public bool IsEmpty => value == Int256.Zero;
         
-        private Mask256 value;
+        private Int256 value;
 
         public void Set(byte other)
         {
-            Mask256 otherMask = Mask256.One << other;
+            Int256 otherMask = Int256.One << other;
             value |= otherMask;
         }
         
         public void UnSet(byte other)
         {
-            Mask256 otherMask = Mask256.One << other;
+            Int256 otherMask = Int256.One << other;
             value &= ~otherMask;
         }
         
         public bool Has(byte other)
         {
-            Mask256 otherMask = Mask256.One << other;
+            Int256 otherMask = Int256.One << other;
             return (value & otherMask) == otherMask;
         }
 
         public readonly bool HasAny(Mask other)
         {
-            return (value & other.value) != Mask256.Zero;
+            return (value & other.value) != Int256.Zero;
         }
 
         public readonly bool HasAll(Mask other)
@@ -42,7 +42,7 @@ namespace Yogurt
 
         public void Clear()
         {
-            value = Mask256.Zero;
+            value = Int256.Zero;
         }
 
         public readonly Mask And(Mask other)
