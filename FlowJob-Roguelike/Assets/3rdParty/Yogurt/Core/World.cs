@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     internal unsafe class World
     {
@@ -16,7 +16,7 @@ namespace FlowJob
         {
             Storage.Initialize();
 
-#if UNITY_2018_1_OR_NEWER
+#if UNITY_64
             UnityEngine.Application.quitting += Dispose;
 #endif
         }
@@ -53,7 +53,7 @@ namespace FlowJob
         private void Dispose()
         {
             WorldAccessor.World = null;
-#if UNITY_2018_1_OR_NEWER
+#if UNITY_64
             UnityEngine.Application.quitting -= Dispose;
 #endif
 

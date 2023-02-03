@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     internal static class WorldAccessor
     {

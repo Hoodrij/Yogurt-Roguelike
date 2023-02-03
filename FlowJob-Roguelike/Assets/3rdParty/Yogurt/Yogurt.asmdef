@@ -1,6 +1,6 @@
 {
-    "name": "FlowJob",
-    "rootNamespace": "",
+    "name": "Yogurt",
+    "rootNamespace": "Yogurt",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

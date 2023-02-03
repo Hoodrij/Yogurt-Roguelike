@@ -2,7 +2,7 @@
 using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using FlowJob;
+using Yogurt;
 using UnityEngine;
 
 namespace Roguelike

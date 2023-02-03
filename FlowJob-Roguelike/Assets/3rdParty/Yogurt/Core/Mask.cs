@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace FlowJob
+namespace Yogurt
 {
     [DebuggerDisplay("{Name}")]
     public struct Mask : IComparable<Mask>, IEquatable<Mask>

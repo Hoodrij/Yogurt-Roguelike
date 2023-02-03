@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     public static class EntityDebugEx
     {

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace FlowJob
+namespace Yogurt
 {
     [DebuggerTypeProxy(typeof(UnsafeSpanDebugView<>))]
     public unsafe struct UnsafeSpan<T> where T : unmanaged, IUnmanaged<T>

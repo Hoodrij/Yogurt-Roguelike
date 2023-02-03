@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace FlowJob
+namespace Yogurt
 {
     [StructLayout(LayoutKind.Explicit)]
     internal readonly struct Mask256 : IComparable<Mask256>

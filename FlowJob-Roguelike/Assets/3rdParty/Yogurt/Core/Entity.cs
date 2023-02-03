@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 
-namespace FlowJob
+namespace Yogurt
 {
     [DebuggerDisplay("{Name}")]
     [DebuggerTypeProxy(typeof(EntityDebugEx.EntityDebugView))]

@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using FlowJob;
+using Yogurt;
 using Roguelike.Abilities;
 
 namespace Roguelike

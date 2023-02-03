@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace FlowJob
+namespace Yogurt
 {
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe struct EntityMeta : IUnmanaged<EntityMeta>

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     public struct HashCode : IComparable<HashCode>, IEquatable<HashCode>
     {

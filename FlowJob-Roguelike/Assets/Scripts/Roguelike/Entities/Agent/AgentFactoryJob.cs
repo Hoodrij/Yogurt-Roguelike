@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
-using FlowJob;
+using Yogurt;
 using Roguelike.Abilities;
 using Roguelike.Tools;
 using UnityEngine;

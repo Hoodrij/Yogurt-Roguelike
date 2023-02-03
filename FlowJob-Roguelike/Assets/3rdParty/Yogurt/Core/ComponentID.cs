@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace FlowJob
+namespace Yogurt
 {
     [DebuggerDisplay("{Name}")]
     public readonly struct ComponentID

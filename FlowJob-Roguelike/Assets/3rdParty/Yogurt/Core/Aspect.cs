@@ -1,4 +1,4 @@
-﻿namespace FlowJob
+﻿namespace Yogurt
 {
     public interface Aspect
     {

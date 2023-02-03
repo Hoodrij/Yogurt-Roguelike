@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     internal class UnsafeSpanDebugView<T> where T : unmanaged, IUnmanaged<T>
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlowJob
+namespace Yogurt
 {
     internal class Group : IEquatable<Group>, IComparable<Group>
     {

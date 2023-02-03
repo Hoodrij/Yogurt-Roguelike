@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace FlowJob
+namespace Yogurt
 {
     /// <summary>
     /// QueryOfEntity query = Query.Of Player>();
