@@ -61,6 +61,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "yogurt": {
+      "version": "https://github.com/Hoodrij/Yogurt.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0f19196ffd94caa94f692bfaf08165722fabfcc5"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
