@@ -1,7 +1,6 @@
-﻿using Yogurt;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class Position : IComponent
     {

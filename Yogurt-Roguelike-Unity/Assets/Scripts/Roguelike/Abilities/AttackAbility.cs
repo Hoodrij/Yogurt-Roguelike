@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Yogurt;
 
-namespace Roguelike.Abilities
+namespace Yogurt.Roguelike.Abilities
 {
     public class AttackAbility : IAbility
     {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     [CreateAssetMenu]
     public class Data : ScriptableObject, IComponent

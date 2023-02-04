@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Roguelike.Abilities
+namespace Yogurt.Roguelike.Abilities
 {
     public class MoveAbility : IAbility
     {

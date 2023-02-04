@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     [Serializable]
     public struct FoodData

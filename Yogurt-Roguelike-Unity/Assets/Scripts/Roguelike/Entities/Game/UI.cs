@@ -1,9 +1,8 @@
 ﻿using System;
-using Yogurt;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class UI : MonoBehaviour, IComponent, IDisposable
     {

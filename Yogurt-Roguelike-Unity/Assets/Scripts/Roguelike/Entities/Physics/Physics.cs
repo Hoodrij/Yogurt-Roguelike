@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Tools.ExtensionMethods;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public static class Physics
     {

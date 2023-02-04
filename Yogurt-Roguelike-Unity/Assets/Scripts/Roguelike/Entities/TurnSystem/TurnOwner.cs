@@ -1,6 +1,4 @@
-﻿using Yogurt;
-
-namespace Roguelike
+﻿namespace Yogurt.Roguelike
 {
     public class TurnOwner : IComponent { }
 }

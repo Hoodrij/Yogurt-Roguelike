@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using Core.Tools.ExtensionMethods;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class GetClosestTargetDirectionJob
     {

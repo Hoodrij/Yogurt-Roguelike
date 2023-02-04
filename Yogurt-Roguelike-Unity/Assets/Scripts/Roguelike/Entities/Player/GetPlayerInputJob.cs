@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class GetPlayerInputJob
     {

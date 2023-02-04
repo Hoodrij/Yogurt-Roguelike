@@ -1,9 +1,8 @@
 ﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct EnvironmentFactoryJob
     {

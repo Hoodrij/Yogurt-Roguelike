@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Yogurt;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct RunTurnsJob
     {

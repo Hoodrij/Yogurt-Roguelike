@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Roguelike.Abilities
+namespace Yogurt.Roguelike.Abilities
 {
     public enum AbilityOutcome
     {

@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Roguelike.Tools
+namespace Yogurt.Roguelike.Tools
 {
     public class ResourcesLoader : IAssetLoader
     {

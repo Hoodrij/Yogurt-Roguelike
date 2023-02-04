@@ -1,8 +1,7 @@
 ﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
-using Yogurt;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct ExitFactoryJob
     {

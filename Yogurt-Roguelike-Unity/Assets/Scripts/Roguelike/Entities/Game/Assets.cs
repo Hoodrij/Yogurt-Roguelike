@@ -1,7 +1,6 @@
-﻿using Yogurt;
-using Roguelike.Tools;
+﻿using Yogurt.Roguelike.Tools;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class Assets : IComponent
     {

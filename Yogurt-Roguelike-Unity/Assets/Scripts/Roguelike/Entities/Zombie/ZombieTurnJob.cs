@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
-using Roguelike.Abilities;
 using UnityEngine;
+using Yogurt.Roguelike.Abilities;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class ZombieTurnJob : Agent.ITurnJob
     {

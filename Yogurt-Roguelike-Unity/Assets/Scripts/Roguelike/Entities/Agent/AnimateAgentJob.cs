@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class AnimateAgentJob
     {

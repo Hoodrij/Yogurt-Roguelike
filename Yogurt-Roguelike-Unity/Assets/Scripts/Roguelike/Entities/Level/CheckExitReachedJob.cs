@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct CheckExitReachedJob
     {

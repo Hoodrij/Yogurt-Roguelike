@@ -1,8 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt;
-using Roguelike.Abilities;
+using Yogurt.Roguelike.Abilities;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct PlayerFactoryJob
     {

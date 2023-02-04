@@ -2,10 +2,9 @@
 using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class AgentView : MonoBehaviour, IComponent, IDisposable
     {

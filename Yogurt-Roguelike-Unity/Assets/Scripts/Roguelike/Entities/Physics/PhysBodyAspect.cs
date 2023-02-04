@@ -1,7 +1,6 @@
 ﻿using System;
-using Yogurt;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct PhysBodyAspect : Aspect<PhysBodyAspect>, IEquatable<PhysBodyAspect>
     {

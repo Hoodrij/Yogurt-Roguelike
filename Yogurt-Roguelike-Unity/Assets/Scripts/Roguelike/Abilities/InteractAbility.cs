@@ -1,8 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike.Abilities
+namespace Yogurt.Roguelike.Abilities
 {
     public class InteractAbility : IAbility
     {

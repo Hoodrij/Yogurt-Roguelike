@@ -1,8 +1,7 @@
 ﻿using System;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     [Serializable]
     public class RockData : IComponent

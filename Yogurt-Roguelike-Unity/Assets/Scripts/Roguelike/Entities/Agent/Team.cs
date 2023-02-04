@@ -1,4 +1,4 @@
-﻿namespace Roguelike
+﻿namespace Yogurt.Roguelike
 {
     public enum Team
     {

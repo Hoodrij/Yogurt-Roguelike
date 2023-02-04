@@ -1,10 +1,9 @@
 ﻿using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
-using Yogurt;
-using Roguelike.Abilities;
 using UnityEngine;
+using Yogurt.Roguelike.Abilities;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct ZombieFactoryJob
     {

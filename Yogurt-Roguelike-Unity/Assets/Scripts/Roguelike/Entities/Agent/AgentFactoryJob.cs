@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Core.Tools.ExtensionMethods;
 using Cysharp.Threading.Tasks;
-using Yogurt;
-using Roguelike.Abilities;
-using Roguelike.Tools;
 using UnityEngine;
+using Yogurt.Roguelike.Abilities;
+using Yogurt.Roguelike.Tools;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct AgentFactoryJob
     {

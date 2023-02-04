@@ -1,9 +1,8 @@
 ﻿using System;
 using Core.Tools.ExtensionMethods;
-using Yogurt;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public class TileView : MonoBehaviour, IComponent, IDisposable
     {

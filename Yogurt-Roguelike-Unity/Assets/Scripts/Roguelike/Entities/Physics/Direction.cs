@@ -2,7 +2,7 @@
 using Core.Tools.ExtensionMethods;
 using UnityEngine;
 
-namespace Roguelike
+namespace Yogurt.Roguelike
 {
     public struct Direction : IEquatable<Direction>
     {
