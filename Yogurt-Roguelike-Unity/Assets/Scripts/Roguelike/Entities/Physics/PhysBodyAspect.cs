@@ -2,7 +2,7 @@
 
 namespace Yogurt.Roguelike
 {
-    public struct PhysBodyAspect : Aspect<PhysBodyAspect>, IEquatable<PhysBodyAspect>
+    public struct PhysBodyAspect : IAspect, IEquatable<PhysBodyAspect>
     {
         public Entity Entity { get; set; }
 

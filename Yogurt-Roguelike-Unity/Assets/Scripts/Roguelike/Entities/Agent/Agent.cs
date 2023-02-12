@@ -16,13 +16,13 @@ namespace Yogurt.Roguelike
         }
     }
 
-    public struct AgentAspect : Aspect<AgentAspect>
+    public struct AgentAspect : IAspect
     {
         public Entity Entity { get; set; }
         
         public Agent Agent => this.Get<Agent>();
         public Health Health => this.Get<Health>();
         public AgentView View => this.Get<AgentView>();
-        public PhysBodyAspect PhysBodyAspect => this.GetAspect<PhysBodyAspect>();
+        public PhysBodyAspect PhysBodyAspect => this.Get<PhysBodyAspect>();
     }
 }

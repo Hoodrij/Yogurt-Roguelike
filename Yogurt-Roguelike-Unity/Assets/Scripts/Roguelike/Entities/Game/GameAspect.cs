@@ -1,6 +1,6 @@
 ﻿namespace Yogurt.Roguelike
 {
-    public struct GameAspect : Aspect<GameAspect>
+    public struct GameAspect : IAspect
     {
         public Entity Entity { get; set; }
 
