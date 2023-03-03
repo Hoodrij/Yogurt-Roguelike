@@ -42,9 +42,9 @@ namespace Yogurt.Roguelike
             
             AgentView view = await args.ViewRef.Spawn();
             agentEntity.AddForLife(view);
-            view.UpdateView(agentEntity.ToAspect<AgentAspect>(), 0);
+            view.UpdateView(agentEntity.As<AgentAspect>(), 0);
             
-            return agentEntity.ToAspect<AgentAspect>();
+            return agentEntity.As<AgentAspect>();
         }
     }
 }

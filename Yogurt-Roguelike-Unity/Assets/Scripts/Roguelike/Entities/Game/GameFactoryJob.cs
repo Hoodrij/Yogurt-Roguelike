@@ -23,7 +23,7 @@ namespace Yogurt.Roguelike
                 .Add(health)
                 .Add(ui);
 
-            return entity.ToAspect<GameAspect>();
+            return entity.As<GameAspect>();
         }
     }
 }
