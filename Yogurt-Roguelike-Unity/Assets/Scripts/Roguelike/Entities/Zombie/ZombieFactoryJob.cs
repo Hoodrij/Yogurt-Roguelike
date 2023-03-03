@@ -11,14 +11,17 @@ namespace Yogurt.Roguelike
         {
             Assets assets = Query.Single<Assets>();
             Data data = Query.Single<Data>();
-            
-            AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
+
+            Vector2Int spawnPosition = GetSpawnPosition();
+            if (spawnPosition == default) return Entity.Null;
+
+                AgentAspect agentAspect = await new AgentFactoryJob().Run(new AgentFactoryJob.Args
             {
                 Team = Team.Zombie,
                 Layer = CollisionLayer.Destructible,
                 CanMoveAt = 0,
                 TurnJob = new ZombieTurnJob(),
-                Position = GetSpawnPosition(),
+                Position = spawnPosition,
                 ViewRef = assets.Zombie,
                 Abilities = IAbility.ZombieAbilities
             });

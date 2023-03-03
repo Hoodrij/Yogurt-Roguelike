@@ -13,6 +13,10 @@ namespace Yogurt.Roguelike
             {
                 direction = new GetZombieMoveDirectionJob().Run(agentAspect);
             }
+            if (direction == Direction.None)
+            {
+                return;
+            }
 
             Vector2Int newPosition = agentAspect.PhysBodyAspect.Position.Value + direction;
             await new RunAbilitiesJob().Run((agentAspect, newPosition));

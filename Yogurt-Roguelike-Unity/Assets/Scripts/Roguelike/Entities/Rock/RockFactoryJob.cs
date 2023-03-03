@@ -12,6 +12,7 @@ namespace Yogurt.Roguelike
             Assets assets = Query.Single<Assets>();
 
             Vector2Int spawnPosition = GetSpawnPosition();
+            if (spawnPosition == default) return Entity.Null;
 
             RockData rockData = data.Rocks.GetRandom();
 

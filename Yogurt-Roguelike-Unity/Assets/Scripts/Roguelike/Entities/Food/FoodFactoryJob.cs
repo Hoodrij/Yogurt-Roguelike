@@ -12,6 +12,7 @@ namespace Yogurt.Roguelike
             Assets assets = Query.Single<Assets>();
 
             Vector2Int spawnPosition = GetSpawnPosition();
+            if (spawnPosition == default) return Entity.Null;
             
             FoodData foodData = data.Foods.GetRandom();
             TileView view = await assets.Environment.Spawn();
