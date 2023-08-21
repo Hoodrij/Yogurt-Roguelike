@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.singularitygroup.hotreload": {
+      "version": "git+https://gitlab.com/singularitygroup/hot-reload-for-unity.git#1.1.8",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9ee47a89af93cca79fa6de33bb99299cf6167eeb"
+    },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
       "depth": 1,
@@ -66,7 +73,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "b2a38c483529fcf37c5f2ace356f76f43ff5add9"
+      "hash": "1c4c6b6dee0267215c5f2e0afa078cc78dfcd44e"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -11,7 +11,7 @@ namespace Yogurt.Roguelike
             Assets assets = Query.Single<Assets>();
 
             Entity entity = Level.Create()
-                .Add<Exit>()
+                .Add(new Exit())
                 .Add(new Collider
                 {
                     Layer = CollisionLayer.Interactable

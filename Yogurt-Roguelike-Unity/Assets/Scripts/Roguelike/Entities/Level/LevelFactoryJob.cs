@@ -10,7 +10,7 @@ namespace Yogurt.Roguelike
             Data data = Query.Single<Data>();
             
             Entity entity = Entity.Create()
-                .Add<Level>();
+                .Add(new Level());
 
             await new EnvironmentFactoryJob().Run();
             await new ExitFactoryJob().Run();

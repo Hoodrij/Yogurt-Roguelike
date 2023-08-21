@@ -12,17 +12,19 @@
                 {
                     agentAspect.Remove<TurnOwner>();
                     currentAgentFound = true;
+                    continue;
                 } 
-                else if (currentAgentFound)
+                
+                if (currentAgentFound)
                 {
-                    agentAspect.Add<TurnOwner>();
+                    agentAspect.Add(new TurnOwner());
                     break;
                 }
             }
             
             if (!Query.Of<TurnOwner>().Single().Exist)
             {
-                Query.Of<Agent>().Single().Add<TurnOwner>();
+                Query.Of<Agent>().Single().Add(new TurnOwner());
             }
         }
     }

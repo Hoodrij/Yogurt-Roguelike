@@ -17,7 +17,7 @@ MonoBehaviour:
   PlayerStartPosition: {x: 1, y: 1}
   FoodCount: 4
   EnemiesCount: 4
-  RocksCount: 6
+  RocksCount: 4
   StartingPlayerHealth: 100
   ZombieHealth: 2
   FloorSprites:

@@ -16,7 +16,6 @@ namespace Yogurt.Roguelike
                 
                 // small delay before restart
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
-
                 level.Kill();
             }
         }

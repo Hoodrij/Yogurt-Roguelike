@@ -22,7 +22,7 @@ namespace Yogurt.Roguelike
                 ViewRef = assets.Player,
             });
             
-            agentAspect.Add<Player>();
+            agentAspect.Add(new Player());
             agentAspect.Set(game.Health);
 
             agentAspect.Get<Health>().OnHealthChangedJob = new UpdateGameUIJob();
