@@ -1,4 +1,4 @@
-# 💣 Yogurt Roguelike sample
+# ⚔ Yogurt Roguelike sample
 
 This is a sample project for [Yogurt Unity framework](https://github.com/Hoodrij/Yogurt)
 
