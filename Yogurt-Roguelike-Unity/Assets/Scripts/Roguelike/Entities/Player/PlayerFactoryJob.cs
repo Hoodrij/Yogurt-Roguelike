@@ -24,9 +24,7 @@ namespace Yogurt.Roguelike
             
             agentAspect.Add(new Player());
             agentAspect.Set(game.Health);
-
-            agentAspect.Get<Health>().OnHealthChangedJob = new UpdateGameUIJob();
-
+            
             return agentAspect.Entity;
         }
     }

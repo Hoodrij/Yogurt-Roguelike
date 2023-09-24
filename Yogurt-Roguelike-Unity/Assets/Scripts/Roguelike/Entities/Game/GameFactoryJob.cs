@@ -11,7 +11,8 @@ namespace Yogurt.Roguelike
             
             Health health = new Health
             {
-                Value = data.StartingPlayerHealth
+                Value = data.StartingPlayerHealth,
+                OnHealthChangedJob = new UpdateGameUIJob()
             };
 
             UI ui = await assets.UI.Spawn();

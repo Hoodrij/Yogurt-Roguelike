@@ -7,7 +7,7 @@ namespace Yogurt.Roguelike
     {
         public async void Run()
         {
-            await new GameFactoryJob().Run(); 
+            await new GameFactoryJob().Run();
 
             while (!IsGameOver())
             {
