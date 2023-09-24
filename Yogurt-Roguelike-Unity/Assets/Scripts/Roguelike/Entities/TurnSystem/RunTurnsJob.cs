@@ -10,7 +10,7 @@ namespace Yogurt.Roguelike
         {
             while (!IsExitReached() && !IsGameOver())
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(GetDelay()));
+                await UniTask.Delay(GetDelay());
                 new GiveTurnToNextAgentJob().Run();
                 await new MakeTurnJob().Run();
             }
@@ -20,11 +20,11 @@ namespace Yogurt.Roguelike
 
         private bool IsGameOver() => new CheckGameOverJob().Run();
 
-        private float GetDelay()
+        private TimeSpan GetDelay()
         {
             float delay = Query.Single<Data>().TurnDelay;
             int agentsCount = Query.Of<Agent>().Count();
-            return delay / agentsCount;
+            return TimeSpan.FromSeconds(delay / agentsCount);
         }
     }
 }
