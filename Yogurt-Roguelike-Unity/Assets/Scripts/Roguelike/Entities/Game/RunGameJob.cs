@@ -18,8 +18,10 @@ namespace Yogurt.Roguelike
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
                 level.Kill();
             }
+            return;
+
+            bool IsGameOver() => new CheckGameOverJob().Run();
         }
 
-        private static bool IsGameOver() => new CheckGameOverJob().Run();
     }
 }
