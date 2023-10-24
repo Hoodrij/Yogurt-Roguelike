@@ -14,17 +14,16 @@ namespace Yogurt.Roguelike
                 new GiveTurnToNextAgentJob().Run();
                 await new MakeTurnJob().Run();
             }
-        }
-
-        private bool IsExitReached() => new CheckExitReachedJob().Run();
-
-        private bool IsGameOver() => new CheckGameOverJob().Run();
-
-        private TimeSpan GetDelay()
-        {
-            float delay = Query.Single<Data>().TurnDelay;
-            int agentsCount = Query.Of<Agent>().Count();
-            return TimeSpan.FromSeconds(delay / agentsCount);
+            
+            
+            bool IsExitReached() => new CheckExitReachedJob().Run();
+            bool IsGameOver() => new CheckGameOverJob().Run();
+            TimeSpan GetDelay()
+            {
+                float delay = Query.Single<Data>().TurnDelay;
+                int agentsCount = Query.Of<Agent>().Count();
+                return TimeSpan.FromSeconds(delay / agentsCount);
+            }
         }
     }
 }

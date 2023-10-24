@@ -7,9 +7,9 @@ namespace Yogurt.Roguelike
     {
         public async void Run()
         {
-            await new GameFactoryJob().Run();
+            GameAspect game = await new GameFactoryJob().Run();
 
-            while (!IsGameOver())
+            while (game.Exist())
             {
                 Entity level = await new LevelFactoryJob().Run();
                 await new RunTurnsJob().Run();
@@ -18,10 +18,6 @@ namespace Yogurt.Roguelike
                 await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
                 level.Kill();
             }
-            return;
-
-            bool IsGameOver() => new CheckGameOverJob().Run();
         }
-
     }
 }
